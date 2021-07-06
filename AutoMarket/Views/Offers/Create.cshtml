@@ -1,1 +1,115 @@
-﻿<div>Създай твоята оферта тук</div>
+﻿@model AutoMarket.Models.Offers.CreateVehicleOfferViewModel
+@{
+
+    ViewData["Title"] = "Добави нова обява";
+}
+
+<h3>Създай своята обява тук</h3>
+<div class="text-center">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Make">Марка</label>
+            <input class="form-control" type="text" asp-for="Make" value="" placeholder="..." />
+            <span asp-validation-for="Make" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Model">Модел</label>
+            <input class="form-control" type="text" asp-for="Model" value="" placeholder="..." />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ManufacturingYear">Година</label>
+            <input class="form-control" type="number" asp-for="ManufacturingYear" value="" placeholder="Година на производство" />
+            <span asp-validation-for="ManufacturingYear" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BodyType">Категория</label>
+            <select class="form-control" asp-for="BodyType">
+                <option value="value">Ван</option>
+                <option value="value">Джип</option>
+                <option value="value">Комби</option>
+                <option value="value">Купе</option>
+                <option value="value">Кабрио</option>
+                <option value="value">Пикап</option>
+                <option value="value">Седан</option>
+                <option value="value">Лимузина</option>
+                <option value="value">Хечбек</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="EngineCapacity">Кубатура</label>
+            <input class="form-control" type="number" asp-for="EngineCapacity" value="" placeholder="1.0 2.0 2.5" />
+            <span asp-validation-for="EngineCapacity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HorsePower">Мощност к.с.</label>
+            <input class="form-control" type="number" asp-for="HorsePower" value="">
+            <span asp-validation-for="HorsePower" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EngineType">Двигател</label>
+            <select class="form-control" asp-for="EngineType">
+                <option value="value">Бензинов</option>
+                <option value="value">Диезелов</option>
+                <option value="value">Електрически</option>
+                <option value="value">Хибриден</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transmission">Скоростна Кутия</label>
+            <select class="form-control" asp-for="Transmission">
+                <option value="value">Автоматична</option>
+                <option value="value">Ръчна</option>
+                <option value="value">Полуавтоматична</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Мileage">Пробег</label>
+            <input class="form-control" type="number" asp-for="Мileage" value="" />
+            <span asp-validation-for="Мileage" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Color">Цвят</label>
+            <select class="form-control" asp-for="Color">
+                <option value="value">Червен</option>
+                <option value="value">Син</option>
+                <option value="value">Жълт</option>
+                <option value="value">Зелен</option>
+                <option value="value">Бял</option>
+                <option value="value">Бежов</option>
+                <option value="value">Бордо</option>
+                <option value="value">Бронз</option>
+                <option value="value">Виолетов</option>
+                <option value="value">Вишнев</option>
+                <option value="value">Графит</option>
+                <option value="value">Златист</option>
+                <option value="value">Керемиден</option>
+                <option value="value">Лилав</option>
+                <option value="value">Металик</option>
+                <option value="value">Оранджев</option>
+                <option value="value">Перла</option>
+                <option value="value">Пепел от рози</option>
+                <option value="value">Пясъчен</option>
+                <option value="value">Розов</option>
+                <option value="value">Светло син</option>
+                <option value="value">Сив</option>
+                <option value="value">Черен</option>
+                <option value="value">Хамелеон</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="EuroStandart">Евро Стандарт</label>
+            <select class="form-control" asp-for="EuroStandart">
+                <option value="value">Евро 1</option>
+                <option value="value">Евро 2</option>
+                <option value="value">Евро 3</option>
+                <option value="value">Евро 4</option>
+                <option value="value">Евро 5</option>
+                <option value="value">Евро 6</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Добави обява" />
+    </form>
+
+</div>

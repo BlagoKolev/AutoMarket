@@ -12,6 +12,7 @@ namespace AutoMarket.Data.Models
         {
             this.Pictures = new List<PartPicture>();
         }
+
         [Key]
         public int Id { get; set; }
 
@@ -25,8 +26,14 @@ namespace AutoMarket.Data.Models
 
         [MaxLength(300)]
         public string Description { get; set; }
+
+        [EmailAddress]
         public string Email { get; set; }
+
+        [Range(0,int.MaxValue)]
         public int Price { get; set; }
+
+        [MaxLength(30)]
         public string Location { get; set; }
         public bool IsDeleted { get; set; }
         public int ApplicationUserId { get; set; }

@@ -14,13 +14,20 @@ namespace AutoMarket.Data.Models
         }
         [Key]
         public int Id { get; set; }
+
         [Required]
         [MaxLength(15)]
         public string Phone { get; set; }
+
+        [EmailAddress]
         public string Email { get; set; }
+
         [MaxLength(500)]
         public string Description { get; set; }
+
+        [Range(0,int.MaxValue)]
         public int Price { get; set; }
+
         [MaxLength(30)]
         public string Location { get; set; }
         public bool IsDeleted { get; set; }
