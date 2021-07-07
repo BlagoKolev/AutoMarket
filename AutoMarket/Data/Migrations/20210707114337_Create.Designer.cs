@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoMarket.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210704133257_ModelValidation")]
-    partial class ModelValidation
+    [Migration("20210707114337_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,9 +38,6 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -139,7 +136,8 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("PartId")
                         .HasColumnType("int");
@@ -189,7 +187,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasIndex("PartOfferId");
 
-                    b.ToTable("Pictures");
+                    b.ToTable("PartPictures");
                 });
 
             modelBuilder.Entity("AutoMarket.Data.Models.Vehicle", b =>
@@ -206,7 +204,7 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("EngineCapacity")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("EngineType")
                         .HasColumnType("int");
@@ -311,7 +309,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasIndex("VehicleOfferId");
 
-                    b.ToTable("VehiclePicture");
+                    b.ToTable("VehiclePictures");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

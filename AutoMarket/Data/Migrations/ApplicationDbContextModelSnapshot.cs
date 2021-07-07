@@ -38,9 +38,6 @@ namespace AutoMarket.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -188,7 +185,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasIndex("PartOfferId");
 
-                    b.ToTable("Pictures");
+                    b.ToTable("PartPictures");
                 });
 
             modelBuilder.Entity("AutoMarket.Data.Models.Vehicle", b =>
@@ -310,7 +307,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasIndex("VehicleOfferId");
 
-                    b.ToTable("VehiclePicture");
+                    b.ToTable("VehiclePictures");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

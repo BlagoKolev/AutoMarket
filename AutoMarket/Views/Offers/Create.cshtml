@@ -5,27 +5,31 @@
 }
 
 <h3>Създай своята обява тук</h3>
-<div class="text-center">
-    <form method="post">
-        <div asp-validation-summary="All"></div>
+<div class="text-center" >
+    <form method="post" class="col-md-6" asp-controller="Offers" asp-action="Create">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
         <div class="form-group">
-            <label asp-for="Make">Марка</label>
-            <input class="form-control" type="text" asp-for="Make" value="" placeholder="..." />
+            <label asp-for="Make"></label>
+            <input asp-for="Make" class="form-control" />
             <span asp-validation-for="Make" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="Model">Модел</label>
-            <input class="form-control" type="text" asp-for="Model" value="" placeholder="..." />
+            <label asp-for="Model"></label>
+            <input asp-for="Model" class="form-control"  />
             <span asp-validation-for="Model" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="ManufacturingYear">Година</label>
-            <input class="form-control" type="number" asp-for="ManufacturingYear" value="" placeholder="Година на производство" />
+            <label asp-for="ManufacturingYear"></label>
+            <input asp-for="ManufacturingYear"class="form-control"/>
             <span asp-validation-for="ManufacturingYear" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="BodyType">Категория</label>
-            <select class="form-control" asp-for="BodyType">
+            <label asp-for="BodyType"></label>
+            <select  asp-for="BodyType" class="form-control">
                 <option value="value">Ван</option>
                 <option value="value">Джип</option>
                 <option value="value">Комби</option>
@@ -37,41 +41,47 @@
                 <option value="value">Хечбек</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label asp-for="EngineCapacity">Кубатура</label>
-            <input class="form-control" type="number" asp-for="EngineCapacity" value="" placeholder="1.0 2.0 2.5" />
+            <label asp-for="EngineCapacity"></label>
+            <input asp-for="EngineCapacity" class="form-control" />
             <span asp-validation-for="EngineCapacity" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="HorsePower">Мощност к.с.</label>
-            <input class="form-control" type="number" asp-for="HorsePower" value="">
+            <label asp-for="HorsePower"></label>
+            <input  asp-for="HorsePower" class="form-control" >
             <span asp-validation-for="HorsePower" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="EngineType">Двигател</label>
-            <select class="form-control" asp-for="EngineType">
+            <label asp-for="EngineType"></label>
+            <select asp-for="EngineType" class="form-control" >
                 <option value="value">Бензинов</option>
                 <option value="value">Диезелов</option>
                 <option value="value">Електрически</option>
                 <option value="value">Хибриден</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label asp-for="Transmission">Скоростна Кутия</label>
-            <select class="form-control" asp-for="Transmission">
+            <label asp-for="Transmission"></label>
+            <select asp-for="Transmission" class="form-control" >
                 <option value="value">Автоматична</option>
                 <option value="value">Ръчна</option>
                 <option value="value">Полуавтоматична</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label asp-for="Мileage">Пробег</label>
-            <input class="form-control" type="number" asp-for="Мileage" value="" />
+            <label asp-for="Мileage"></label>
+            <input asp-for="Мileage" class="form-control" />
             <span asp-validation-for="Мileage" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="Color">Цвят</label>
-            <select class="form-control" asp-for="Color">
+            <label asp-for="Color"></label>
+            <select asp-for="Color" class="form-control" >
                 <option value="value">Червен</option>
                 <option value="value">Син</option>
                 <option value="value">Жълт</option>
@@ -98,9 +108,10 @@
                 <option value="value">Хамелеон</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label asp-for="EuroStandart">Евро Стандарт</label>
-            <select class="form-control" asp-for="EuroStandart">
+            <label asp-for="EuroStandart"></label>
+            <select asp-for="EuroStandart" class="form-control" >
                 <option value="value">Евро 1</option>
                 <option value="value">Евро 2</option>
                 <option value="value">Евро 3</option>
@@ -109,6 +120,37 @@
                 <option value="value">Евро 6</option>
             </select>
         </div>
+
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
         <input type="submit" class="btn btn-primary" value="Добави обява" />
     </form>
 

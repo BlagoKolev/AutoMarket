@@ -16,8 +16,7 @@ namespace AutoMarket.Data.Models
         }
        
         public DateTime RegistrationDate { get; set; }
-        public bool IsDeleted { get; set; } = false;
-
+       
         public virtual ICollection<PartOffer> PartOffers { get; set; }
         public virtual ICollection<VehicleOffer> VehicleOffers { get; set; }
     }
