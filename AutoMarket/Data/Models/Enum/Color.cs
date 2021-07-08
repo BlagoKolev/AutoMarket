@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace AutoMarket.Data.Models.Enum
@@ -24,7 +25,7 @@ namespace AutoMarket.Data.Models.Enum
         Металик = 15,
         Оранжев = 16,
         Перла = 17,
-        [Description("Пепел от рози")] ПепелОтРози = 18,
+        [Display(Name = "Пепел от рози")] ПепелОтРози = 18,
         Пясъчен = 19,
         Позов = 20,
         Сив = 21,

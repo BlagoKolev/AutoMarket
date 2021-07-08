@@ -11,14 +11,18 @@ namespace AutoMarket.Data.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [MaxLength(15)]
         public string Make { get; set; }
+
         [Required]
         [MaxLength(20)]
         public string Model { get; set; }
+
         [Required]
         public VehicleCategory VehicleCategory { get; set; }
+
         [Required]
         public BodyType BodyType { get; set; }
 

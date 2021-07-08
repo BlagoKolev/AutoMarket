@@ -25,6 +25,7 @@ namespace AutoMarket.Data.Models
         [MaxLength(500)]
         public string Description { get; set; }
 
+        [Required]
         [Range(0,int.MaxValue)]
         public int Price { get; set; }
 

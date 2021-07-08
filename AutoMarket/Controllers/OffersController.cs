@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +23,26 @@ namespace AutoMarket.Controllers
                 return this.Redirect("/Offers/Create");
             }
             return this.RedirectToAction("SuccessfulCreate");
+        }
+    }
+    public class ManufactoringYearAttribute : ValidationAttribute
+    {
+        public ManufactoringYearAttribute(int minYear)
+        {
+            this.MinYear = minYear;
+            this.ErrorMessage = $"Годината на производство трябва да бъде между {minYear} и {DateTime.UtcNow.Year}";
+        }
+        public int MinYear { get; }
+        public override bool IsValid(object value)
+        {
+            if (value is int intValue)
+            {
+                if (intValue > DateTime.UtcNow.Year || intValue < this.MinYear)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
