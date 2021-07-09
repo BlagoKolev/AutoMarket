@@ -10,7 +10,7 @@ namespace AutoMarket.Data.Models
     {
         public VehicleOffer()
         {
-            this.Pictures = new List<VehiclePicture>();
+            this.Pictures = new List<Image>();
         }
         [Key]
         public int Id { get; set; }
@@ -36,7 +36,7 @@ namespace AutoMarket.Data.Models
         public ApplicationUser ApplicationUser { get; set; }
         public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; }
-        public ICollection<VehiclePicture> Pictures { get; set; }
+        public ICollection<Image> Pictures { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace AutoMarket.Data.Models
     {
         public PartOffer()
         {
-            this.Pictures = new List<PartPicture>();
+            this.Pictures = new List<Image>();
         }
 
         [Key]
@@ -41,6 +41,6 @@ namespace AutoMarket.Data.Models
         public VehicleCategory VehicleType { get; set; }
         public int PartId { get; set; }
         public virtual Part Part { get; set; }
-        public ICollection<PartPicture> Pictures { get; set; }
+        public ICollection<Image> Pictures { get; set; }
     }
 }

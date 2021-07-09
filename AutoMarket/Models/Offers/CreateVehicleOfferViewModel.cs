@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMarket.Controllers;
+using Microsoft.AspNetCore.Http;
 
 namespace AutoMarket.Models.Offers
 {
@@ -91,6 +92,8 @@ namespace AutoMarket.Models.Offers
         [Display(Name = "Населено място")]
         public string Location { get; set; }
 
+        [Display(Name ="Качи снимка")]
+        public IFormFile ImageUrl { get; set; }
     }
 
 

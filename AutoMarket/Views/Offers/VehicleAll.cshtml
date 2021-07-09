@@ -1,0 +1,25 @@
+﻿@model List<VehicleOffersAllViewModel>
+@{
+    ViewData["Title"] = "Активни обяви";
+}
+
+<h1 class="text-center mt-2">My Cars</h1>
+<div class="row mt-2 mb-4">
+    @foreach (var car in @Model)
+    {
+        <div class="card col-6 col-lg-3 game-card">
+            <!-- <img src="kliomba car.PictureUrl"
+                         class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
+                         data-placement="bottom" title="">-->
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center">Марка: @car.Make </li>
+                    <li class="bg-danger col-sm">Модел: @car.Model</li>
+                    <li class="bg-success col-sm">Цвят: @car.Color</li>
+                    <li class="bg-success col-sm">Цена: @car.Price</li>
+                </ul>
+                <a href="/Offers/Details?carId=@car.Id" class="btn btn-block btn-primary">Check issues</a>
+            </div>
+        </div>}
+
+</div>

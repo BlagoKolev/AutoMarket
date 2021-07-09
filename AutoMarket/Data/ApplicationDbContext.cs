@@ -18,7 +18,6 @@ namespace AutoMarket.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleOffer> VehicleOffers { get; set; }
-        public DbSet<PartPicture> PartPictures { get; set; }
-        public DbSet<VehiclePicture> VehiclePictures { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

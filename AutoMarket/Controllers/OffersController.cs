@@ -1,28 +1,46 @@
 ﻿using AutoMarket.Models.Offers;
+using AutoMarket.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace AutoMarket.Controllers
 {
     public class OffersController : Controller
     {
-        public IActionResult Create()
+        private readonly IOffersService offerService;
+        public OffersController(IOffersService offersService)
+        {
+            this.offerService = offersService;
+        }
+
+        public IActionResult CreateVehicle()
         {
             return this.View();
         }
 
         [HttpPost]
-        public IActionResult Create(CreateVehicleOfferViewModel input)
+        public IActionResult CreateVehicle(CreateVehicleOfferViewModel input)
         {
+
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect("/Offers/Create");
+                return this.Redirect("/Offers/CreateVehicle");
             }
-            return this.RedirectToAction("SuccessfulCreate");
+
+            //TODO GetUserId to pass below
+            offerService.CreateVehicle(input);
+            return this.RedirectToAction("VehicleAll");
+        }
+
+        public IActionResult VehicleAll()
+        {
+            var vehicleOffers = offerService.GetAllVehiclesOffers();
+            return this.View(vehicleOffers);
         }
     }
     public class ManufactoringYearAttribute : ValidationAttribute
