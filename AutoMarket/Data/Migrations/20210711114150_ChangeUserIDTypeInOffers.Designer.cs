@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AutoMarket.Data.Migrations
+namespace AutoMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210707114337_Create")]
-    partial class Create
+    [Migration("20210711114150_ChangeUserIDTypeInOffers")]
+    partial class ChangeUserIDTypeInOffers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,6 +89,29 @@ namespace AutoMarket.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("AutoMarket.Data.Models.Image", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PartOfferId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VehicleOfferId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PartOfferId");
+
+                    b.HasIndex("VehicleOfferId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("AutoMarket.Data.Models.Part", b =>
                 {
                     b.Property<int>("Id")
@@ -119,10 +142,7 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -160,34 +180,11 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("PartId");
 
                     b.ToTable("PartOffers");
-                });
-
-            modelBuilder.Entity("AutoMarket.Data.Models.PartPicture", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PartOfferId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PartOfferId");
-
-                    b.ToTable("PartPictures");
                 });
 
             modelBuilder.Entity("AutoMarket.Data.Models.Vehicle", b =>
@@ -249,10 +246,7 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -282,34 +276,11 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("VehicleId");
 
                     b.ToTable("VehicleOffers");
-                });
-
-            modelBuilder.Entity("AutoMarket.Data.Models.VehiclePicture", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VehicleOfferId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VehicleOfferId");
-
-                    b.ToTable("VehiclePictures");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -447,11 +418,26 @@ namespace AutoMarket.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AutoMarket.Data.Models.Image", b =>
+                {
+                    b.HasOne("AutoMarket.Data.Models.PartOffer", "PartOffer")
+                        .WithMany("Pictures")
+                        .HasForeignKey("PartOfferId");
+
+                    b.HasOne("AutoMarket.Data.Models.VehicleOffer", "VehicleOffer")
+                        .WithMany("Pictures")
+                        .HasForeignKey("VehicleOfferId");
+
+                    b.Navigation("PartOffer");
+
+                    b.Navigation("VehicleOffer");
+                });
+
             modelBuilder.Entity("AutoMarket.Data.Models.PartOffer", b =>
                 {
                     b.HasOne("AutoMarket.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("PartOffers")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("AutoMarket.Data.Models.Part", "Part")
                         .WithMany()
@@ -464,22 +450,11 @@ namespace AutoMarket.Data.Migrations
                     b.Navigation("Part");
                 });
 
-            modelBuilder.Entity("AutoMarket.Data.Models.PartPicture", b =>
-                {
-                    b.HasOne("AutoMarket.Data.Models.PartOffer", "PartOffer")
-                        .WithMany("Pictures")
-                        .HasForeignKey("PartOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PartOffer");
-                });
-
             modelBuilder.Entity("AutoMarket.Data.Models.VehicleOffer", b =>
                 {
                     b.HasOne("AutoMarket.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("VehicleOffers")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("AutoMarket.Data.Models.Vehicle", "Vehicle")
                         .WithMany()
@@ -490,17 +465,6 @@ namespace AutoMarket.Data.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Vehicle");
-                });
-
-            modelBuilder.Entity("AutoMarket.Data.Models.VehiclePicture", b =>
-                {
-                    b.HasOne("AutoMarket.Data.Models.VehicleOffer", "VehicleOffer")
-                        .WithMany("Pictures")
-                        .HasForeignKey("VehicleOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("VehicleOffer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

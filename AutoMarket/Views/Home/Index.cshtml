@@ -1,11 +1,15 @@
-﻿@model Int32
+﻿@model List<int>
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>We already have @Model active offers  </p>
+    <p>
+        В момента има @Model[0] активни обяви за
+        <a class="text-decoration" href="/Offers/VehicleAll">Автомобили</a>
+        и @Model[1] активни обяви за <a class="text-decoation" href="/Offers/PartsAll">Авточасти</a>.
+    </p>
 </div>
 <div>
 

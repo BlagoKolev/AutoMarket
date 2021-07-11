@@ -3,7 +3,7 @@
     ViewData["Title"] = "Активни обяви";
 }
 
-<h1 class="text-center mt-2">My Cars</h1>
+<h1 class="text-center mt-2">Обяви за автомобили</h1>
 <div class="row mt-2 mb-4">
     @foreach (var car in @Model)
     {
@@ -14,11 +14,11 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-center">Марка: @car.Make </li>
-                    <li class="bg-danger col-sm">Модел: @car.Model</li>
-                    <li class="bg-success col-sm">Цвят: @car.Color</li>
-                    <li class="bg-success col-sm">Цена: @car.Price</li>
+                    <li class="bg-secondary col-sm">Модел: @car.Model</li>
+                    <li class="bg-secondary col-sm">Цвят: @car.Color</li>
+                    <li class="bg-secondary col-sm">Цена: @car.Price</li>
                 </ul>
-                <a href="/Offers/Details?carId=@car.Id" class="btn btn-block btn-primary">Check issues</a>
+                <a href="/Offers/Details?carId=@car.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
             </div>
         </div>}
 

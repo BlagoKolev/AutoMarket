@@ -12,13 +12,12 @@ namespace AutoMarket.Services
     {
         private readonly ApplicationDbContext db;
 
-
         public OffersService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public void CreateVehicle(CreateVehicleOfferViewModel offer)
+        public void CreateVehicle(CreateVehicleOfferViewModel offer,string userId)
         {
             var newVehicle = new Vehicle
             {
@@ -40,7 +39,7 @@ namespace AutoMarket.Services
 
             var newOffer = new VehicleOffer
             {
-               // TODO Add UserId
+               ApplicationUserId = userId,
                 VehicleId = newVehicle.Id,
                 Phone = offer.Phone,
                 Email = offer.Email,
@@ -65,8 +64,65 @@ namespace AutoMarket.Services
                      Color = x.Vehicle.Color.ToString(),
                      Price = x.Price
                  })
-                 .ToArray();
+                 .ToList();
             return vehicleOffers;
+        }
+
+        public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId)
+        {
+            var userVehicleOffers = this.db.VehicleOffers
+                .Where(x => x.ApplicationUserId == userId)
+                .Select(x=> new MyVehicleOffersViewModel
+                {
+                    Id= x.Id,
+                    Make = x.Vehicle.Make,
+                    Model = x.Vehicle.Model,
+                    Color= x.Vehicle.Color,
+                    BodyType = x.Vehicle.BodyType,
+                    EngineCapacity = x.Vehicle.EngineCapacity,
+                    HorsePower = x.Vehicle.HorsePower,
+                    ManufacturingYear = x.Vehicle.ManufacturingYear,
+                    Transmission = x.Vehicle.Transmission,
+                    Мileage = x.Vehicle.Мileage,
+                    EngineType = x.Vehicle.EngineType,
+                    EuroStandart = x.Vehicle.EuroStandart,
+                    Description = x.Description,
+                    Email = x.Email,
+                    Location = x.Location,
+                    Phone = x.Phone,
+                    Price = x.Price,
+                })
+                .ToList();
+            return userVehicleOffers;
+        }
+
+        public DetailsOfferViewModel GetVehicleOfferById(int carId)
+        {
+            var currentOffer = this.db.VehicleOffers
+                .Where(x => x.Vehicle.Id == carId)
+                .Select(x => new DetailsOfferViewModel
+                {
+                    Id = x.Id,
+                    Make = x.Vehicle.Make,
+                    Model = x.Vehicle.Model,
+                    Color = x.Vehicle.Color,
+                    BodyType = x.Vehicle.BodyType,
+                    EngineCapacity = x.Vehicle.EngineCapacity,
+                    HorsePower = x.Vehicle.HorsePower,
+                    ManufacturingYear = x.Vehicle.ManufacturingYear,
+                    Transmission = x.Vehicle.Transmission,
+                    Мileage = x.Vehicle.Мileage,
+                    EngineType = x.Vehicle.EngineType,
+                    EuroStandart = x.Vehicle.EuroStandart,
+                    Description = x.Description,
+                    Email = x.Email,
+                    Location = x.Location,
+                    Phone = x.Phone,
+                    Price = x.Price,
+                })
+                .FirstOrDefault();
+
+            return currentOffer;
         }
     }
 }

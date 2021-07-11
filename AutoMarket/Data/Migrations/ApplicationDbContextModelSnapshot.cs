@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AutoMarket.Data.Migrations
+namespace AutoMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -140,10 +140,7 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -181,7 +178,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("PartId");
 
@@ -247,10 +244,7 @@ namespace AutoMarket.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -280,7 +274,7 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId1");
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("VehicleId");
 
@@ -441,7 +435,7 @@ namespace AutoMarket.Data.Migrations
                 {
                     b.HasOne("AutoMarket.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("PartOffers")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("AutoMarket.Data.Models.Part", "Part")
                         .WithMany()
@@ -458,7 +452,7 @@ namespace AutoMarket.Data.Migrations
                 {
                     b.HasOne("AutoMarket.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("VehicleOffers")
-                        .HasForeignKey("ApplicationUserId1");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("AutoMarket.Data.Models.Vehicle", "Vehicle")
                         .WithMany()

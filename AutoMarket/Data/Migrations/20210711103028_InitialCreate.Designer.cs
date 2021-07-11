@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AutoMarket.Data.Migrations
+namespace AutoMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210709132408_CreateImage")]
-    partial class CreateImage
+    [Migration("20210711103028_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

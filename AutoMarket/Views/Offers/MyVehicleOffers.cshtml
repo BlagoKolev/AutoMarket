@@ -1,0 +1,40 @@
+﻿@model List<MyVehicleOffersViewModel>
+@{
+    ViewData["Title"] = "Моите обяви";
+}
+
+<h1 class="text-center mt-2">Моите обяви</h1>
+
+@if (Model.Any())
+{
+    <div class="row mt-2 mb-4">
+        @foreach (var car in @Model)
+        {
+            <div class="card col-6 col-lg-3 game-card">
+                <!-- <img src="kliomba car.PictureUrl"
+                             class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
+                             data-placement="bottom" title="">-->
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">Марка: @car.Make </li>
+                        <li class="bg-secondary col-sm">Модел: @car.Model</li>
+                        <li class="bg-secondary col-sm">Цвят: @car.Color</li>
+                        <li class="bg-secondary col-sm">Цена: @car.Price</li>
+                    </ul>
+                    <a href="/Offers/Details?carId=@car.Id" class="btn btn-block btn-primary">Редактирай</a>
+                </div>
+            </div>
+            }
+
+    </div>
+}
+else
+{
+<div class="text-center">
+    <h4>В момента нямате създадени обяви за автомобили</h4>
+    <h5>За да създадете нова обява натиснете 
+        <a href="/Offers/CreateVehicle" class="text-decoration">тук</a>
+    </h5>
+</div>
+}
+

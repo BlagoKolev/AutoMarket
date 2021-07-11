@@ -7,15 +7,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using AutoMarket.Data.Models;
 
 namespace AutoMarket.Controllers
 {
     public class OffersController : Controller
     {
         private readonly IOffersService offerService;
-        public OffersController(IOffersService offersService)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager)
         {
             this.offerService = offersService;
+            this._userManager = userManager;
         }
 
         public IActionResult CreateVehicle()
@@ -24,6 +27,7 @@ namespace AutoMarket.Controllers
         }
 
         [HttpPost]
+
         public IActionResult CreateVehicle(CreateVehicleOfferViewModel input)
         {
 
@@ -32,8 +36,8 @@ namespace AutoMarket.Controllers
                 return this.Redirect("/Offers/CreateVehicle");
             }
 
-            //TODO GetUserId to pass below
-            offerService.CreateVehicle(input);
+            var userId = this._userManager.GetUserId(this.User);
+            offerService.CreateVehicle(input, userId);
             return this.RedirectToAction("VehicleAll");
         }
 
@@ -41,6 +45,21 @@ namespace AutoMarket.Controllers
         {
             var vehicleOffers = offerService.GetAllVehiclesOffers();
             return this.View(vehicleOffers);
+        }
+
+
+        public IActionResult MyVehicleOffers()
+        {
+            var userId = this._userManager.GetUserId(this.User);
+            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId);
+
+            return this.View(myVehiclesOffers);
+        }
+
+        public IActionResult Details(int carId)
+        {
+            var currentOffer = this.offerService.GetVehicleOfferById(carId);
+            return this.View(currentOffer);
         }
     }
     public class ManufactoringYearAttribute : ValidationAttribute

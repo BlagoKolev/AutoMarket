@@ -13,11 +13,13 @@ namespace AutoMarket.Services
         {
             this.db = db;
         }
-        public int GetAllOffersCount()
+        public List<int> GetAllOffersCount()
         {
             var partOffers = db.PartOffers.Count();
             var vehicleOffers = db.VehicleOffers.Count();
-            var offersCount = partOffers + vehicleOffers;
+            var offersCount = new List<int>();
+            offersCount.Add(vehicleOffers);
+            offersCount.Add(partOffers);
             return offersCount;
         }
     }

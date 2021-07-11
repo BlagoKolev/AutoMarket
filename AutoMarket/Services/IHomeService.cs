@@ -7,6 +7,6 @@ namespace AutoMarket.Services
 {
     public interface IHomeService
     {
-        int GetAllOffersCount();
+        List<int> GetAllOffersCount();
     }
 }

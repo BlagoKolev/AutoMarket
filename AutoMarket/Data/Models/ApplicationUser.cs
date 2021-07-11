@@ -14,9 +14,8 @@ namespace AutoMarket.Data.Models
             this.VehicleOffers = new HashSet<VehicleOffer>();
             this.RegistrationDate = DateTime.UtcNow;
         }
-       
+
         public DateTime RegistrationDate { get; set; }
-       
         public virtual ICollection<PartOffer> PartOffers { get; set; }
         public virtual ICollection<VehicleOffer> VehicleOffers { get; set; }
     }

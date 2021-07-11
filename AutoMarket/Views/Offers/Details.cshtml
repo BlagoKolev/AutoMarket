@@ -1,0 +1,83 @@
+﻿@model DetailsOfferViewModel
+@{
+    ViewData["Title"] = "Детайли за обявата";
+}
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Марка</h5>
+        <p class="card-text">@Model.Make</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Модел</h5>
+        <p class="card-text">@Model.Model</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Година на производство</h5>
+        <p class="card-text">@Model.ManufacturingYear</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Категория</h5>
+        <p class="card-text">@Model.BodyType</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Обем на двигателя</h5>
+        <p class="card-text">@Model.EngineCapacity</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Двигател</h5>
+        <p class="card-text">@Model.EngineType</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Скоростна кутия</h5>
+        <p class="card-text">@Model.Transmission</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Пробег</h5>
+        <p class="card-text">@Model.Мileage</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Цвят</h5>
+        <p class="card-text">@Model.Color</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Екологична категория</h5>
+        <p class="card-text">@Model.EuroStandart</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Описание</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Населено място</h5>
+        <p class="card-text">@Model.Location</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Цена</h5>
+        <p class="card-text">@Model.Price</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Е-мейл</h5>
+        <p class="card-text">@Model.Email</p>
+    </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Телефон</h5>
+        <p class="card-text">@Model.Phone</p>
+    </div>
+
+</div>

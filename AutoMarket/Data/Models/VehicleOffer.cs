@@ -32,7 +32,7 @@ namespace AutoMarket.Data.Models
         [MaxLength(30)]
         public string Location { get; set; }
         public bool IsDeleted { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; }
