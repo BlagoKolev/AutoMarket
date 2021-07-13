@@ -13,6 +13,6 @@ namespace AutoMarket.Models.Offers
         public string Model { get; set; }
         public string Color { get; set; }
         public int Price { get; set; }
-        public ICollection<Image> Images { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
-using AutoMarket.Data.Models.Enum;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMarket.Controllers;
 using Microsoft.AspNetCore.Http;
+using AutoMarket.Controllers;
+using AutoMarket.Data.Models.Enum;
 
 namespace AutoMarket.Models.Offers
 {
@@ -33,18 +31,18 @@ namespace AutoMarket.Models.Offers
         [Display(Name = "Година на производство")]
         public int ManufacturingYear { get; set; }
 
-        [Required(ErrorMessage ="Полето 'Обем на двигателя' е задължително.")]
+        [Required(ErrorMessage = "Полето 'Обем на двигателя' е задължително.")]
         [Column(TypeName = "decimal(5, 2)")]
-        [Range(typeof(decimal), "0.1", "1000000",ErrorMessage ="Обема на двигателя трябва да бъде между 0,1 и 1000000.")]
+        [Range(typeof(decimal), "0.1", "1000000", ErrorMessage = "Обема на двигателя трябва да бъде между 0,1 и 1000000.")]
         [Display(Name = "Обем на двигателя")]
         public decimal EngineCapacity { get; set; }
 
-        [Required(ErrorMessage ="Полето 'Мощност' е задължително.")]
-        [Range(0, 100000,ErrorMessage ="Мощността трябва да бъде между 0 и 100000 к.с. .")]
+        [Required(ErrorMessage = "Полето 'Мощност' е задължително.")]
+        [Range(0, 100000, ErrorMessage = "Мощността трябва да бъде между 0 и 100000 к.с. .")]
         [Display(Name = "Мощност к.с.")]
         public int HorsePower { get; set; }
 
-        [Required(ErrorMessage ="Полето 'Двигател' е задължително.")]
+        [Required(ErrorMessage = "Полето 'Двигател' е задължително.")]
         [Display(Name = "Двигател")]
         public EngineType EngineType { get; set; }
 
@@ -55,7 +53,7 @@ namespace AutoMarket.Models.Offers
 
         [Required(ErrorMessage = "Полето 'Пробег' е задължително.")]
         [Display(Name = "Пробег (км)")]
-        [Range(0, 2000000,ErrorMessage ="Пробегът трябва да е между 0 и 2 млн. километра.")]
+        [Range(0, 2000000, ErrorMessage = "Пробегът трябва да е между 0 и 2 млн. километра.")]
         public int Мileage { get; set; }
 
 
@@ -69,11 +67,11 @@ namespace AutoMarket.Models.Offers
         public EuroStandart EuroStandart { get; set; }
 
         [Required(ErrorMessage = "Полето 'Телефон' е задължително.")]
-        [MaxLength(15,ErrorMessage = "Полето 'Телефон' не може да е по-дълго от 15 символа")]
+        [MaxLength(15, ErrorMessage = "Полето 'Телефон' не може да е по-дълго от 15 символа")]
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
-        [EmailAddress(ErrorMessage ="Въведете валидна форма на Е-мейл 'xxx@xxx.xx'.")]
+        [EmailAddress(ErrorMessage = "Въведете валидна форма на Е-мейл 'xxx@xxx.xx'.")]
         [Display(Name = "Е-мейл")]
         public string Email { get; set; }
 
@@ -84,16 +82,16 @@ namespace AutoMarket.Models.Offers
 
 
         [Required(ErrorMessage = "Полето 'Цена' е задължително.")]
-        [Range(0, int.MaxValue,ErrorMessage ="Полето 'Цена' трябва да бъде между 0 и 2_147_483_647.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Полето 'Цена' трябва да бъде между 0 и 2_147_483_647.")]
         [Display(Name = "Цена")]
         public int Price { get; set; }
 
-        [MaxLength(30,ErrorMessage ="Полето 'Населено място' не трябва да бъде над 30 символа")]
+        [MaxLength(30, ErrorMessage = "Полето 'Населено място' не трябва да бъде над 30 символа")]
         [Display(Name = "Населено място")]
         public string Location { get; set; }
 
-        [Display(Name ="Качи снимка")]
-        public IFormFile ImageUrl { get; set; }
+        [Display(Name = "Качи снимка")]
+        public ICollection<IFormFile> Images { get; set; }
     }
 
 

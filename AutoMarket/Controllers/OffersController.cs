@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutoMarket.Controllers
 {
@@ -15,19 +17,22 @@ namespace AutoMarket.Controllers
     {
         private readonly IOffersService offerService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager)
+        private readonly IWebHostEnvironment environment;
+        public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
             this.offerService = offersService;
             this._userManager = userManager;
+            this.environment = env;
         }
 
+        [Authorize]
         public IActionResult CreateVehicle()
         {
             return this.View();
         }
 
         [HttpPost]
-
+        [Authorize]
         public IActionResult CreateVehicle(CreateVehicleOfferViewModel input)
         {
 
@@ -36,8 +41,10 @@ namespace AutoMarket.Controllers
                 return this.Redirect("/Offers/CreateVehicle");
             }
 
+            var imagePath = $"{this.environment.WebRootPath}/images";
             var userId = this._userManager.GetUserId(this.User);
-            offerService.CreateVehicle(input, userId);
+
+            offerService.CreateVehicle(input, userId, imagePath);
             return this.RedirectToAction("VehicleAll");
         }
 
