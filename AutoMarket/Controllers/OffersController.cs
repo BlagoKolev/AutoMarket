@@ -44,14 +44,34 @@ namespace AutoMarket.Controllers
             var imagePath = $"{this.environment.WebRootPath}/images";
             var userId = this._userManager.GetUserId(this.User);
 
-            offerService.CreateVehicle(input, userId, imagePath);
+            try
+            {
+                offerService.CreateVehicle(input, userId, imagePath);
+            }
+            catch (Exception)
+            {
+
+                this.ModelState.AddModelError(string.Empty, "Image upload error");
+                return this.View();
+            }
+           
             return this.RedirectToAction("VehicleAll");
         }
 
-        public IActionResult VehicleAll()
+        public IActionResult VehicleAll(int id = 1)
         {
-            var vehicleOffers = offerService.GetAllVehiclesOffers();
-            return this.View(vehicleOffers);
+            var itemsPerPage = 9;
+            var vehicleOffers = offerService.GetAllVehiclesOffers(id, itemsPerPage);
+            var itemsCount = offerService.GetItemsCount();
+
+            var listAllVehicleViewModel = new ListAllVehicleViewModel
+            {
+                PageNumber = id,
+                Cars = vehicleOffers,
+                ItemsCount = itemsCount,
+            };
+
+            return this.View(listAllVehicleViewModel);
         }
 
 

@@ -47,13 +47,12 @@ namespace AutoMarket.Services
                 Location = offer.Location,
                 Price = offer.Price,
                 Description = offer.Description,
-                // Pictures = offer.Images,
             };
 
             this.db.VehicleOffers.Add(newOffer);
 
-            Directory.CreateDirectory($"{imagePath}/vehicles/"); 
-          
+            Directory.CreateDirectory($"{imagePath}/vehicles/");
+
             foreach (var image in offer.Images)
             {
                 var extension = Path.GetExtension(image.FileName).TrimStart('.');
@@ -79,9 +78,12 @@ namespace AutoMarket.Services
             this.db.SaveChanges();
         }
 
-        public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers()
+        public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)
         {
             var vehicleOffers = this.db.VehicleOffers
+                .OrderByDescending(x=>x.Id)
+                .Skip((id-1)*itemsPerPage)
+                .Take(itemsPerPage)
                  .Select(x => new VehicleOffersAllViewModel
                  {
                      Id = x.Id,
@@ -93,6 +95,12 @@ namespace AutoMarket.Services
                  })
                  .ToList();
             return vehicleOffers;
+        }
+
+        public int GetItemsCount()
+        {
+            var itemsCount = this.db.VehicleOffers.Count();
+            return itemsCount;
         }
 
         public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId)

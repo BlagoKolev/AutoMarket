@@ -1,13 +1,13 @@
-﻿@model List<VehicleOffersAllViewModel>
+﻿@model ListAllVehicleViewModel
 @{
     ViewData["Title"] = "Активни обяви";
 }
 
 <h1 class="text-center mt-2">Обяви за автомобили</h1>
-<div class="row mt-2 mb-4">
-    @foreach (var car in @Model)
+<div class="row mt-2 mb-4 justify-content-center">
+    @foreach (var car in @Model.Cars)
     {
-        <div class="card col-6 col-lg-3 game-card">
+        <div class="card col-6 col-lg-3 game-card mx-2 my-2">
             <img src="@car.Image"
                  class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
                  data-placement="bottom" title="">
@@ -23,3 +23,32 @@
         </div>
     }
 </div>
+<hr />
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPrevious) { <text>disabled</text>}">
+            <a class="page-link" asp-action="VehicleAll" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="VehicleAll" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" asp-action="VehicleAll" asp-route-id="@Model.PageNumber">@Model.PageNumber</a>
+        </li>
+        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="VehicleAll" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item  @if (!Model.HasNext) { <text>disabled</text>}">
+            <a class="page-link " asp-action="VehicleAll" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>
+
