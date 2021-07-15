@@ -1,19 +1,19 @@
-﻿@model List<MyVehicleOffersViewModel>
+﻿@model ListMyVehicleViewModel
 @{
     ViewData["Title"] = "Моите обяви";
 }
 
 <h1 class="text-center mt-2">Моите обяви</h1>
 
-@if (Model.Any())
+@if (Model.Cars.Any())
 {
     <div class="row mt-2 mb-4">
-        @foreach (var car in @Model)
+        @foreach (var car in @Model.Cars)
         {
-            <div class="card col-6 col-lg-3 game-card">
-                <!-- <img src="kliomba car.PictureUrl"
+            <div class="card col-6 col-lg-3 game-card mx-2 my-2">
+                <img src="@car.Image"
                              class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
-                             data-placement="bottom" title="">-->
+                             data-placement="bottom" title="">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item text-center">Марка: @car.Make </li>
@@ -37,4 +37,5 @@ else
     </h5>
 </div>
 }
-
+<hr />
+<partial name="_PagingPartial" model="@Model" />

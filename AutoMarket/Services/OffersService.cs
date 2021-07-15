@@ -104,10 +104,15 @@ namespace AutoMarket.Services
             return itemsCount;
         }
 
-        public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId)
+        public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage)
         {
-            var userVehicleOffers = this.db.VehicleOffers
+            var imagesInOffer = new List<string>();
+
+                 var userVehicleOffers = this.db.VehicleOffers
                 .Where(x => x.ApplicationUserId == userId)
+                .OrderByDescending(x=>x.Id)
+                .Skip((id-1)*itemsPerPage)
+                .Take(itemsPerPage)
                 .Select(x => new MyVehicleOffersViewModel
                 {
                     Id = x.Id,
@@ -127,6 +132,7 @@ namespace AutoMarket.Services
                     Location = x.Location,
                     Phone = x.Phone,
                     Price = x.Price,
+                    Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
                 })
                 .ToList();
             return userVehicleOffers;
@@ -134,6 +140,23 @@ namespace AutoMarket.Services
 
         public DetailsOfferViewModel GetVehicleOfferById(int carId)
         {
+            var offerId = this.db.VehicleOffers
+                .Where(x => x.VehicleId == carId)
+                .Select(x=>x.Id)
+                .FirstOrDefault();
+
+            var imagesCollection = this.db.Images
+                .Where(x => x.VehicleOfferId == offerId)
+                .ToList();
+
+            var imagesPath = new List<string>();
+
+            foreach (var img in imagesCollection)
+            {
+                imagesPath.Add("/images/vehicles/" + img.Id + '.' + img.Extension);
+            }
+
+
             var currentOffer = this.db.VehicleOffers
                 .Where(x => x.Vehicle.Id == carId)
                 .Select(x => new DetailsOfferViewModel
@@ -155,6 +178,7 @@ namespace AutoMarket.Services
                     Location = x.Location,
                     Phone = x.Phone,
                     Price = x.Price,
+                    Images = imagesPath
                 })
                 .FirstOrDefault();
 

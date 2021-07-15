@@ -57,8 +57,6 @@ namespace AutoMarket.Models.Offers
 
         [Display(Name = "Населено място")]
         public string Location { get; set; }
-
-        [Display(Name = "Качи снимка")]
-        public string ImageUrl { get; set; }
+        public IEnumerable<string> Images { get; set; }
     }
 }

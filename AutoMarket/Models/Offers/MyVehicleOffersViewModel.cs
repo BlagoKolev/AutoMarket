@@ -59,6 +59,6 @@ namespace AutoMarket.Models.Offers
         public string Location { get; set; }
 
         [Display(Name = "Качи снимка")]
-        public string ImageUrl { get; set; }
+        public string Image { get; set; }
     }
 }

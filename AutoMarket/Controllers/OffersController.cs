@@ -18,6 +18,7 @@ namespace AutoMarket.Controllers
         private readonly IOffersService offerService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
+        private readonly int ItemsPerPage = 9;
         public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
             this.offerService = offersService;
@@ -66,8 +67,7 @@ namespace AutoMarket.Controllers
                 id = 1;
             }
 
-            var itemsPerPage = 9;
-            var vehicleOffers = offerService.GetAllVehiclesOffers(id, itemsPerPage);
+            var vehicleOffers = offerService.GetAllVehiclesOffers(id, ItemsPerPage);
             var itemsCount = offerService.GetItemsCount();
 
             var listAllVehicleViewModel = new ListAllVehicleViewModel
@@ -81,12 +81,24 @@ namespace AutoMarket.Controllers
         }
 
 
-        public IActionResult MyVehicleOffers()
+        public IActionResult MyVehicleOffers(int id=1)
         {
-            var userId = this._userManager.GetUserId(this.User);
-            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId);
+            if (id <= 0)
+            {
+                id = 1;
+            }
 
-            return this.View(myVehiclesOffers);
+            var userId = this._userManager.GetUserId(this.User);
+            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId, id, ItemsPerPage);
+
+            var listMyVehicleOffersViewModel = new ListMyVehicleViewModel
+            {
+                Cars = myVehiclesOffers,
+                ItemsCount = myVehiclesOffers.Count,
+                PageNumber = id,
+            };
+
+            return this.View(listMyVehicleOffersViewModel);
         }
 
         public IActionResult Details(int carId)
