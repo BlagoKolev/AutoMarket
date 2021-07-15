@@ -80,20 +80,21 @@ namespace AutoMarket.Services
 
         public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)
         {
+          
             var vehicleOffers = this.db.VehicleOffers
-                .OrderByDescending(x=>x.Id)
-                .Skip((id-1)*itemsPerPage)
-                .Take(itemsPerPage)
-                 .Select(x => new VehicleOffersAllViewModel
-                 {
-                     Id = x.Id,
-                     Make = x.Vehicle.Make,
-                     Model = x.Vehicle.Model,
-                     Color = x.Vehicle.Color.ToString(),
-                     Price = x.Price,
-                     Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
-                 })
-                 .ToList();
+           .OrderByDescending(x => x.Id)
+           .Skip((id - 1) * itemsPerPage)
+           .Take(itemsPerPage)
+            .Select(x => new VehicleOffersAllViewModel
+            {
+                Id = x.Id,
+                Make = x.Vehicle.Make,
+                Model = x.Vehicle.Model,
+                Color = x.Vehicle.Color.ToString(),
+                Price = x.Price,
+                Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+            })
+            .ToList();
             return vehicleOffers;
         }
 

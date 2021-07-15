@@ -24,31 +24,5 @@
     }
 </div>
 <hr />
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item @if (!Model.HasPrevious) { <text>disabled</text>}">
-            <a class="page-link" asp-action="VehicleAll" asp-route-id="@Model.PreviousPageNumber">Previous</a>
-        </li>
-        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
-        {
-            if (i > 0)
-            {
-                <li class="page-item"><a class="page-link" asp-action="VehicleAll" asp-route-id="@i">@i</a></li>
-            }
-        }
-        <li class="page-item">
-            <a class="page-link" asp-action="VehicleAll" asp-route-id="@Model.PageNumber">@Model.PageNumber</a>
-        </li>
-        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
-        {
-            if (i <= Model.PagesCount)
-            {
-                <li class="page-item"><a class="page-link" asp-action="VehicleAll" asp-route-id="@i">@i</a></li>
-            }
-        }
-        <li class="page-item  @if (!Model.HasNext) { <text>disabled</text>}">
-            <a class="page-link " asp-action="VehicleAll" asp-route-id="@Model.NextPageNumber">Next</a>
-        </li>
-    </ul>
-</nav>
+<partial name="_PagingPartial" model="@Model" />
 

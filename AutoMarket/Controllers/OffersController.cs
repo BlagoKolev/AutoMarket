@@ -54,12 +54,18 @@ namespace AutoMarket.Controllers
                 this.ModelState.AddModelError(string.Empty, "Image upload error");
                 return this.View();
             }
-           
+
             return this.RedirectToAction("VehicleAll");
         }
 
         public IActionResult VehicleAll(int id = 1)
         {
+
+            if (id <= 0)
+            {
+                id = 1;
+            }
+
             var itemsPerPage = 9;
             var vehicleOffers = offerService.GetAllVehiclesOffers(id, itemsPerPage);
             var itemsCount = offerService.GetItemsCount();
