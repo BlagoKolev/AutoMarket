@@ -105,7 +105,7 @@ namespace AutoMarket.Controllers
             return this.View(listAllVehicleViewModel);
         }
 
-
+        [Authorize]
         public IActionResult MyVehicleOffers(int id=1)
         {
             if (id <= 0)
