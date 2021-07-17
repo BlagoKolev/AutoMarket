@@ -45,6 +45,7 @@ namespace AutoMarket.Data.Models
 
         [Range(0, 1500000)]
         public int Мileage { get; set; }
+
         [Required]
         public Color Color { get; set; }
 

@@ -80,7 +80,7 @@ namespace AutoMarket.Services
 
         public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)
         {
-          
+
             var vehicleOffers = this.db.VehicleOffers
            .OrderByDescending(x => x.Id)
            .Skip((id - 1) * itemsPerPage)
@@ -104,37 +104,66 @@ namespace AutoMarket.Services
             return itemsCount;
         }
 
+        public EditVehicleOfferViewModel GetVehicleToEdit(int carId, string userId)
+        {
+            var offerId = this.db.VehicleOffers
+                .Where(x => x.VehicleId == carId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            var imagesPath = this.db.Images
+                .Where(x => x.VehicleOfferId == offerId)
+                .Select(x => "/images/vehicles/" + x.Id + '.' + x.Extension)
+                .ToList();
+
+
+            var vehicleToEdit = this.db.VehicleOffers
+                 .Where(x => x.VehicleId == carId && x.ApplicationUserId == userId)
+                 .Select(x => new EditVehicleOfferViewModel
+                 {
+                     Id = x.Id,
+                     Make = x.Vehicle.Make,
+                     Model = x.Vehicle.Model,
+                     BodyType = x.Vehicle.BodyType,
+                     EngineCapacity = x.Vehicle.EngineCapacity,
+                     EngineType = x.Vehicle.EngineType,
+                     HorsePower = x.Vehicle.HorsePower,
+                     ManufacturingYear = x.Vehicle.ManufacturingYear,
+                     Transmission = x.Vehicle.Transmission,
+                     Мileage = x.Vehicle.Мileage,
+                     EuroStandart = x.Vehicle.EuroStandart,
+                     Color = x.Vehicle.Color,
+                     Images = imagesPath,
+                     Description = x.Description,
+                     Email = x.Email,
+                     Phone = x.Phone,
+                     Location = x.Location,
+                     Price = x.Price
+                 })
+                 .FirstOrDefault();
+
+            return vehicleToEdit;
+        }
+
         public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage)
         {
             var imagesInOffer = new List<string>();
 
-                 var userVehicleOffers = this.db.VehicleOffers
-                .Where(x => x.ApplicationUserId == userId)
-                .OrderByDescending(x=>x.Id)
-                .Skip((id-1)*itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(x => new MyVehicleOffersViewModel
-                {
-                    Id = x.Id,
-                    Make = x.Vehicle.Make,
-                    Model = x.Vehicle.Model,
-                    Color = x.Vehicle.Color,
-                    BodyType = x.Vehicle.BodyType,
-                    EngineCapacity = x.Vehicle.EngineCapacity,
-                    HorsePower = x.Vehicle.HorsePower,
-                    ManufacturingYear = x.Vehicle.ManufacturingYear,
-                    Transmission = x.Vehicle.Transmission,
-                    Мileage = x.Vehicle.Мileage,
-                    EngineType = x.Vehicle.EngineType,
-                    EuroStandart = x.Vehicle.EuroStandart,
-                    Description = x.Description,
-                    Email = x.Email,
-                    Location = x.Location,
-                    Phone = x.Phone,
-                    Price = x.Price,
-                    Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
-                })
-                .ToList();
+            var userVehicleOffers = this.db.VehicleOffers
+           .Where(x => x.ApplicationUserId == userId)
+           .OrderByDescending(x => x.Id)
+           .Skip((id - 1) * itemsPerPage)
+           .Take(itemsPerPage)
+           .Select(x => new MyVehicleOffersViewModel
+           {
+               Id = x.Id,
+               Make = x.Vehicle.Make,
+               Model = x.Vehicle.Model,
+               Color = x.Vehicle.Color,
+               Price = x.Price,
+               Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+           })
+           .ToList();
             return userVehicleOffers;
         }
 
@@ -142,7 +171,7 @@ namespace AutoMarket.Services
         {
             var offerId = this.db.VehicleOffers
                 .Where(x => x.VehicleId == carId)
-                .Select(x=>x.Id)
+                .Select(x => x.Id)
                 .FirstOrDefault();
 
             var imagesCollection = this.db.Images
@@ -183,6 +212,49 @@ namespace AutoMarket.Services
                 .FirstOrDefault();
 
             return currentOffer;
+        }
+
+        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, int offerId)
+        {
+            var images = this.db.Images
+                 .Where(x => x.VehicleOfferId == offerId)
+                                  .ToList();
+
+            var currentOffer = this.db.VehicleOffers
+                .Where(x => x.Id == offerId)
+                .FirstOrDefault();
+
+            var currentVehicle = this.db.Vehicles
+                .Where(x => x.Id == currentOffer.VehicleId)
+                .FirstOrDefault();
+
+            currentOffer.Vehicle = currentVehicle;
+
+            UpdateEntity(editedModel, currentOffer, images);
+            this.db.Update(currentOffer);
+            this.db.SaveChanges();
+        }
+
+        private static VehicleOffer UpdateEntity(EditVehicleOfferViewModel editedModel, VehicleOffer entityToEdit, ICollection<Image> images)
+        {
+            entityToEdit.Vehicle.Make = editedModel.Make;
+            entityToEdit.Vehicle.Model = editedModel.Model;
+            entityToEdit.Vehicle.Color = editedModel.Color;
+            entityToEdit.Vehicle.BodyType = editedModel.BodyType;
+            entityToEdit.Vehicle.EngineCapacity = editedModel.EngineCapacity;
+            entityToEdit.Vehicle.EngineType = editedModel.EngineType;
+            entityToEdit.Vehicle.EuroStandart = editedModel.EuroStandart;
+            entityToEdit.Vehicle.HorsePower = editedModel.HorsePower;
+            entityToEdit.Vehicle.ManufacturingYear = editedModel.ManufacturingYear;
+            entityToEdit.Vehicle.Мileage = editedModel.Мileage;
+            entityToEdit.Vehicle.Transmission = editedModel.Transmission;
+            entityToEdit.Description = editedModel.Description;
+            entityToEdit.Email = editedModel.Email;
+            entityToEdit.Phone = editedModel.Phone;
+            entityToEdit.Location = editedModel.Location;
+            entityToEdit.Price = editedModel.Price;
+            entityToEdit.Pictures = images;
+            return entityToEdit;
         }
     }
 }

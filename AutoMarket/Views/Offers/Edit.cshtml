@@ -1,0 +1,136 @@
+﻿@model EditVehicleOfferViewModel
+
+@{
+    this.ViewData["Title"] = "Редактирай обявата";
+}
+
+<h3 class="text-center">Редактирай обявата</h3>
+
+<div>
+    <ul class="list-group list-group-horizontal">
+        @foreach (var img in Model.Images)
+        {
+            <li class="list-group-item mx-2 my-2">
+                <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xl-9">
+
+            <form enctype="multipart/form-data" method="post" class="col-md-12">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Make"></label>
+                    <input asp-for="Make" class="form-control" />
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Model"></label>
+                    <input asp-for="Model" class="form-control" />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ManufacturingYear"></label>
+                    <input asp-for="ManufacturingYear" class="form-control" />
+                    <span asp-validation-for="ManufacturingYear" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BodyType"></label>
+                    <select asp-for="BodyType" class="form-control" asp-items="@Html.GetEnumSelectList<BodyType>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EngineCapacity"></label>
+                    <input asp-for="EngineCapacity" class="form-control" />
+                    <span asp-validation-for="EngineCapacity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HorsePower"></label>
+                    <input asp-for="HorsePower" class="form-control">
+                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EngineType"></label>
+                    <select asp-for="EngineType" class="form-control" asp-items="@Html.GetEnumSelectList<EngineType>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Transmission"></label>
+                    <select asp-for="Transmission" class="form-control" asp-items="@Html.GetEnumSelectList<TransmissionType>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Мileage"></label>
+                    <input asp-for="Мileage" class="form-control" />
+                    <span asp-validation-for="Мileage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Color"></label>
+                    <select asp-for="Color" class="form-control" asp-items="@Html.GetEnumSelectList<Color>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EuroStandart"></label>
+                    <select asp-for="EuroStandart" class="form-control" asp-items="@Html.GetEnumSelectList<EuroStandart>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea rows="3" asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Location"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                @*
+        <div class="form-group">
+                        <label asp-for="Images"></label>
+                        <input asp-for="Images" class="form-control" />
+                        <span asp-validation-for="Images" class="text-danger"></span>
+                    </div>
+                *@
+            <input type="hidden" asp-for="Id"/>
+                <input type="submit" class="btn btn-primary" value="Запази промените" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -9,10 +9,12 @@ namespace AutoMarket.Services
 {
     public interface IOffersService
     {
+        void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, int offerId);
         void CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath);
         ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage);
         ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage);
         DetailsOfferViewModel GetVehicleOfferById(int carId);
+        EditVehicleOfferViewModel GetVehicleToEdit(int carId, string userId);
         int GetItemsCount();
 
     }

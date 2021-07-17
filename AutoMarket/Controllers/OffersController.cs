@@ -19,11 +19,36 @@ namespace AutoMarket.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
         private readonly int ItemsPerPage = 9;
+
         public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
             this.offerService = offersService;
             this._userManager = userManager;
             this.environment = env;
+        }
+
+        [Authorize]
+        public IActionResult Edit(int carId)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction("Edit");
+            }
+            var currentUserId = _userManager.GetUserId(this.User);
+            var editViewModel = offerService.GetVehicleToEdit(carId, currentUserId);
+            return this.View(editViewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(EditVehicleOfferViewModel editedModel, int Id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(editedModel);
+            }
+            offerService.UpdateVehicleOffer(editedModel, Id);
+            return this.RedirectToAction(nameof(this.Details), new {carId = Id});
         }
 
         [Authorize]
