@@ -19,8 +19,6 @@ namespace AutoMarket.Controllers
         private readonly IOffersService offerService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
-        private readonly int ItemsPerPage = 9;
-
 
         public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
@@ -30,14 +28,14 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize]
-        public IActionResult Edit(int carId)
+        public IActionResult Edit(int offerId)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.RedirectToAction("Edit");
             }
             var currentUserId = _userManager.GetUserId(this.User);
-            var editViewModel = offerService.GetVehicleToEdit(carId, currentUserId);
+            var editViewModel = offerService.GetVehicleToEdit(offerId, currentUserId);
             return this.View(editViewModel);
         }
 
@@ -87,13 +85,9 @@ namespace AutoMarket.Controllers
 
         public IActionResult VehicleAll(int id = 1)
         {
+            id = id <= 0 ? 1 : id;
 
-            if (id <= 0)
-            {
-                id = 1;
-            }
-
-            var vehicleOffers = offerService.GetAllVehiclesOffers(id, ItemsPerPage);
+            var vehicleOffers = offerService.GetAllVehiclesOffers(id, GlobalConstants.ItemsPerPage);
             var itemsCount = offerService.GetItemsCount();
 
             var listAllVehicleViewModel = new ListAllVehicleViewModel
@@ -115,7 +109,7 @@ namespace AutoMarket.Controllers
             }
 
             var userId = this._userManager.GetUserId(this.User);
-            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId, id, ItemsPerPage);
+            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId, id, GlobalConstants.ItemsPerPage);
             var itemsCount = offerService.GetItemsCount();
 
             var listMyVehicleOffersViewModel = new ListMyVehicleViewModel

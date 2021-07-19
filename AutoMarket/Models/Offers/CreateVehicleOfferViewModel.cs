@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 using AutoMarket.Controllers;
 using AutoMarket.Data.Models.Enum;
+using AutoMarket.Data;
 
 namespace AutoMarket.Models.Offers
 {
@@ -86,11 +87,11 @@ namespace AutoMarket.Models.Offers
         [Display(Name = "Цена")]
         public int Price { get; set; }
 
-        [MaxLength(30, ErrorMessage = "Полето 'Населено място' не трябва да бъде над 30 символа")]
+        [MaxLength(GlobalConstants.LocationLength, ErrorMessage = "Полето 'Населено място' не трябва да бъде над 30 символа")]
         [Display(Name = "Населено място")]
         public string Location { get; set; }
 
-        [Display(Name = "Качи снимка")]
+        [Display(Name = "Добави снимка")]
         public ICollection<IFormFile> Images { get; set; }
     }
 

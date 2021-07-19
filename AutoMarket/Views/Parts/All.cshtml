@@ -1,0 +1,54 @@
+﻿@model ListPartsAllViewModel
+@{
+    ViewData["Title"] = "Активни обяви за авточасти";
+}
+
+<h1 class="text-center mt-2">Обяви за авточасти</h1>
+<div class="row mt-2 mb-4 justify-content-center">
+    @foreach (var offer in @Model.Offers)
+    {
+        <div class="card col-6 col-lg-3 game-card mx-2 my-2 justify-content-start">
+            <img src="@offer.Image"
+                 class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
+                 data-placement="bottom" title="">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center">Марка: @offer.Name </li>
+                    <li class="bg-secondary col-sm">Модел: @offer.Category</li>
+                    <li class="bg-secondary col-sm">Цвят: @offer.Status</li>
+                    <li class="bg-secondary col-sm">Цена: @offer.Price</li>
+                </ul>
+                <a href="/Offers/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPrevious) { <text>disabled</text>}">
+            <a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" asp-action="All" asp-route-id="@Model.PageNumber">@Model.PageNumber</a>
+        </li>
+        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item  @if (!Model.HasNext) { <text>disabled</text>}">
+            <a class="page-link " asp-action="All" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>
+

@@ -1,0 +1,89 @@
+﻿@model CreatePartViewModel
+@{
+
+    ViewData["Title"] = "Добави нова обява";
+}
+
+<h3 class="text-center">Създай своята обява тук</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xl-9">
+
+            <form enctype="multipart/form-data" method="post" class="col-md-12" asp-controller="Parts" asp-action="Create">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PartCategory"></label>
+                    <select asp-for="PartCategory" class="form-control" asp-items="@Html.GetEnumSelectList<PartCategory>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="VehicleType"></label>
+                    <select asp-for="VehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleCategory>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Status"></label>
+                    <select asp-for="Status" class="form-control" asp-items="@Html.GetEnumSelectList<PartStatus>()"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea rows="3" asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Location"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Images"></label>
+                    <input asp-for="Images" class="form-control" />
+                    <span asp-validation-for="Images" class="text-danger"></span>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Добави обява" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

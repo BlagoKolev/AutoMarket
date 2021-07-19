@@ -24,7 +24,7 @@ namespace AutoMarket.Data.Models
         [MaxLength(30)]
         public string Title { get; set; }
 
-        [MaxLength(300)]
+        [MaxLength(5000)]
         public string Description { get; set; }
 
         [EmailAddress]
