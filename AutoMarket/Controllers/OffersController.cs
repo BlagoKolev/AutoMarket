@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using AutoMarket.Data;
 
 namespace AutoMarket.Controllers
 {
@@ -19,6 +20,7 @@ namespace AutoMarket.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
         private readonly int ItemsPerPage = 9;
+
 
         public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
@@ -48,7 +50,7 @@ namespace AutoMarket.Controllers
                 return this.View(editedModel);
             }
             offerService.UpdateVehicleOffer(editedModel, Id);
-            return this.RedirectToAction(nameof(this.Details), new {carId = Id});
+            return this.RedirectToAction(nameof(this.Details), new { carId = Id });
         }
 
         [Authorize]
@@ -61,7 +63,6 @@ namespace AutoMarket.Controllers
         [Authorize]
         public IActionResult CreateVehicle(CreateVehicleOfferViewModel input)
         {
-
             if (!this.ModelState.IsValid)
             {
                 return this.Redirect("/Offers/CreateVehicle");
@@ -98,7 +99,7 @@ namespace AutoMarket.Controllers
             var listAllVehicleViewModel = new ListAllVehicleViewModel
             {
                 PageNumber = id,
-                Cars = vehicleOffers,
+                Offers = vehicleOffers,
                 ItemsCount = itemsCount,
             };
 
@@ -106,7 +107,7 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize]
-        public IActionResult MyVehicleOffers(int id=1)
+        public IActionResult MyVehicleOffers(int id = 1)
         {
             if (id <= 0)
             {
@@ -115,20 +116,21 @@ namespace AutoMarket.Controllers
 
             var userId = this._userManager.GetUserId(this.User);
             var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId, id, ItemsPerPage);
+            var itemsCount = offerService.GetItemsCount();
 
             var listMyVehicleOffersViewModel = new ListMyVehicleViewModel
             {
-                Cars = myVehiclesOffers,
-                ItemsCount = myVehiclesOffers.Count,
+                Offers = myVehiclesOffers,
+                ItemsCount = itemsCount,
                 PageNumber = id,
             };
 
             return this.View(listMyVehicleOffersViewModel);
         }
 
-        public IActionResult Details(int carId)
+        public IActionResult Details(int offerId)
         {
-            var currentOffer = this.offerService.GetVehicleOfferById(carId);
+            var currentOffer = this.offerService.GetVehicleOfferById(offerId);
             return this.View(currentOffer);
         }
     }

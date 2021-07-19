@@ -5,20 +5,20 @@
 
 <h1 class="text-center mt-2">Обяви за автомобили</h1>
 <div class="row mt-2 mb-4 justify-content-center">
-    @foreach (var car in @Model.Cars)
+    @foreach (var offer in @Model.Offers)
     {
         <div class="card col-6 col-lg-3 game-card mx-2 my-2 justify-content-start">
-            <img src="@car.Image" 
+            <img src="@offer.Image" 
                  class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
                  data-placement="bottom" title="">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Марка: @car.Make </li>
-                    <li class="bg-secondary col-sm">Модел: @car.Model</li>
-                    <li class="bg-secondary col-sm">Цвят: @car.Color</li>
-                    <li class="bg-secondary col-sm">Цена: @car.Price</li>
+                    <li class="list-group-item text-center">Марка: @offer.Make </li>
+                    <li class="bg-secondary col-sm">Модел: @offer.Model</li>
+                    <li class="bg-secondary col-sm">Цвят: @offer.Color</li>
+                    <li class="bg-secondary col-sm">Цена: @offer.Price</li>
                 </ul>
-                <a href="/Offers/Details?carId=@car.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                <a href="/Offers/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
             </div>
         </div>
     }

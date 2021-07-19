@@ -53,26 +53,28 @@ namespace AutoMarket.Services
 
             Directory.CreateDirectory($"{imagePath}/vehicles/");
 
-            foreach (var image in offer.Images)
+            if (offer.Images != null)
             {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
-                if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
+                foreach (var image in offer.Images)
                 {
-                    throw new Exception($"Invalid image extension {extension}");
+                    var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                    if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
+                    {
+                        throw new Exception($"Invalid image extension {extension}");
+                    }
+
+                    var newImage = new Image
+                    {
+                        VehicleOffer = newOffer,
+                        Extension = extension,
+                    };
+
+                    newOffer.Pictures.Add(newImage);
+
+                    var physicalPath = $"{imagePath}/vehicles/{newImage.Id}.{extension}";
+                    using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                    image.CopyTo(fileStream);
                 }
-
-                var newImage = new Image
-                {
-                    VehicleOffer = newOffer,
-                    Extension = extension,
-                };
-
-                newOffer.Pictures.Add(newImage);
-
-                var physicalPath = $"{imagePath}/vehicles/{newImage.Id}.{extension}";
-                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                image.CopyTo(fileStream);
-
             }
 
             this.db.SaveChanges();
@@ -167,16 +169,11 @@ namespace AutoMarket.Services
             return userVehicleOffers;
         }
 
-        public DetailsOfferViewModel GetVehicleOfferById(int carId)
+        public DetailsOfferViewModel GetVehicleOfferById(int offerId)
         {
-            var offerId = this.db.VehicleOffers
-                .Where(x => x.VehicleId == carId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
             var imagesCollection = this.db.Images
-                .Where(x => x.VehicleOfferId == offerId)
-                .ToList();
+             .Where(x => x.VehicleOfferId == offerId)
+             .ToList();
 
             var imagesPath = new List<string>();
 
@@ -187,7 +184,7 @@ namespace AutoMarket.Services
 
 
             var currentOffer = this.db.VehicleOffers
-                .Where(x => x.Vehicle.Id == carId)
+                .Where(x => x.Vehicle.Id == offerId)
                 .Select(x => new DetailsOfferViewModel
                 {
                     Id = x.Id,

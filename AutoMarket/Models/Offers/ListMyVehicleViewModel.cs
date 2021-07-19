@@ -9,8 +9,8 @@ namespace AutoMarket.Models.Offers
     {
         public ListMyVehicleViewModel()
         {
-            this.Cars = new List<MyVehicleOffersViewModel>();
+            this.Offers = new List<MyVehicleOffersViewModel>();
         }
-        public ICollection<MyVehicleOffersViewModel> Cars { get; set; }
+        public ICollection<MyVehicleOffersViewModel> Offers { get; set; }
     }
 }
