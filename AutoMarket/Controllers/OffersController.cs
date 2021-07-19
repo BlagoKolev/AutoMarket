@@ -133,6 +133,17 @@ namespace AutoMarket.Controllers
             var currentOffer = this.offerService.GetVehicleOfferById(offerId);
             return this.View(currentOffer);
         }
+
+        [Authorize]
+        public IActionResult Delete(int offerId)
+        {
+            if (offerId != 0)
+            {
+                var userId = _userManager.GetUserId(this.User);
+                offerService.DeleteOffer(offerId, userId);
+            }
+            return this.RedirectToAction(nameof(this.MyVehicleOffers));
+        }
     }
     public class ManufactoringYearAttribute : ValidationAttribute
     {

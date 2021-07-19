@@ -9,6 +9,7 @@ namespace AutoMarket.Services
 {
     public interface IOffersService
     {
+        void DeleteOffer(int offerId, string userId);
         void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, int offerId);
         void CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath);
         ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage);

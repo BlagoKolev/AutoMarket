@@ -18,7 +18,7 @@
 
 else
 {
-    <div class="row mt-2 mb-4">
+    <div class="row mt-2 mb-4 justify-content-center">
         @foreach (var offer in @Model.Offers)
         {
             <div class="card col-6 col-lg-3 game-card mx-2 my-2">
@@ -35,6 +35,7 @@ else
                     <hr />
                     <a href="/Offers/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
                     <a href="/Offers/Edit?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
+                    <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
                 </div>
             </div>
         }

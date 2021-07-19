@@ -84,25 +84,28 @@ namespace AutoMarket.Services
         {
 
             var vehicleOffers = this.db.VehicleOffers
-           .OrderByDescending(x => x.Id)
-           .Skip((id - 1) * itemsPerPage)
-           .Take(itemsPerPage)
-            .Select(x => new VehicleOffersAllViewModel
-            {
-                Id = x.Id,
-                Make = x.Vehicle.Make,
-                Model = x.Vehicle.Model,
-                Color = x.Vehicle.Color.ToString(),
-                Price = x.Price,
-                Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
-            })
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.Id)
+                .Skip((id - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new VehicleOffersAllViewModel
+                {
+                    Id = x.Id,
+                    Make = x.Vehicle.Make,
+                    Model = x.Vehicle.Model,
+                    Color = x.Vehicle.Color.ToString(),
+                    Price = x.Price,
+                    Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                })
             .ToList();
             return vehicleOffers;
         }
 
         public int GetItemsCount()
         {
-            var itemsCount = this.db.VehicleOffers.Count();
+            var itemsCount = this.db.VehicleOffers
+                .Where(x => x.IsDeleted == false)
+                .Count();
             return itemsCount;
         }
 
@@ -152,7 +155,7 @@ namespace AutoMarket.Services
             var imagesInOffer = new List<string>();
 
             var userVehicleOffers = this.db.VehicleOffers
-           .Where(x => x.ApplicationUserId == userId)
+           .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
            .OrderByDescending(x => x.Id)
            .Skip((id - 1) * itemsPerPage)
            .Take(itemsPerPage)
@@ -252,6 +255,16 @@ namespace AutoMarket.Services
             entityToEdit.Price = editedModel.Price;
             entityToEdit.Pictures = images;
             return entityToEdit;
+        }
+
+        public void DeleteOffer(int offerId, string userId)
+        {
+            var offerToDelete = this.db.VehicleOffers
+                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+                .FirstOrDefault();
+            offerToDelete.IsDeleted = true;
+
+            this.db.SaveChanges();
         }
     }
 }
