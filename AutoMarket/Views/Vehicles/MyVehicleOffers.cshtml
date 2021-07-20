@@ -11,7 +11,7 @@
         <h4>В момента нямате създадени обяви за автомобили</h4>
         <h5>
             За да създадете нова обява натиснете
-            <a href="/Offers/CreateVehicle" class="text-decoration">тук</a>
+            <a href="/Vehicles/Create" class="text-decoration">тук</a>
         </h5>
     </div>
 }
@@ -33,9 +33,9 @@ else
                         <li class="bg-secondary col-sm">Цена: @offer.Price</li>
                     </ul>
                     <hr />
-                    <a href="/Offers/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
-                    <a href="/Offers/Edit?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
-                    <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
+                    <a href="/Vehicles/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                    <a href="/Vehicles/Edit?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
+                    <a href="/Vehicles/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
                 </div>
             </div>
         }

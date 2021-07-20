@@ -14,13 +14,13 @@ using AutoMarket.Data;
 
 namespace AutoMarket.Controllers
 {
-    public class OffersController : Controller
+    public class VehiclesController : Controller
     {
         private readonly IOffersService offerService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
 
-        public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
+        public VehiclesController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
             this.offerService = offersService;
             this._userManager = userManager;
@@ -48,22 +48,22 @@ namespace AutoMarket.Controllers
                 return this.View(editedModel);
             }
             offerService.UpdateVehicleOffer(editedModel, Id);
-            return this.RedirectToAction(nameof(this.Details), new { carId = Id });
+            return this.RedirectToAction(nameof(Details), new { carId = Id });
         }
 
         [Authorize]
-        public IActionResult CreateVehicle()
+        public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult CreateVehicle(CreateVehicleOfferViewModel input)
+        public IActionResult Create(CreateVehicleOfferViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect("/Offers/CreateVehicle");
+                return this.RedirectToAction(nameof(Create));
             }
 
             var imagePath = $"{this.environment.WebRootPath}/images";
@@ -80,10 +80,10 @@ namespace AutoMarket.Controllers
                 return this.View();
             }
 
-            return this.RedirectToAction("VehicleAll");
+            return this.RedirectToAction("All");
         }
 
-        public IActionResult VehicleAll(int id = 1)
+        public IActionResult All(int id = 1)
         {
             id = id <= 0 ? 1 : id;
 
