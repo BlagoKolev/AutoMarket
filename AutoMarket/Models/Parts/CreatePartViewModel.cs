@@ -19,9 +19,9 @@ namespace AutoMarket.Models.Parts
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Полето 'Заглаие' е задължително")]
+        [Required(ErrorMessage = "Полето 'Заглаие на обявата' е задължително")]
         [MaxLength(GlobalConstants.TitleLength, ErrorMessage = "Полето 'Заглавие' не трябва да е повече от 30 символа")]
-        [Display(Name = "Заглавие")]
+        [Display(Name = "Заглавие на обявата")]
         public string Title { get; set; }
 
         [MaxLength(GlobalConstants.DescriptionLength, ErrorMessage = "Полето 'Описание' не може да бъде повече от 5000 символа.")]

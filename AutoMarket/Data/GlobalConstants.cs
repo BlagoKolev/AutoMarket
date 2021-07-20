@@ -13,5 +13,6 @@ namespace AutoMarket.Data
         public const int DescriptionLength = 5000;
         public const int LocationLength = 30;
         public const int TitleLength = 30;
+       // private readonly string[] AllowedImageExtensions = new[] { "jpg", "png", "gif", "jpeg" };
     }
 }
