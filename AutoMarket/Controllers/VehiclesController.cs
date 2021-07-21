@@ -16,39 +16,15 @@ namespace AutoMarket.Controllers
 {
     public class VehiclesController : Controller
     {
-        private readonly IOffersService offerService;
+        private readonly IVehiclesService vehiclesService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IWebHostEnvironment environment;
 
-        public VehiclesController(IOffersService offersService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
+        public VehiclesController(IVehiclesService vehiclesService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
-            this.offerService = offersService;
+            this.vehiclesService = vehiclesService;
             this._userManager = userManager;
             this.environment = env;
-        }
-
-        [Authorize]
-        public IActionResult Edit(int offerId)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.RedirectToAction("Edit");
-            }
-            var currentUserId = _userManager.GetUserId(this.User);
-            var editViewModel = offerService.GetVehicleToEdit(offerId, currentUserId);
-            return this.View(editViewModel);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public IActionResult Edit(EditVehicleOfferViewModel editedModel, int Id)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(editedModel);
-            }
-            offerService.UpdateVehicleOffer(editedModel, Id);
-            return this.RedirectToAction(nameof(Details), new { carId = Id });
         }
 
         [Authorize]
@@ -71,7 +47,7 @@ namespace AutoMarket.Controllers
 
             try
             {
-                offerService.CreateVehicle(input, userId, imagePath);
+                vehiclesService.CreateVehicle(input, userId, imagePath);
             }
             catch (Exception)
             {
@@ -87,8 +63,8 @@ namespace AutoMarket.Controllers
         {
             id = id <= 0 ? 1 : id;
 
-            var vehicleOffers = offerService.GetAllVehiclesOffers(id, GlobalConstants.ItemsPerPage);
-            var itemsCount = offerService.GetItemsCount();
+            var vehicleOffers = vehiclesService.GetAllVehiclesOffers(id, GlobalConstants.ItemsPerPage);
+            var itemsCount = vehiclesService.GetItemsCount();
 
             var listAllVehicleViewModel = new ListAllVehicleViewModel
             {
@@ -100,44 +76,12 @@ namespace AutoMarket.Controllers
             return this.View(listAllVehicleViewModel);
         }
 
-        [Authorize]
-        public IActionResult MyVehicleOffers(int id = 1)
+        public IActionResult Details(string offerId)
         {
-            if (id <= 0)
-            {
-                id = 1;
-            }
-
-            var userId = this._userManager.GetUserId(this.User);
-            var myVehiclesOffers = this.offerService.GetMyVehicleOffers(userId, id, GlobalConstants.ItemsPerPage);
-            var itemsCount = offerService.GetItemsCount();
-
-            var listMyVehicleOffersViewModel = new ListMyVehicleViewModel
-            {
-                Offers = myVehiclesOffers,
-                ItemsCount = itemsCount,
-                PageNumber = id,
-            };
-
-            return this.View(listMyVehicleOffersViewModel);
-        }
-
-        public IActionResult Details(int offerId)
-        {
-            var currentOffer = this.offerService.GetVehicleOfferById(offerId);
+            var currentOffer = this.vehiclesService.GetVehicleOfferById(offerId);
             return this.View(currentOffer);
         }
 
-        [Authorize]
-        public IActionResult Delete(int offerId)
-        {
-            if (offerId != 0)
-            {
-                var userId = _userManager.GetUserId(this.User);
-                offerService.DeleteOffer(offerId, userId);
-            }
-            return this.RedirectToAction(nameof(this.MyVehicleOffers));
-        }
     }
     public class ManufactoringYearAttribute : ValidationAttribute
     {

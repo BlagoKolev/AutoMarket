@@ -14,9 +14,9 @@ namespace AutoMarket.Data.Models
 
         public string Id { get; set; }
         public string Extension { get; set; }
-        public int? PartOfferId { get; set; }
+        public string PartOfferId { get; set; }
         public PartOffer PartOffer{ get; set; }
-        public int? VehicleOfferId { get; set; }
+        public string VehicleOfferId { get; set; }
         public VehicleOffer VehicleOffer { get; set; }
     }
 }

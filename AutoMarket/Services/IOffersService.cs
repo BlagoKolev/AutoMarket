@@ -1,5 +1,4 @@
-﻿using AutoMarket.Data.Models;
-using AutoMarket.Models.Offers;
+﻿using AutoMarket.Models.Offers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +8,13 @@ namespace AutoMarket.Services
 {
     public interface IOffersService
     {
-        void DeleteOffer(int offerId, string userId);
-        void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, int offerId);
-        void CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath);
-        ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage);
         ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage);
-        DetailsOfferViewModel GetVehicleOfferById(int carId);
-        EditVehicleOfferViewModel GetVehicleToEdit(int carId, string userId);
+        EditVehicleOfferViewModel GetVehicleToEdit(string carId, string userId);
+        void DeleteOffer(string offerId, string userId);
+        void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId);
+        ICollection<MyOffersViewModel> GetAllUsersOffers(int id, string userId,int itemsPerPage);
+        int GetAllUsersOffersCount(string userId);
+        DetailsVehicleOfferViewModel GetVehicleOfferById(string carId);
         int GetItemsCount();
-
     }
 }

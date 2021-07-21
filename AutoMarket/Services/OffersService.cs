@@ -1,118 +1,101 @@
-﻿using System;
-using AutoMarket.Data;
+﻿using AutoMarket.Data;
 using AutoMarket.Data.Models;
+using AutoMarket.Models.Offers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMarket.Models.Offers;
-using AutoMarket.Data.Models.Enum;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
     public class OffersService : IOffersService
     {
         private readonly ApplicationDbContext db;
-        private readonly string[] AllowedExtensions = new[] { "jpg", "png", "gif", "jpeg" };
-
         public OffersService(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public void CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath)
+        public ICollection<MyOffersViewModel> GetAllUsersOffers(int id, string userId, int itemsPerPage)
         {
-            var newVehicle = new Vehicle
-            {
-                Make = offer.Make,
-                Model = offer.Model,
-                BodyType = offer.BodyType,
-                ManufacturingYear = offer.ManufacturingYear,
-                EngineCapacity = offer.EngineCapacity,
-                EngineType = offer.EngineType,
-                HorsePower = offer.HorsePower,
-                Transmission = offer.Transmission,
-                Color = offer.Color,
-                EuroStandart = offer.EuroStandart,
-                Мileage = offer.Мileage,
-            };
-
-            this.db.Vehicles.Add(newVehicle);
-
-            var newOffer = new VehicleOffer
-            {
-                ApplicationUserId = userId,
-                Vehicle = newVehicle,
-                Phone = offer.Phone,
-                Email = offer.Email,
-                Location = offer.Location,
-                Price = offer.Price,
-                Description = offer.Description,
-            };
-
-            this.db.VehicleOffers.Add(newOffer);
-
-            Directory.CreateDirectory($"{imagePath}/vehicles/");
-
-            if (offer.Images != null)
-            {
-                foreach (var image in offer.Images)
-                {
-                    var extension = Path.GetExtension(image.FileName).TrimStart('.');
-                    if (!this.AllowedExtensions.Any(x => extension.EndsWith(x)))
-                    {
-                        throw new Exception($"Invalid image extension {extension}");
-                    }
-
-                    var newImage = new Image
-                    {
-                        VehicleOffer = newOffer,
-                        Extension = extension,
-                    };
-
-                    newOffer.Pictures.Add(newImage);
-
-                    var physicalPath = $"{imagePath}/vehicles/{newImage.Id}.{extension}";
-                    using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                    image.CopyTo(fileStream);
-                }
-            }
-
-            this.db.SaveChanges();
-        }
-
-        public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)
-        {
+            var allOffers = new List<MyOffersViewModel>();
 
             var vehicleOffers = this.db.VehicleOffers
-                .Where(x => x.IsDeleted == false)
-                .OrderByDescending(x => x.Id)
-                .Skip((id - 1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(x => new VehicleOffersAllViewModel
+                .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => new MyOffersViewModel
                 {
                     Id = x.Id,
                     Make = x.Vehicle.Make,
                     Model = x.Vehicle.Model,
-                    Color = x.Vehicle.Color.ToString(),
+                    Color = x.Vehicle.Color,
                     Price = x.Price,
+                    CreatedOn = x.CreatedOn,
                     Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
-            .ToList();
-            return vehicleOffers;
+                .ToList();
+
+            var partsOffers = this.db.PartOffers
+                .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => new MyOffersViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Part.Name,
+                    Status = x.Part.Status,
+                    Price = x.Price,
+                    CreatedOn = x.CreatedOn,
+                    Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                })
+                .ToList();
+
+            allOffers.AddRange(vehicleOffers);
+            allOffers.AddRange(partsOffers);
+
+            return allOffers
+                 .Skip((id - 1) * itemsPerPage)
+                 .Take(itemsPerPage)
+                 .ToList();
         }
 
-        public int GetItemsCount()
+        public int GetAllUsersOffersCount(string userId)
         {
-            var itemsCount = this.db.VehicleOffers
-                .Where(x => x.IsDeleted == false)
+
+            var vehiclesCount = this.db.VehicleOffers
+                .Where(x => x.ApplicationUserId == userId)
                 .Count();
-            return itemsCount;
+            var partsCount = this.db.PartOffers
+                .Where(x => x.ApplicationUserId == userId)
+                .Count();
+            return vehiclesCount + partsCount;
         }
 
-        public EditVehicleOfferViewModel GetVehicleToEdit(int carId, string userId)
+        public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage)
+        {
+            var imagesInOffer = new List<string>();
+
+            var userVehicleOffers = this.db.VehicleOffers
+           .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
+           .OrderByDescending(x => x.CreatedOn)
+           .Skip((id - 1) * itemsPerPage)
+           .Take(itemsPerPage)
+           .Select(x => new MyVehicleOffersViewModel
+           {
+               Id = x.Id,
+               Make = x.Vehicle.Make,
+               Model = x.Vehicle.Model,
+               Color = x.Vehicle.Color,
+               Price = x.Price,
+               Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+           })
+           .ToList();
+            return userVehicleOffers;
+        }
+
+        public EditVehicleOfferViewModel GetVehicleToEdit(string carId, string userId)
         {
             var offerId = this.db.VehicleOffers
-                .Where(x => x.VehicleId == carId)
+                .Where(x => x.Id == carId)
                 .Select(x => x.Id)
                 .FirstOrDefault();
 
@@ -123,7 +106,7 @@ namespace AutoMarket.Services
 
 
             var vehicleToEdit = this.db.VehicleOffers
-                 .Where(x => x.VehicleId == carId && x.ApplicationUserId == userId)
+                 .Where(x => x.Id == carId && x.ApplicationUserId == userId)
                  .Select(x => new EditVehicleOfferViewModel
                  {
                      Id = x.Id,
@@ -150,29 +133,38 @@ namespace AutoMarket.Services
             return vehicleToEdit;
         }
 
-        public ICollection<MyVehicleOffersViewModel> GetMyVehicleOffers(string userId, int id, int itemsPerPage)
+        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId)
         {
-            var imagesInOffer = new List<string>();
+            var images = this.db.Images
+                 .Where(x => x.VehicleOfferId == offerId)
+                                  .ToList();
 
-            var userVehicleOffers = this.db.VehicleOffers
-           .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
-           .OrderByDescending(x => x.Id)
-           .Skip((id - 1) * itemsPerPage)
-           .Take(itemsPerPage)
-           .Select(x => new MyVehicleOffersViewModel
-           {
-               Id = x.Id,
-               Make = x.Vehicle.Make,
-               Model = x.Vehicle.Model,
-               Color = x.Vehicle.Color,
-               Price = x.Price,
-               Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
-           })
-           .ToList();
-            return userVehicleOffers;
+            var currentOffer = this.db.VehicleOffers
+                .Where(x => x.Id == offerId)
+                .FirstOrDefault();
+
+            var currentVehicle = this.db.Vehicles
+                .Where(x => x.Id == currentOffer.VehicleId)
+                .FirstOrDefault();
+
+            currentOffer.Vehicle = currentVehicle;
+
+            UpdateEntity(editedModel, currentOffer, images);
+            this.db.Update(currentOffer);
+            this.db.SaveChanges();
         }
 
-        public DetailsOfferViewModel GetVehicleOfferById(int offerId)
+        public void DeleteOffer(string offerId, string userId)
+        {
+            var offerToDelete = this.db.VehicleOffers
+                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+                .FirstOrDefault();
+            offerToDelete.IsDeleted = true;
+
+            this.db.SaveChanges();
+        }
+
+        public DetailsVehicleOfferViewModel GetVehicleOfferById(string offerId)
         {
             var imagesCollection = this.db.Images
              .Where(x => x.VehicleOfferId == offerId)
@@ -187,8 +179,8 @@ namespace AutoMarket.Services
 
 
             var currentOffer = this.db.VehicleOffers
-                .Where(x => x.Vehicle.Id == offerId)
-                .Select(x => new DetailsOfferViewModel
+                .Where(x => x.Id == offerId)
+                .Select(x => new DetailsVehicleOfferViewModel
                 {
                     Id = x.Id,
                     Make = x.Vehicle.Make,
@@ -214,25 +206,12 @@ namespace AutoMarket.Services
             return currentOffer;
         }
 
-        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, int offerId)
+        public int GetItemsCount()
         {
-            var images = this.db.Images
-                 .Where(x => x.VehicleOfferId == offerId)
-                                  .ToList();
-
-            var currentOffer = this.db.VehicleOffers
-                .Where(x => x.Id == offerId)
-                .FirstOrDefault();
-
-            var currentVehicle = this.db.Vehicles
-                .Where(x => x.Id == currentOffer.VehicleId)
-                .FirstOrDefault();
-
-            currentOffer.Vehicle = currentVehicle;
-
-            UpdateEntity(editedModel, currentOffer, images);
-            this.db.Update(currentOffer);
-            this.db.SaveChanges();
+            var itemsCount = this.db.VehicleOffers
+                .Where(x => x.IsDeleted == false)
+                .Count();
+            return itemsCount;
         }
 
         private static VehicleOffer UpdateEntity(EditVehicleOfferViewModel editedModel, VehicleOffer entityToEdit, ICollection<Image> images)
@@ -255,16 +234,6 @@ namespace AutoMarket.Services
             entityToEdit.Price = editedModel.Price;
             entityToEdit.Pictures = images;
             return entityToEdit;
-        }
-
-        public void DeleteOffer(int offerId, string userId)
-        {
-            var offerToDelete = this.db.VehicleOffers
-                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
-                .FirstOrDefault();
-            offerToDelete.IsDeleted = true;
-
-            this.db.SaveChanges();
         }
     }
 }

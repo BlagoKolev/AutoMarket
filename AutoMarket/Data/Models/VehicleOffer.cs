@@ -10,10 +10,13 @@ namespace AutoMarket.Data.Models
     {
         public VehicleOffer()
         {
+            this.Id = Guid.NewGuid().ToString();
+            this.CreatedOn = DateTime.UtcNow;
             this.Pictures = new List<Image>();
         }
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [MaxLength(15)]
@@ -22,7 +25,7 @@ namespace AutoMarket.Data.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(5000)]
         public string Description { get; set; }
 
         [Required]

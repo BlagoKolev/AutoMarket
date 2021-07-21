@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Models.Offers
 {
-    public class EditVehicleOfferViewModel
+    public class DetailsVehicleOfferViewModel
     {
         public string Id { get; set; }
 
@@ -60,3 +60,4 @@ namespace AutoMarket.Models.Offers
         public IEnumerable<string> Images { get; set; }
     }
 }
+

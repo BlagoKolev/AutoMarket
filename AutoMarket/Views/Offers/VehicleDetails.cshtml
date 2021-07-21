@@ -1,0 +1,85 @@
+﻿@model DetailsVehicleOfferViewModel
+@{
+    ViewData["Title"] = "Детайли за обявата";
+}
+<div>
+    <ul class="list-group list-group-horizontal">
+        @foreach (var img in Model.Images)
+        {
+            <li class="list-group-item mx-2 my-2">
+                <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
+            </li>
+
+        }
+    </ul>
+</div>
+<div class="row justify-content-center">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td>Марка</td>
+                <td>@Model.Make</td>
+            </tr>
+            <tr>
+                <td>Модел</td>
+                <td>@Model.Model</td>
+            </tr>
+            <tr>
+                <td>Година на производство</td>
+                <td>@Model.ManufacturingYear</td>
+            </tr>
+            <tr>
+                <td>Категория</td>
+                <td>@Model.BodyType</td>
+            </tr>
+            <tr>
+                <td>Обем на двигателя</td>
+                <td>@Model.EngineCapacity</td>
+            </tr>
+            <tr>
+                <td>Мощност (к.с.)</td>
+                <td>@Model.HorsePower</td>
+            </tr>
+            <tr>
+                <td>Двигател</td>
+                <td>@Model.EngineType</td>
+            </tr>
+            <tr>
+                <td>Скоростна кутия</td>
+                <td>@Model.Transmission</td>
+            </tr>
+            <tr>
+                <td>Пробег</td>
+                <td>@Model.Мileage</td>
+            </tr>
+            <tr>
+                <td>Цвят</td>
+                <td>@Model.Color</td>
+            </tr>
+            <tr>
+                <td>Екологична категория</td>
+                <td>@Model.EuroStandart</td>
+            </tr>
+            <tr>
+                <td>Описание</td>
+                <td>@Model.Description</td>
+            </tr>
+            <tr>
+                <td>Населено място</td>
+                <td>@Model.Location</td>
+            </tr>
+            <tr>
+                <td>Е-мейл</td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <td>Цена</td>
+                <td>@Model.Price</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -8,6 +8,7 @@ namespace AutoMarket.Services
 {
     public interface IPartsService
     {
+        DetailsPartsViewModel GetDetails(string offerId);
         int getUsersPartOffersCount(string userId);
         ICollection<MyPartsViewModel> GetUsersParts(string userId, int id, int itemsPerPage);
         void CreatePartOffer(CreatePartViewModel formModel,string imagePath, string userId);

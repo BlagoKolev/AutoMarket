@@ -8,7 +8,7 @@ namespace AutoMarket.Models.Parts
 {
     public class MyPartsViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public PartStatus Status { get; set; }
         public int Price { get; set; }

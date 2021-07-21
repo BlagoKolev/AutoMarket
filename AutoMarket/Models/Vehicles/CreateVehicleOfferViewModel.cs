@@ -11,7 +11,7 @@ namespace AutoMarket.Models.Offers
 {
     public class CreateVehicleOfferViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Полето 'Марка' е задължително")]
         [StringLength(15, ErrorMessage = "Полето 'Марка' трябва да бъде между 3 и 15 символа.", MinimumLength = 3)]

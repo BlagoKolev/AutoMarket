@@ -10,11 +10,14 @@ namespace AutoMarket.Data.Models
     {
         public PartOffer()
         {
+            this.Id ="Part" + Guid.NewGuid().ToString();
+            this.CreatedOn = DateTime.UtcNow;
             this.Pictures = new List<Image>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [MaxLength(15)]

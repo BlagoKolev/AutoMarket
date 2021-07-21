@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AutoMarket.Migrations
+namespace AutoMarket.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -196,17 +196,16 @@ namespace AutoMarket.Migrations
                 name: "PartOffers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     VehicleType = table.Column<int>(type: "int", nullable: false),
                     PartId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -214,8 +213,8 @@ namespace AutoMarket.Migrations
                 {
                     table.PrimaryKey("PK_PartOffers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PartOffers_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_PartOffers_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -231,24 +230,23 @@ namespace AutoMarket.Migrations
                 name: "VehicleOffers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     Price = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     VehicleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VehicleOffers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VehicleOffers_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
+                        name: "FK_VehicleOffers_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -266,8 +264,8 @@ namespace AutoMarket.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PartOfferId = table.Column<int>(type: "int", nullable: true),
-                    VehicleOfferId = table.Column<int>(type: "int", nullable: true)
+                    PartOfferId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    VehicleOfferId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -336,9 +334,9 @@ namespace AutoMarket.Migrations
                 column: "VehicleOfferId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PartOffers_ApplicationUserId1",
+                name: "IX_PartOffers_ApplicationUserId",
                 table: "PartOffers",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PartOffers_PartId",
@@ -346,9 +344,9 @@ namespace AutoMarket.Migrations
                 column: "PartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VehicleOffers_ApplicationUserId1",
+                name: "IX_VehicleOffers_ApplicationUserId",
                 table: "VehicleOffers",
-                column: "ApplicationUserId1");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VehicleOffers_VehicleId",

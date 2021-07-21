@@ -55,7 +55,6 @@ namespace AutoMarket.Controllers
             }
 
             var imagePath = $"{this._environment.WebRootPath}/images";
-            // var userId = this._userManager.GetUserId(this.User);
             var userId = GetUserId();
 
             try
@@ -73,7 +72,7 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize]
-        public IActionResult MyOffers(int id = 1)
+        public IActionResult MyOffers(int id = 1) //TODO Delete it when OffersController is ready
         {
             id = id <= 0 ? 1 : id;
             var userId = GetUserId();
@@ -88,6 +87,12 @@ namespace AutoMarket.Controllers
             };
 
             return this.View(listMyPartsViewModel);
+        }
+
+        public IActionResult Details(string offerId)
+        {
+            var detailsPartViewModel = partsService.GetDetails(offerId);
+            return this.View(detailsPartViewModel);
         }
 
         private string GetUserId()

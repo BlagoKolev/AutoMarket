@@ -12,7 +12,7 @@ namespace AutoMarket.Models.Parts
 {
     public class CreatePartViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Полето 'Телефон' е задължително.")]
         [MaxLength(GlobalConstants.PhoneNumberLength, ErrorMessage = "Полето 'Телефон' не може да е по-дълго от 15 символа")]

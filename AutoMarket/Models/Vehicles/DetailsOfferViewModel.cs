@@ -9,7 +9,7 @@ namespace AutoMarket.Models.Offers
 {
     public class DetailsOfferViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Display(Name = "Марка")]
         public string Make { get; set; }

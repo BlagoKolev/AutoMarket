@@ -57,7 +57,8 @@ namespace AutoMarket.Services
                     var newImage = new Image
                     {
                         PartOffer = newPartOffer,
-                        PartOfferId = newPartOffer.Id
+                        PartOfferId = newPartOffer.Id,
+                        Extension = extension
                     };
 
                     newPartOffer.Pictures.Add(newImage);
@@ -80,11 +81,11 @@ namespace AutoMarket.Services
                 .Select(x => new PartsAllViewModel
                 {
                     Id = x.Id,
-                    Name = x.Part.Name,
+                    Title = x.Title,
                     Category = x.Part.PartCategory,
                     Status = x.Part.Status,
                     Price = x.Price,
-                    Image = "/images/parts" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
                 .ToList();
             return allPartOffers;
@@ -96,6 +97,41 @@ namespace AutoMarket.Services
                 .Where(x => x.IsDeleted == false)
                 .Count();
             return partOffersCount;
+        }
+
+        public DetailsPartsViewModel GetDetails(string offerId)
+        {
+            var imagesCollection = this.db.Images
+            .Where(x => x.PartOfferId == offerId)
+            .ToList();
+
+            var imagesPath = new List<string>();
+
+            foreach (var img in imagesCollection)
+            {
+                imagesPath.Add("/images/parts/" + img.Id + '.' + img.Extension);
+            }
+
+            var currentPartOffer = this.db.PartOffers
+                  .Where(x => x.Id == offerId && x.IsDeleted == false)
+                  .Select(x => new DetailsPartsViewModel
+                  {
+                      Id = x.Id,
+                      Title = x.Title,
+                      Description = x.Description,
+                      Email = x.Email,
+                      Location = x.Location,
+                      Phone = x.Phone,
+                      PartId = x.PartId,
+                      Name = x.Part.Name,
+                      PartCategory = x.Part.PartCategory,
+                      Status = x.Part.Status,
+                      VehicleType = x.VehicleType,
+                      Price = x.Price,
+                      Images = imagesPath
+                  })
+                  .FirstOrDefault();
+            return currentPartOffer;
         }
 
         public int getUsersPartOffersCount(string userId)
@@ -110,7 +146,7 @@ namespace AutoMarket.Services
         {
             var usersParts = this.db.PartOffers
                 .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
-                .OrderByDescending(x=>x.Id)
+                .OrderByDescending(x=>x.CreatedOn)
                 .Skip((id-1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(x => new MyPartsViewModel
