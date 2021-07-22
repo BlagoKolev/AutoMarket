@@ -1,6 +1,7 @@
 ﻿using AutoMarket.Data;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
+using AutoMarket.Models.Parts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,14 +134,14 @@ namespace AutoMarket.Services
             return vehicleToEdit;
         }
 
-        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId)
+        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId, string userId)
         {
             var images = this.db.Images
                  .Where(x => x.VehicleOfferId == offerId)
                                   .ToList();
 
             var currentOffer = this.db.VehicleOffers
-                .Where(x => x.Id == offerId)
+                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
                 .FirstOrDefault();
 
             var currentVehicle = this.db.Vehicles
@@ -149,18 +150,27 @@ namespace AutoMarket.Services
 
             currentOffer.Vehicle = currentVehicle;
 
-            UpdateEntity(editedModel, currentOffer, images);
+            UpdateVehicleEntity(editedModel, currentOffer, images);
             this.db.Update(currentOffer);
             this.db.SaveChanges();
         }
 
         public void DeleteOffer(string offerId, string userId)
         {
-            var offerToDelete = this.db.VehicleOffers
-                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
-                .FirstOrDefault();
-            offerToDelete.IsDeleted = true;
-
+            if (offerId.StartsWith("Part"))
+            {
+                var offerToDelete = this.db.PartOffers
+               .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+               .FirstOrDefault();
+                offerToDelete.IsDeleted = true;
+            }
+            else
+            {
+                var offerToDelete = this.db.VehicleOffers
+               .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+               .FirstOrDefault();
+                offerToDelete.IsDeleted = true;
+            }
             this.db.SaveChanges();
         }
 
@@ -214,7 +224,7 @@ namespace AutoMarket.Services
             return itemsCount;
         }
 
-        private static VehicleOffer UpdateEntity(EditVehicleOfferViewModel editedModel, VehicleOffer entityToEdit, ICollection<Image> images)
+        private static void UpdateVehicleEntity(EditVehicleOfferViewModel editedModel, VehicleOffer entityToEdit, ICollection<Image> images)
         {
             entityToEdit.Vehicle.Make = editedModel.Make;
             entityToEdit.Vehicle.Model = editedModel.Model;
@@ -233,7 +243,112 @@ namespace AutoMarket.Services
             entityToEdit.Location = editedModel.Location;
             entityToEdit.Price = editedModel.Price;
             entityToEdit.Pictures = images;
-            return entityToEdit;
         }
+
+        public PartDetailsViewModel GetPartDetails(string offerId)
+        {
+            var imagesCollection = this.db.Images
+           .Where(x => x.PartOfferId == offerId)
+           .ToList();
+
+            var imagesPath = new List<string>();
+
+            foreach (var img in imagesCollection)
+            {
+                imagesPath.Add("/images/parts/" + img.Id + '.' + img.Extension);
+            }
+
+            var currentPartOffer = this.db.PartOffers
+                  .Where(x => x.Id == offerId && x.IsDeleted == false)
+                  .Select(x => new PartDetailsViewModel
+                  {
+                      Id = x.Id,
+                      Title = x.Title,
+                      Description = x.Description,
+                      Email = x.Email,
+                      Location = x.Location,
+                      Phone = x.Phone,
+                      PartId = x.PartId,
+                      Name = x.Part.Name,
+                      PartCategory = x.Part.PartCategory,
+                      Status = x.Part.Status,
+                      VehicleType = x.VehicleType,
+                      Price = x.Price,
+                      Images = imagesPath
+                  })
+                  .FirstOrDefault();
+            return currentPartOffer;
+        }
+
+        public EditPartOfferViewModel GetPartToEdit(string offerId)
+        {
+            var partImagesAsString = new List<string>();
+
+            var partImages = this.db.Images
+                .Where(x => x.PartOfferId == offerId)
+                .ToList();
+            foreach (var image in partImages)
+            {
+                partImagesAsString.Add("/images/parts/" + '.' + image.Id + image.Extension);
+            }
+
+            var curretnPartOffer = this.db.PartOffers
+                .Where(x => x.Id == offerId && x.IsDeleted == false)
+                .Select(x => new EditPartOfferViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Email = x.Email,
+                    Location = x.Location,
+                    Phone = x.Phone,
+                    Price = x.Price,
+                    Name = x.Part.Name,
+                    PartCategory = x.Part.PartCategory,
+                    PartId = x.PartId,
+                    Status = x.Part.Status,
+                    VehicleType = x.VehicleType,
+                    Images = partImagesAsString
+                })
+                .FirstOrDefault();
+            return curretnPartOffer;
+        }
+
+        public void UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId)
+        {
+            var images = this.db.Images
+                 .Where(x => x.VehicleOfferId == offerId)
+                 .ToList();
+
+            var currentOffer = this.db.PartOffers
+                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+                .FirstOrDefault();
+
+            var currentPart = this.db.Parts
+                .Where(x => x.Id == currentOffer.PartId)
+                .FirstOrDefault();
+
+            currentOffer.Part = currentPart;
+
+            UpdatePartEntity(editedModel, currentOffer, images);
+            this.db.Update(currentOffer);
+            this.db.SaveChanges();
+        }
+
+        private static void UpdatePartEntity(EditPartOfferViewModel editedModel, PartOffer entityToEdit, ICollection<Image> images)
+        {
+            entityToEdit.Title = editedModel.Title;
+            entityToEdit.Description = editedModel.Description;
+            entityToEdit.Email = editedModel.Email;
+            entityToEdit.Location = editedModel.Location;
+            entityToEdit.Phone = editedModel.Phone;
+            entityToEdit.Price = editedModel.Price;
+            entityToEdit.VehicleType = editedModel.VehicleType;
+            entityToEdit.Part.Name = editedModel.Name;
+            entityToEdit.Part.PartCategory = editedModel.PartCategory;
+            entityToEdit.Part.Status = editedModel.Status;
+            entityToEdit.Pictures = images;
+        }
+
     }
 }

@@ -52,7 +52,7 @@ namespace AutoMarket.Models.Offers
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [Display(Name = "Цена")]
+        [Display(Name = "Цена (лева)")]
         public int Price { get; set; }
 
         [Display(Name = "Населено място")]
