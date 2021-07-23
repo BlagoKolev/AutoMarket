@@ -6,6 +6,7 @@ using System.Linq;
 using AutoMarket.Models.Offers;
 using AutoMarket.Data.Models.Enum;
 using System.IO;
+using AutoMarket.Models.Vehicles;
 
 namespace AutoMarket.Services
 {
@@ -93,7 +94,7 @@ namespace AutoMarket.Services
                     Id = x.Id,
                     Make = x.Vehicle.Make,
                     Model = x.Vehicle.Model,
-                    Color = x.Vehicle.Color.ToString(),
+                    Color = x.Vehicle.Color,
                     Price = x.Price,
                     Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })

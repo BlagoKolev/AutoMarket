@@ -1,5 +1,6 @@
 ﻿using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
+using AutoMarket.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Linq;

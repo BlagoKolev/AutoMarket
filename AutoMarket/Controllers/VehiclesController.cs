@@ -11,6 +11,7 @@ using AutoMarket.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using AutoMarket.Data;
+using AutoMarket.Models.Vehicles;
 
 namespace AutoMarket.Controllers
 {

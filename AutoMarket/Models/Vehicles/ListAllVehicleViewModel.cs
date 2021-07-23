@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AutoMarket.Models.Offers
+namespace AutoMarket.Models.Vehicles
 {
     public class ListAllVehicleViewModel : PagingViewModel
     {

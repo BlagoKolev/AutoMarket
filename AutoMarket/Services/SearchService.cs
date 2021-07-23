@@ -1,0 +1,101 @@
+﻿using AutoMarket.Data;
+using AutoMarket.Models.Search;
+using AutoMarket.Models.Vehicles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AutoMarket.Services
+{
+    public class SearchService : ISearchService
+    {
+        private readonly ApplicationDbContext db;
+        public SearchService(ApplicationDbContext db)
+        {
+            this.db = db;
+        }
+
+        public ICollection<VehicleOffersAllViewModel> GetVehicleOffers(string make, string vehicleModel)
+        {
+            var vehicleOffers = new List<VehicleOffersAllViewModel>();
+
+            if (string.IsNullOrWhiteSpace(make) && string.IsNullOrWhiteSpace(vehicleModel))
+            {
+                vehicleOffers = this.db.VehicleOffers
+              .Where(x => x.IsDeleted == false)
+              .Select(x => new VehicleOffersAllViewModel
+              {
+                  Id = x.Id,
+                  Make = x.Vehicle.Make,
+                  Model = x.Vehicle.Model,
+                  Color = x.Vehicle.Color,
+                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Price = x.Price
+              })
+              .ToList();
+            }
+            else if (string.IsNullOrWhiteSpace(vehicleModel))
+            {
+                vehicleOffers = this.db.VehicleOffers
+              .Where(x => x.IsDeleted == false && x.Vehicle.Make == make)
+              .Select(x => new VehicleOffersAllViewModel
+              {
+                  Id = x.Id,
+                  Make = x.Vehicle.Make,
+                  Model = x.Vehicle.Model,
+                  Color = x.Vehicle.Color,
+                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Price = x.Price
+              })
+              .ToList();
+            }
+            else if (string.IsNullOrWhiteSpace(make))
+            {
+                vehicleOffers = this.db.VehicleOffers
+              .Where(x => x.IsDeleted == false
+                           && x.Vehicle.Model.ToLower().Contains(vehicleModel.ToLower()))
+              .Select(x => new VehicleOffersAllViewModel
+              {
+                  Id = x.Id,
+                  Make = x.Vehicle.Make,
+                  Model = x.Vehicle.Model,
+                  Color = x.Vehicle.Color,
+                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Price = x.Price
+              })
+              .ToList();
+            }
+            else
+            {
+                vehicleOffers = this.db.VehicleOffers
+              .Where(x => x.IsDeleted == false
+              && x.Vehicle.Make == make
+              && x.Vehicle.Model.ToLower().Contains(vehicleModel.ToLower()))
+              .Select(x => new VehicleOffersAllViewModel
+              {
+                  Id = x.Id,
+                  Make = x.Vehicle.Make,
+                  Model = x.Vehicle.Model,
+                  Color = x.Vehicle.Color,
+                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Price = x.Price
+              })
+              .ToList();
+            }
+
+            return vehicleOffers;
+        }
+
+        public ICollection<string> GetVehiclesMakes()
+        {
+            var allVehiclesMakes = this.db.VehicleOffers
+                 .Where(x => x.IsDeleted == false)
+                 .OrderBy(x => x.Vehicle.Make)
+                 .Select(x => x.Vehicle.Make)
+                 .Distinct()
+                 .ToList();
+            return allVehiclesMakes;
+        }
+    }
+}
