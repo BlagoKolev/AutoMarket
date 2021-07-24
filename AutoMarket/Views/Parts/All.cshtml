@@ -2,26 +2,37 @@
 @{
     ViewData["Title"] = "Активни обяви за авточасти";
 }
-
 <h1 class="text-center mt-2">Обяви за авточасти</h1>
-<div class="row mt-2 mb-4 justify-content-center">
-    @foreach (var offer in @Model.Offers)
-    {
-        <div class="card col-6 col-lg-3 game-card mx-2 my-2 justify-content-start">
-            <img src="@offer.Image"
-                 class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
-                 data-placement="bottom" title="">
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Заглавие: @offer.Title </li>
-                    <li class="bg-secondary col-sm">Състояние: @offer.Status</li>
-                    <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
-                </ul>
-                <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
-            </div>
-        </div>
-    }
+<div class="wrapper">
+    <a href="/Search/Parts">Търсене</a>
 </div>
+@*
+        @model ListPartsAllViewModel
+    @{
+        ViewData["Title"] = "Активни обяви за авточасти";
+    }
+
+    <h1 class="text-center mt-2">Обяви за авточасти</h1>
+    <div class="row mt-2 mb-4 justify-content-center">
+        @foreach (var offer in @Model.Offers)
+        {
+            <div class="card col-6 col-lg-3 game-card mx-2 my-2 justify-content-start">
+                <img src="@offer.Image"
+                     class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
+                     data-placement="bottom" title="">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-center">Заглавие: @offer.Title </li>
+                        <li class="bg-secondary col-sm">Състояние: @offer.Status</li>
+                        <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
+                    </ul>
+                    <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                </div>
+            </div>
+        }
+    </div>
+*@
+<partial name="_PartAllPartial" model="@Model" />
 <hr />
 <partial name="_PagingPArtial" model="@Model" />
 

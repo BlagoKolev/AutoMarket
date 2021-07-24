@@ -12,7 +12,7 @@
             <div>
                 <label asp-for="Make"></label>
                 <select class="form-group" name="Make">
-                    <option value="">All</option>
+                    <option value="">Всички</option>
                     @foreach (var make in Model.Makes)
                     {
                         <option value="@make">@make</option>
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <label asp-for="VehicleModel"></label>
-                <input class="form-group" type="text" asp-for="VehicleModel" value="" id="VehicleModel" placeholder="Write a vehicle model here..." />
+                <input class="form-group" type="text" asp-for="VehicleModel" value="" id="VehicleModel" placeholder="Въведи модел" />
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Търси" />
@@ -29,3 +29,8 @@
         </div>
     </div>
 </form>
+<hr />
+<h2 class="text-center">Намерени обяви</h2>
+<partial name="_VehicleAllPartial" model="@Model"/>
+<hr />
+<partial name="_PagingPartial" model="@Model"/>

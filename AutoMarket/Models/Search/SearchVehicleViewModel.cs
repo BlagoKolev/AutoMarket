@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Models.Search
 {
-    public class SearchVehicleViewModel
+    public class SearchVehicleViewModel : ListAllVehicleViewModel
     {
-        public SearchVehicleViewModel()
-        {
-            this.Vehicles = new List<VehicleOffersAllViewModel>();
-        }
-        [Display(Name ="Марка")]
+        [Display(Name = "Марка")]
         public string Make { get; set; }
         [Display(Name = "Модел")]
         public string VehicleModel { get; set; }
         public ICollection<string> Makes { get; set; }
-        public ICollection<VehicleOffersAllViewModel> Vehicles { get; set; }
     }
 }

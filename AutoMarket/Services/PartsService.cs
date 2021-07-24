@@ -78,6 +78,8 @@ namespace AutoMarket.Services
         {
             var allPartOffers = this.db.PartOffers
                 .Where(x => x.IsDeleted == false)
+                .Skip((id-1)*itemsPerPage)
+                .Take(itemsPerPage)
                 .Select(x => new PartsAllViewModel
                 {
                     Id = x.Id,
@@ -134,7 +136,7 @@ namespace AutoMarket.Services
             return currentPartOffer;
         }
 
-        public int getUsersPartOffersCount(string userId)
+        public int GetUsersPartOffersCount(string userId)
         {
             var partOffersCount = this.db.PartOffers
                 .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)

@@ -36,7 +36,12 @@ namespace AutoMarket.Controllers
                 ItemsCount = allOffersCount,
                 Offers = partOffers
             };
-
+            if (listPartsAllViewModel.PageNumber > listPartsAllViewModel.PagesCount)
+            {
+                id = listPartsAllViewModel.PagesCount;
+                listPartsAllViewModel.Offers = partsService.GelAllPartOffers(id, GlobalConstants.ItemsPerPage);
+                listPartsAllViewModel.PageNumber = id;
+            }
             return this.View(listPartsAllViewModel);
         }
         [Authorize]
@@ -77,7 +82,7 @@ namespace AutoMarket.Controllers
             id = id <= 0 ? 1 : id;
             var userId = GetUserId();
             var usersParts = partsService.GetUsersParts(userId, id, GlobalConstants.ItemsPerPage);
-            var partsCount = partsService.getUsersPartOffersCount(userId);
+            var partsCount = partsService.GetUsersPartOffersCount(userId);
 
             var listMyPartsViewModel = new ListMyPartsViewModel
             {

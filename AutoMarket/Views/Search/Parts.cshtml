@@ -1,0 +1,61 @@
+﻿@model SearchPartViewModel
+@{
+    ViewData["Title"] = "Търсене в обяви за авточасти";
+}
+
+<h3 class="text-center">Търси в обяви за авточасти</h3>
+<form method="get">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xl-9">
+            <div>
+                <div>
+                    <label asp-for="Keyword">Ключова дума</label>
+                    <input class="form-group" type="text" asp-for="Keyword" value="" id="Keyword" placeholder="Въведи ключова дума за търсене" />
+                </div>
+                <label asp-for="Status">Състояние</label>
+                <select class="form-group" name="Status">
+                    <option value="0">Всички</option>
+                    <option value="1">Нов</option>
+                    <option value="2">Употребяван</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Търси" />
+            </div>
+        </div>
+    </div>
+</form>
+<hr />
+<h2 class="text-center">Намерени обяви</h2>
+<partial name="_PartAllPartial" model="@Model" />
+<hr />
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPrevious) { <text>disabled</text>}">
+            <a class="page-link" asp-action="Parts" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Parts" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item">
+            <a class="page-link" asp-action="Parts" asp-route-id="@Model.PageNumber">@Model.PageNumber</a>
+        </li>
+        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Parts" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item  @if (!Model.HasNext) { <text>disabled</text>}">
+            <a class="page-link " asp-action="Parts" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>
+
+
