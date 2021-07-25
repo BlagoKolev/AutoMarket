@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMarket.Models.Parts;
-using AutoMarket.Services;
 using Microsoft.AspNetCore.Mvc;
-using AutoMarket.Data;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using AutoMarket.Data.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using AutoMarket.Data;
+using AutoMarket.Services;
+using AutoMarket.Data.Models;
+using AutoMarket.Models.Parts;
 
 namespace AutoMarket.Controllers
 {
@@ -24,6 +21,7 @@ namespace AutoMarket.Controllers
             this._userManager = userManager;
             this._environment = environment;
         }
+
         public IActionResult All(int id)
         {
             id = id <= 0 ? 1 : id;
@@ -36,12 +34,12 @@ namespace AutoMarket.Controllers
                 ItemsCount = allOffersCount,
                 Offers = partOffers
             };
+
             if (listPartsAllViewModel.PageNumber > listPartsAllViewModel.PagesCount)
             {
-                id = listPartsAllViewModel.PagesCount;
-                listPartsAllViewModel.Offers = partsService.GelAllPartOffers(id, GlobalConstants.ItemsPerPage);
-                listPartsAllViewModel.PageNumber = id;
+                return this.Redirect($"{listPartsAllViewModel.PagesCount}");
             }
+
             return this.View(listPartsAllViewModel);
         }
         [Authorize]
@@ -73,25 +71,7 @@ namespace AutoMarket.Controllers
                 return this.View();
             }
 
-            return this.RedirectToAction(nameof(MyOffers));
-        }
-
-        [Authorize]
-        public IActionResult MyOffers(int id = 1) //TODO Delete it when OffersController is ready
-        {
-            id = id <= 0 ? 1 : id;
-            var userId = GetUserId();
-            var usersParts = partsService.GetUsersParts(userId, id, GlobalConstants.ItemsPerPage);
-            var partsCount = partsService.GetUsersPartOffersCount(userId);
-
-            var listMyPartsViewModel = new ListMyPartsViewModel
-            {
-                Offers = usersParts,
-                PageNumber = id,
-                ItemsCount = partsCount
-            };
-
-            return this.View(listMyPartsViewModel);
+            return this.RedirectToAction("/Offers/All");
         }
 
         public IActionResult Details(string offerId)

@@ -1,12 +1,10 @@
-﻿using AutoMarket.Data;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using AutoMarket.Data;
 using AutoMarket.Data.Models.Enum;
 using AutoMarket.Models.Parts;
-using AutoMarket.Models.Search;
 using AutoMarket.Models.Vehicles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {

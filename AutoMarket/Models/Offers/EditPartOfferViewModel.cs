@@ -1,12 +1,10 @@
-﻿using AutoMarket.Data;
-using AutoMarket.Data.Models;
-using AutoMarket.Data.Models.Enum;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMarket.Data;
+using AutoMarket.Data.Models;
+using AutoMarket.Data.Models.Enum;
+
 
 namespace AutoMarket.Models.Offers
 {

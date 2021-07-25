@@ -1,10 +1,7 @@
-﻿using AutoMarket.Models.Parts;
-using AutoMarket.Models.Search;
+﻿using System.Collections.Generic;
+using AutoMarket.Models.Parts;
 using AutoMarket.Models.Vehicles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace AutoMarket.Services
 {

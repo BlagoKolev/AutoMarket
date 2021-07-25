@@ -1,5 +1,5 @@
-﻿using AutoMarket.Data;
-using System;
+﻿using System;
+using AutoMarket.Data;
 
 namespace AutoMarket.Models
 {

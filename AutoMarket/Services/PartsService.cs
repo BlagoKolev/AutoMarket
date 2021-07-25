@@ -1,11 +1,10 @@
-﻿using AutoMarket.Data;
-using AutoMarket.Data.Models;
-using AutoMarket.Models.Parts;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using AutoMarket.Data;
+using AutoMarket.Data.Models;
+using AutoMarket.Models.Parts;
 
 namespace AutoMarket.Services
 {
@@ -134,33 +133,6 @@ namespace AutoMarket.Services
                   })
                   .FirstOrDefault();
             return currentPartOffer;
-        }
-
-        public int GetUsersPartOffersCount(string userId)
-        {
-            var partOffersCount = this.db.PartOffers
-                .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
-                .Count();
-            return partOffersCount;
-        }
-
-        public ICollection<MyPartsViewModel> GetUsersParts(string userId, int id, int itemsPerPage)
-        {
-            var usersParts = this.db.PartOffers
-                .Where(x => x.ApplicationUserId == userId && x.IsDeleted == false)
-                .OrderByDescending(x=>x.CreatedOn)
-                .Skip((id-1) * itemsPerPage)
-                .Take(itemsPerPage)
-                .Select(x => new MyPartsViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Part.Name,
-                    Status = x.Part.Status,
-                    Price = x.Price,
-                    Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
-                })
-                .ToList();
-            return usersParts;
         }
     }
 }

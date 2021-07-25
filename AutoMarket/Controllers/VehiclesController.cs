@@ -1,16 +1,13 @@
-﻿using AutoMarket.Models.Offers;
-using AutoMarket.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using AutoMarket.Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using AutoMarket.Data.Models;
 using AutoMarket.Data;
+using AutoMarket.Services;
+using AutoMarket.Models.Offers;
 using AutoMarket.Models.Vehicles;
 
 namespace AutoMarket.Controllers
@@ -74,6 +71,11 @@ namespace AutoMarket.Controllers
                 ItemsCount = itemsCount,
             };
 
+            if (listAllVehicleViewModel.PageNumber > listAllVehicleViewModel.PagesCount)
+            {
+                return this.Redirect($"{listAllVehicleViewModel.PagesCount}");
+            }
+
             return this.View(listAllVehicleViewModel);
         }
 
@@ -82,7 +84,6 @@ namespace AutoMarket.Controllers
             var currentOffer = this.vehiclesService.GetVehicleOfferById(offerId);
             return this.View(currentOffer);
         }
-
     }
     public class ManufactoringYearAttribute : ValidationAttribute
     {

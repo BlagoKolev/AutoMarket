@@ -1,17 +1,13 @@
-﻿using AutoMarket.Models.Parts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using AutoMarket.Models.Parts;
+
 
 namespace AutoMarket.Services
 {
     public interface IPartsService
     {
         DetailsPartsViewModel GetDetails(string offerId);
-        int GetUsersPartOffersCount(string userId);
-        ICollection<MyPartsViewModel> GetUsersParts(string userId, int id, int itemsPerPage);
-        void CreatePartOffer(CreatePartViewModel formModel,string imagePath, string userId);
+        void CreatePartOffer(CreatePartViewModel formModel, string imagePath, string userId);
         ICollection<PartsAllViewModel> GelAllPartOffers(int id, int itemsPerPage);
         int GetAllPartsOffersCount();
     }

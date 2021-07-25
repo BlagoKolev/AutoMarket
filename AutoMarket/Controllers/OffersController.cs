@@ -1,10 +1,10 @@
-﻿using AutoMarket.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using AutoMarket.Data.Models;
-using AutoMarket.Data;
-using AutoMarket.Models.Offers;
 using Microsoft.AspNetCore.Authorization;
+using AutoMarket.Data;
+using AutoMarket.Services;
+using AutoMarket.Data.Models;
+using AutoMarket.Models.Offers;
 
 namespace AutoMarket.Controllers
 {
@@ -32,30 +32,12 @@ namespace AutoMarket.Controllers
                 ItemsCount = allUsersOffersCount,
                 PageNumber = id,
             };
+            if (listMyOffersViewModel.PageNumber > listMyOffersViewModel.PagesCount)
+            {
+                return this.Redirect($"{listMyOffersViewModel.PagesCount}");
+            }
             return this.View(listMyOffersViewModel);
         }
-
-        [Authorize]
-        //public IActionResult MyVehicleOffers(int id = 1)
-        //{
-        //    if (id <= 0)
-        //    {
-        //        id = 1;
-        //    }
-
-        //    var userId = this._userManager.GetUserId(this.User);
-        //    var myVehiclesOffers = this.offersService.GetMyVehicleOffers(userId, id, GlobalConstants.ItemsPerPage);
-        //    var itemsCount = offersService.GetItemsCount();
-
-        //    var listMyVehicleOffersViewModel = new ListMyVehicleViewModel
-        //    {
-        //        Offers = myVehiclesOffers,
-        //        ItemsCount = itemsCount,
-        //        PageNumber = id,
-        //    };
-
-        //    return this.View(listMyVehicleOffersViewModel);
-        //}
 
         [Authorize]
         public IActionResult VehicleDetails(string offerId)

@@ -1,11 +1,8 @@
-﻿using AutoMarket.Data;
-using AutoMarket.Models.Search;
-using AutoMarket.Services;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMarket.Data;
+using AutoMarket.Services;
+using AutoMarket.Models.Search;
 
 namespace AutoMarket.Controllers
 {
@@ -24,8 +21,7 @@ namespace AutoMarket.Controllers
             var vehicleOffers = searchService.GetVehicleOffers(make, vehicleModel);
             var itemsCount = vehicleOffers.Count();
             var itemsPerPage = GlobalConstants.ItemsPerPage;
-            //id = itemsCount <= itemsPerPage ? 1 : id;
-
+          
             vehicleOffers = vehicleOffers
                 .Skip((id - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -40,6 +36,12 @@ namespace AutoMarket.Controllers
                 PageNumber = id,
                 ItemsCount = itemsCount,
             };
+
+            if (searchVehiclesModel.PageNumber > searchVehiclesModel.PagesCount)
+            {
+                return this.Redirect($"{searchVehiclesModel.PagesCount}");
+            }
+
             return this.View(searchVehiclesModel);
         }
 
@@ -49,8 +51,7 @@ namespace AutoMarket.Controllers
             var partOffers = searchService.GetPartOffers(keyword, status);
             var itemsPerPage = GlobalConstants.ItemsPerPage;
             var itemsCount = partOffers.Count();
-           // id = itemsCount <= itemsPerPage ? 1 : id;
-
+          
             partOffers = partOffers
                 .Skip((id - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -64,6 +65,12 @@ namespace AutoMarket.Controllers
                 Status = status,
                 ItemsCount = itemsCount
             };
+
+            if (searchPartModel.PageNumber > searchPartModel.PagesCount)
+            {
+                return this.Redirect($"{searchPartModel.PagesCount}");
+            }
+
             return this.View(searchPartModel);
         }
     }
