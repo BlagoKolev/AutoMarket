@@ -77,6 +77,7 @@ namespace AutoMarket.Services
         {
             var allPartOffers = this.db.PartOffers
                 .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x=>x.CreatedOn)
                 .Skip((id-1)*itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(x => new PartsAllViewModel

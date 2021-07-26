@@ -71,7 +71,7 @@ namespace AutoMarket.Controllers
                 return this.View();
             }
 
-            return this.RedirectToAction("/Offers/All");
+            return this.Redirect("/Offers/All");
         }
 
         public IActionResult Details(string offerId)
