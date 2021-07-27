@@ -63,7 +63,7 @@ namespace AutoMarket.Controllers
 
             var vehicleOffers = vehiclesService.GetAllVehiclesOffers(id, GlobalConstants.ItemsPerPage);
             var itemsCount = vehiclesService.GetItemsCount();
-
+            
             var listAllVehicleViewModel = new ListAllVehicleViewModel
             {
                 PageNumber = id,

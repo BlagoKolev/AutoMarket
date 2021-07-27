@@ -1,0 +1,35 @@
+﻿@model ListUsersAllViewModel
+@{
+    ViewData["Title"] = "Списък на потребителите";
+    var count = 1;
+}
+<h2>Списък с потребителски акаунти</h2>
+<table class="table table-dark table-striped btn-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Потребител</th>
+            <th scope="col">Е-мейл</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var account in Model.Users)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td>@account.Username</td>
+                <td>@account.Email</td>
+                <td>
+                    <input type="button" class="btn btn-light" value="Детайли" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-primary" value="Редактирай" onclick="location.href='@Url.Action("Edit", "User", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-primary" value="Заключи" onclick="location.href='@Url.Action("Lock", "User", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-danger" value="Изтрий" onclick="location.href='@Url.Action("Delete", "User", new { userId = account.Id })'" />
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>
+<partial name="_PagingPartial" model="@Model" />
