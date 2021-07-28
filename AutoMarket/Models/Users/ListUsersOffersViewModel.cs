@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace AutoMarket.Models.Users
 {
-    public class ListUsersAllViewModel 
+    public class ListUsersOffersViewModel : PagingViewModel
     {
-        public ICollection<UsersAllViewModel> Users { get; set; }
+       public ICollection<UsersOffersViewModel> Offers { get; set; }
     }
 }

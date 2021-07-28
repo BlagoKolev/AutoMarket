@@ -9,6 +9,7 @@ namespace AutoMarket.Models.Users
 {
     public class UserDetailsViewModel
     {
+        public string Id { get; set; }
         [Display(Name ="Потребителско име")]
         public string Username { get; set; }
 

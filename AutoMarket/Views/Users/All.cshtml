@@ -1,35 +1,69 @@
-﻿@model ListUsersAllViewModel
+﻿@model AutoMarket.Models.Offers.ListMyOffersViewModel
 @{
-    ViewData["Title"] = "Списък на потребителите";
-    var count = 1;
+    ViewData["Title"] = "Моите обяви";
 }
-<h2>Списък с потребителски акаунти</h2>
-<table class="table table-dark table-striped btn-table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Потребител</th>
-            <th scope="col">Е-мейл</th>
-            <th scope="col">Действия</th>
-        </tr>
-    </thead>
-    <tbody>
 
-        @foreach (var account in Model.Users)
+<h1 class="text-center mt-2">Моите обяви</h1>
+@if (!Model.Offers.Any() && Model.PagesCount < Model.PageNumber)
+{
+    <div class="text-center">
+        <h4>В момента нямате създадени обяви</h4>
+        <h5>
+            За да създадете нова обява за автомобил натиснете
+            <a href="/Vehicles/Create" class="text-decoration">тук</a>
+        </h5>
+        <h5>
+            За да създадете нова обява за авточасти натиснете
+            <a href="/Parts/Create" class="text-decoration">тук</a>
+        </h5>
+    </div>
+}
+else
+{
+    <div class="row mt-2 mb-4 justify-content-center">
+        @foreach (var offer in @Model.Offers)
         {
-            <tr>
-                <th scope="row">@count</th>
-                <td>@account.Username</td>
-                <td>@account.Email</td>
-                <td>
-                    <input type="button" class="btn btn-light" value="Детайли" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-primary" value="Редактирай" onclick="location.href='@Url.Action("Edit", "User", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-primary" value="Заключи" onclick="location.href='@Url.Action("Lock", "User", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-danger" value="Изтрий" onclick="location.href='@Url.Action("Delete", "User", new { userId = account.Id })'" />
-                </td>
-            </tr>
-            count++;
+
+            <div class="card col-6 col-lg-3 game-card mx-2 my-2">
+                <img src="@offer.Image"
+                     class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
+                     data-placement="bottom" title="">
+                @if (offer.Make != null)
+                {
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center">Марка: @offer.Make </li>
+                            <li class="bg-secondary col-sm">Модел: @offer.Model</li>
+                            <li class="bg-secondary col-sm">Цвят: @offer.Color</li>
+                            <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
+                            <li class="bg-secondary col-sm">Създадена на: @offer.CreatedOn.Date.ToString("dd/MM/yyyy")</li>
+                        </ul>
+                        <hr />
+                        <a href="/Offers/VehicleDetails?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                        <a href="/Offers/EditVehicle?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
+                        <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center">Наименование: @offer.Name </li>
+                            <li class="bg-secondary col-sm">Състояние: @offer.Status</li>
+                            <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
+                            <li class="bg-secondary col-sm">Създадена на: @offer.CreatedOn.Date.ToString("dd/MM/yyyy")</li>
+                        </ul>
+                        <hr />
+                        <a href="/Offers/PartDetails?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                        <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
+                        <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
+                    </div>
+                }
+
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+}
+<hr />
+
 <partial name="_PagingPartial" model="@Model" />

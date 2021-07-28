@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Детайли на акаунта";
 }
-<table class="table">
+<table class="table table-dark table-striped">
     <thead>
         <tr>
             <th scope="col">Характеристика</th>
@@ -11,10 +11,47 @@
     </thead>
     <tbody>
         <tr>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td>Потребител</td>
+            <td>@Model.Username</td>
+        </tr>
+        <tr>
+            <td>Е-Мейл</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Дата на регистрация</td>
+            <td>@Model.RegistrationDate</td>
             <td></td>
         </tr>
-      
+        <tr>
+            <td>Заключен профил</td>
+            <td>@Model.LockoutEnabled</td>
+        </tr>
+        <tr>
+            <td>Край на наказанието</td>
+            <td>@Model.LockoutEnd</td>
+        </tr>
+        <tr>
+            <td>Двуфакторна аутентикация</td>
+            <td>@Model.TwoFactorEnabled</td>
+        </tr>
+        <tr>
+            <td>Брой неуспешни влизания</td>
+            <td>@Model.AccessFailedCount</td>
+        </tr>
+        <tr>
+            <td>Брой обяви за автомобили</td>
+            <td>@Model.VehicleOffers</td>
+        </tr>
+        <tr>
+            <td>Брой обяви за авточасти</td>
+            <td>@Model.PartOffers</td>
+        </tr>
     </tbody>
 </table>
+@if (Model.VehicleOffers > 0 || Model.PartOffers > 0)
+{
+<div class="justify-content-center">
+       <input type="button" class="btn btn-dark" value="Разгледай обявите" onclick="location.href='@Url.Action("All", "Users", new { userId = Model.Id })'" />
+</div>
+}

@@ -14,6 +14,11 @@
                     <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
                 </ul>
                 <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
+                @if (this.User.IsInRole("Admin"))
+                {
+                    <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-primary">Редактирай</a>
+                    <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger">Изтрий</a>
+                }
             </div>
         </div>
     }

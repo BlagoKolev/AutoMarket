@@ -5,6 +5,7 @@ using AutoMarket.Data;
 using AutoMarket.Services;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
+using System.Linq;
 
 namespace AutoMarket.Controllers
 {
@@ -24,15 +25,16 @@ namespace AutoMarket.Controllers
 
             var userId = GetUserId();
             var allOffers = offersService.GetAllUsersOffers(id, userId, GlobalConstants.ItemsPerPage);
-            var allUsersOffersCount = offersService.GetAllUsersOffersCount(userId);
 
+            var allUsersOffersCount = offersService.GetAllUsersOffersCount(userId);
             var listMyOffersViewModel = new ListMyOffersViewModel
             {
                 Offers = allOffers,
                 ItemsCount = allUsersOffersCount,
                 PageNumber = id,
             };
-            if (listMyOffersViewModel.PageNumber > listMyOffersViewModel.PagesCount)
+
+            if (listMyOffersViewModel.PageNumber > listMyOffersViewModel.PagesCount && listMyOffersViewModel.PagesCount > 0)
             {
                 return this.Redirect($"{listMyOffersViewModel.PagesCount}");
             }
@@ -53,8 +55,9 @@ namespace AutoMarket.Controllers
             {
                 return this.RedirectToAction("Edit");
             }
-            var currentUserId = _userManager.GetUserId(this.User);
-            var editViewModel = offersService.GetVehicleToEdit(offerId, currentUserId);
+            var isUserAdmin = IsAdmin();
+            var currentUserId = GetUserId();
+            var editViewModel = offersService.GetVehicleToEdit(offerId, currentUserId, isUserAdmin);
             return this.View(editViewModel);
         }
 
@@ -67,7 +70,8 @@ namespace AutoMarket.Controllers
                 return this.View(editedModel);
             }
             var userId = GetUserId();
-            offersService.UpdateVehicleOffer(editedModel, Id, userId);
+            var isUserAdmin = IsAdmin();
+            offersService.UpdateVehicleOffer(editedModel, Id, userId, isUserAdmin);
             return this.RedirectToAction(nameof(VehicleDetails), new { offerId = Id });
         }
 
@@ -81,7 +85,9 @@ namespace AutoMarket.Controllers
         [Authorize]
         public IActionResult EditPart(string offerId)
         {
-            var currentPartOffer = offersService.GetPartToEdit(offerId);
+            var userId = GetUserId();
+            var isUserAdmin = IsAdmin();
+            var currentPartOffer = offersService.GetPartToEdit(offerId, userId, isUserAdmin);
             return this.View(currentPartOffer);
         }
 
@@ -95,7 +101,8 @@ namespace AutoMarket.Controllers
             }
 
             var userId = GetUserId();
-            offersService.UpdatePartOffer(editedModel, Id, userId);
+            var isUserAdmin = IsAdmin();
+            offersService.UpdatePartOffer(editedModel, Id, userId, isUserAdmin);
             return this.RedirectToAction(nameof(PartDetails), new { offerId = Id });
         }
 
@@ -110,6 +117,10 @@ namespace AutoMarket.Controllers
             return this.RedirectToAction(nameof(this.All));
         }
 
+        private bool IsAdmin()
+        {
+            return this.User.IsInRole("Admin");
+        }
         private string GetUserId()
         {
             var userId = _userManager.GetUserId(this.User);

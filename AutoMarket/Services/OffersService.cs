@@ -2,6 +2,7 @@
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Parts;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -91,13 +92,8 @@ namespace AutoMarket.Services
             return userVehicleOffers;
         }
 
-        public EditVehicleOfferViewModel GetVehicleToEdit(string carId, string userId)
+        public EditVehicleOfferViewModel GetVehicleToEdit(string offerId, string userId, bool isUserAdmin)
         {
-            var offerId = this.db.VehicleOffers
-                .Where(x => x.Id == carId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
             var imagesPath = this.db.Images
                 .Where(x => x.VehicleOfferId == offerId)
                 .Select(x => "/images/vehicles/" + x.Id + '.' + x.Extension)
@@ -105,7 +101,7 @@ namespace AutoMarket.Services
 
 
             var vehicleToEdit = this.db.VehicleOffers
-                 .Where(x => x.Id == carId && x.ApplicationUserId == userId)
+                 .Where(x => x.Id == offerId && (x.ApplicationUserId == userId || isUserAdmin == true))
                  .Select(x => new EditVehicleOfferViewModel
                  {
                      Id = x.Id,
@@ -132,14 +128,14 @@ namespace AutoMarket.Services
             return vehicleToEdit;
         }
 
-        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId, string userId)
+        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
         {
             var images = this.db.Images
                  .Where(x => x.VehicleOfferId == offerId)
                                   .ToList();
 
             var currentOffer = this.db.VehicleOffers
-                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+                .Where(x => x.Id == offerId && (x.ApplicationUserId == userId || isUserAdmin == true))
                 .FirstOrDefault();
 
             var currentVehicle = this.db.Vehicles
@@ -184,7 +180,6 @@ namespace AutoMarket.Services
             {
                 imagesPath.Add("/images/vehicles/" + img.Id + '.' + img.Extension);
             }
-
 
             var currentOffer = this.db.VehicleOffers
                 .Where(x => x.Id == offerId)
@@ -278,7 +273,7 @@ namespace AutoMarket.Services
             return currentPartOffer;
         }
 
-        public EditPartOfferViewModel GetPartToEdit(string offerId)
+        public EditPartOfferViewModel GetPartToEdit(string offerId, string userId, bool isUserAdmin)
         {
             var partImagesAsString = new List<string>();
 
@@ -291,7 +286,9 @@ namespace AutoMarket.Services
             }
 
             var curretnPartOffer = this.db.PartOffers
-                .Where(x => x.Id == offerId && x.IsDeleted == false)
+                .Where(x => x.Id == offerId
+                && x.IsDeleted == false
+                && (x.ApplicationUserId == userId || isUserAdmin == true))
                 .Select(x => new EditPartOfferViewModel
                 {
                     Id = x.Id,
@@ -312,14 +309,14 @@ namespace AutoMarket.Services
             return curretnPartOffer;
         }
 
-        public void UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId)
+        public void UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
         {
             var images = this.db.Images
                  .Where(x => x.VehicleOfferId == offerId)
                  .ToList();
 
             var currentOffer = this.db.PartOffers
-                .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+                .Where(x => x.Id == offerId && (x.ApplicationUserId == userId || isUserAdmin == true))
                 .FirstOrDefault();
 
             var currentPart = this.db.Parts

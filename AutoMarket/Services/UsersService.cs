@@ -25,13 +25,14 @@ namespace AutoMarket.Services
                 .Where(x => x.Id == userId)
                 .Select(x => new UserDetailsViewModel
                 {
+                    Id = x.Id,
                     Username = x.UserName,
                     Email = x.Email,
                     AccessFailedCount = x.AccessFailedCount,
                     LockoutEnabled = x.LockoutEnabled.ToString(),
                     LockoutEnd = x.LockoutEnd,
                     TwoFactorEnabled = x.TwoFactorEnabled.ToString(),
-                    RegistrationDate = x.RegistrationDate.ToString(),
+                    RegistrationDate = x.RegistrationDate.ToString("dd/MM/yy H:mm:ss"),
                     VehicleOffers = x.VehicleOffers.Count,
                     PartOffers = x.PartOffers.Count,
                 })
@@ -55,5 +56,10 @@ namespace AutoMarket.Services
                 .ToList();
             return usersAcounts;
         }
+
+        //public UsersOffersViewModel GetUsersVehicles()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

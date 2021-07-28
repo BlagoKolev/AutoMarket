@@ -7,13 +7,17 @@
 
 @if (!Model.Offers.Any() && Model.PagesCount < Model.PageNumber)
 {
-    <div class="text-center">
-        <h4>В момента нямате създадени обяви за автомобили</h4>
-        <h5>
-            За да създадете нова обява натиснете
-            <a href="/Vehicles/Create" class="text-decoration">тук</a>
-        </h5>
-    </div>
+<div class="text-center">
+    <h4>В момента нямате създадени обяви</h4>
+    <h5>
+        За да създадете нова обява за автомобил натиснете
+        <a href="/Vehicles/Create" class="text-decoration">тук</a>
+    </h5>
+    <h5>
+        За да създадете нова обява за авточасти натиснете
+        <a href="/Parts/Create" class="text-decoration">тук</a>
+    </h5>
+</div>
 }
 else
 {
