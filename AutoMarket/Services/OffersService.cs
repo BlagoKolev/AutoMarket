@@ -5,6 +5,7 @@ using AutoMarket.Models.Parts;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
@@ -128,7 +129,7 @@ namespace AutoMarket.Services
             return vehicleToEdit;
         }
 
-        public void UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
+        public async Task UpdateVehicleOffer(EditVehicleOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
         {
             var images = this.db.Images
                  .Where(x => x.VehicleOfferId == offerId)
@@ -146,10 +147,10 @@ namespace AutoMarket.Services
 
             UpdateVehicleEntity(editedModel, currentOffer, images);
             this.db.Update(currentOffer);
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
         }
 
-        public void DeleteOffer(string offerId, string userId)
+        public async Task DeleteOffer(string offerId, string userId)
         {
             if (offerId.StartsWith("Part"))
             {
@@ -165,7 +166,7 @@ namespace AutoMarket.Services
                .FirstOrDefault();
                 offerToDelete.IsDeleted = true;
             }
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
         }
 
         public DetailsVehicleOfferViewModel GetVehicleOfferById(string offerId)
@@ -309,7 +310,7 @@ namespace AutoMarket.Services
             return curretnPartOffer;
         }
 
-        public void UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
+        public async Task UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
         {
             var images = this.db.Images
                  .Where(x => x.VehicleOfferId == offerId)
@@ -327,7 +328,7 @@ namespace AutoMarket.Services
 
             UpdatePartEntity(editedModel, currentOffer, images);
             this.db.Update(currentOffer);
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
         }
 
         private static void UpdatePartEntity(EditPartOfferViewModel editedModel, PartOffer entityToEdit, ICollection<Image> images)
@@ -344,6 +345,5 @@ namespace AutoMarket.Services
             entityToEdit.Part.Status = editedModel.Status;
             entityToEdit.Pictures = images;
         }
-
     }
 }

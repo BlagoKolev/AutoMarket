@@ -6,6 +6,7 @@ using AutoMarket.Data;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Vehicles;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
@@ -19,7 +20,7 @@ namespace AutoMarket.Services
             this.db = db;
         }
 
-        public void CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath)
+        public async Task CreateVehicle(CreateVehicleOfferViewModel offer, string userId, string imagePath)
         {
             var newVehicle = new Vehicle
             {
@@ -36,7 +37,7 @@ namespace AutoMarket.Services
                 Мileage = offer.Мileage,
             };
 
-            this.db.Vehicles.Add(newVehicle);
+           await this.db.Vehicles.AddAsync(newVehicle);
 
             var newOffer = new VehicleOffer
             {
@@ -49,7 +50,7 @@ namespace AutoMarket.Services
                 Description = offer.Description,
             };
 
-            this.db.VehicleOffers.Add(newOffer);
+            await this.db.VehicleOffers.AddAsync(newOffer);
 
             Directory.CreateDirectory($"{imagePath}/vehicles/");
 
@@ -77,7 +78,7 @@ namespace AutoMarket.Services
                 }
             }
 
-            this.db.SaveChanges();
+           await this.db.SaveChangesAsync();
         }
 
         public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)

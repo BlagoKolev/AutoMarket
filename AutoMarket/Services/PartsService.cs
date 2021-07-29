@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using AutoMarket.Data;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Parts;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
@@ -17,7 +18,7 @@ namespace AutoMarket.Services
             this.db = db;
         }
 
-        public void CreatePartOffer(CreatePartViewModel formModel, string imagePath, string userId)
+        public async Task CreatePartOffer(CreatePartViewModel formModel, string imagePath, string userId)
         {
             var newPart = new Part
             {
@@ -68,17 +69,17 @@ namespace AutoMarket.Services
                 }
             }
 
-            this.db.Parts.Add(newPart);
-            this.db.PartOffers.Add(newPartOffer);
-            this.db.SaveChanges();
+            await this.db.Parts.AddAsync(newPart);
+            await this.db.PartOffers.AddAsync(newPartOffer);
+            await this.db.SaveChangesAsync();
         }
 
         public ICollection<PartsAllViewModel> GelAllPartOffers(int id, int itemsPerPage)
         {
             var allPartOffers = this.db.PartOffers
                 .Where(x => x.IsDeleted == false)
-                .OrderByDescending(x=>x.CreatedOn)
-                .Skip((id-1)*itemsPerPage)
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip((id - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .Select(x => new PartsAllViewModel
                 {

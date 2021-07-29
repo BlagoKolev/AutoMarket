@@ -56,10 +56,5 @@ namespace AutoMarket.Services
                 .ToList();
             return usersAcounts;
         }
-
-        //public UsersOffersViewModel GetUsersVehicles()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
     }
 }
