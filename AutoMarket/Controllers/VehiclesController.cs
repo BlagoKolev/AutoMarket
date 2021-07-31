@@ -9,19 +9,20 @@ using AutoMarket.Data;
 using AutoMarket.Services;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Vehicles;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly IVehiclesService vehiclesService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
 
         public VehiclesController(IVehiclesService vehiclesService, UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
         {
             this.vehiclesService = vehiclesService;
-            this._userManager = userManager;
+            this.userManager = userManager;
             this.environment = env;
         }
 
@@ -33,7 +34,7 @@ namespace AutoMarket.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create(CreateVehicleOfferViewModel input)
+        public async Task<IActionResult> Create(CreateVehicleOfferViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -41,11 +42,11 @@ namespace AutoMarket.Controllers
             }
 
             var imagePath = $"{this.environment.WebRootPath}/images";
-            var userId = this._userManager.GetUserId(this.User);
+            var userId = this.userManager.GetUserId(this.User);
 
             try
             {
-                vehiclesService.CreateVehicle(input, userId, imagePath);
+              await   vehiclesService.CreateVehicle(input, userId, imagePath);
             }
             catch (Exception)
             {

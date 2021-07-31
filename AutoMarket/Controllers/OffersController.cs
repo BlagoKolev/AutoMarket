@@ -6,6 +6,7 @@ using AutoMarket.Services;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
@@ -63,7 +64,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult EditVehicle(EditVehicleOfferViewModel editedModel, string Id)
+        public async Task<IActionResult> EditVehicle(EditVehicleOfferViewModel editedModel, string Id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -71,7 +72,7 @@ namespace AutoMarket.Controllers
             }
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
-            offersService.UpdateVehicleOffer(editedModel, Id, userId, isUserAdmin);
+            await offersService.UpdateVehicleOffer(editedModel, Id, userId, isUserAdmin);
             return this.RedirectToAction(nameof(VehicleDetails), new { offerId = Id });
         }
 
@@ -93,7 +94,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult EditPart(EditPartOfferViewModel editedModel, string Id)
+        public async Task<IActionResult> EditPart(EditPartOfferViewModel editedModel, string Id)
         {
             if (!ModelState.IsValid)
             {
@@ -102,7 +103,7 @@ namespace AutoMarket.Controllers
 
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
-            offersService.UpdatePartOffer(editedModel, Id, userId, isUserAdmin);
+            await offersService.UpdatePartOffer(editedModel, Id, userId, isUserAdmin);
             return this.RedirectToAction(nameof(PartDetails), new { offerId = Id });
         }
 

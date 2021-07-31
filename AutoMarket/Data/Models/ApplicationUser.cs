@@ -15,6 +15,9 @@ namespace AutoMarket.Data.Models
             this.RegistrationDate = DateTime.UtcNow;
         }
 
+        public int? DealerId { get; set; }
+        public Dealer Dealer { get; set; }
+        public bool IsDealer { get; set; }
         public DateTime RegistrationDate { get; set; }
         public virtual ICollection<PartOffer> PartOffers { get; set; }
         public virtual ICollection<VehicleOffer> VehicleOffers { get; set; }

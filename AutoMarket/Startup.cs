@@ -1,6 +1,7 @@
 using AutoMarket.Controllers;
 using AutoMarket.Data;
 using AutoMarket.Data.Models;
+using AutoMarket.Infrastructure;
 using AutoMarket.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -66,6 +67,8 @@ namespace AutoMarket
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -94,7 +97,6 @@ namespace AutoMarket
                 endpoints.MapRazorPages();
             });
 
-            UsersController.SeedUsers(userManager);
         }
     }
 }

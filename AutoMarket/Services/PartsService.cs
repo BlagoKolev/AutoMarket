@@ -65,7 +65,7 @@ namespace AutoMarket.Services
 
                     var physicalPath = $"{imagePath}/parts/{newImage.Id}.{extension}";
                     using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                    image.CopyTo(fileStream);
+                    await image.CopyToAsync(fileStream);
                 }
             }
 

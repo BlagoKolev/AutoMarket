@@ -1,27 +1,78 @@
-﻿using AutoMarket.Data;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using AutoMarket.Data;
+using AutoMarket.Services;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Users;
-using AutoMarket.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Security.Claims;
 
 namespace AutoMarket.Controllers
 {
-    [Authorize(Roles = "Admin")]
+
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;
         private readonly IOffersService offersService;
-        public UsersController(IUsersService usersService, IOffersService offersService)
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        public UsersController(IUsersService usersService,
+            IOffersService offersService,
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager)
         {
+            this.signInManager = signInManager;
             this.offersService = offersService;
             this.usersService = usersService;
+            this.userManager = userManager;
         }
 
+        [Authorize]
+        public IActionResult BecomeDealer()
+        {
+            if (!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
+            {
+                var userId = GetUserId();
+                var user = usersService.GetUserInfo(userId);
+                return this.View(user);
+            }
+            return this.Redirect("/Home/Index/");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> BecomeDealer(BecomeDealerViewModel dealerModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(BecomeDealer));
+            }
+            
+            var userId = GetUserId();
+
+            var isDealerAlreadyExist = usersService.IsDealerExist(dealerModel.DealerName);
+
+            if (isDealerAlreadyExist)
+            {
+                return this.RedirectToAction(nameof(BecomeDealer));
+            }
+
+            var isValid = usersService.MakeUserDealer(userId, dealerModel.DealerName);
+            if (isValid.Result == false)
+            {
+                return BadRequest();
+            }
+
+            var user = await userManager.GetUserAsync(this.User);
+
+            await signInManager.SignOutAsync();
+            await signInManager.SignInAsync(user, false);
+            return this.Redirect("/Home/Index/");
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult All(string userId, int id = 1)
         {
             id = id <= 0 ? 1 : id;
@@ -42,11 +93,15 @@ namespace AutoMarket.Controllers
             }
             return this.View(listMyOffersViewModel);
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Details(string userId)
         {
             var user = usersService.GetUserById(userId);
             return this.View(user);
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Accounts(int id = 1)
         {
             if (!this.User.IsInRole("Admin"))
@@ -69,26 +124,10 @@ namespace AutoMarket.Controllers
 
         private string GetUserId()
         {
-            var adminId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return adminId;
-        }
-        public static void SeedUsers(UserManager<ApplicationUser> userManager)
-        {
-            if (userManager.FindByEmailAsync("admin@webmaster.com").Result == null)
-            {
-                ApplicationUser user = new ApplicationUser
-                {
-                    UserName = "admin@webmaster.com",
-                    Email = "admin@webmaster.com"
-                };
-
-                IdentityResult result = userManager.CreateAsync(user, "nimda").Result;
-
-                if (result.Succeeded)
-                {
-                    userManager.AddToRoleAsync(user, "Admin").Wait();
-                }
-            }
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return userId;
         }
     }
+
+
 }

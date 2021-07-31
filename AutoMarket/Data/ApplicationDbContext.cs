@@ -20,11 +20,11 @@ namespace AutoMarket.Data
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleOffer> VehicleOffers { get; set; }
         public DbSet<Image> Images { get; set; }
-
+        public DbSet<Dealer> Dealers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
+            //builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
            // builder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "User", NormalizedName = "User".ToUpper() });
         }
     }

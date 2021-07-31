@@ -20,8 +20,8 @@ namespace AutoMarket.Services
         {
             PartStatus partStatus;
             var partOffers = new List<PartsAllViewModel>();
-           var isStatusValid = Enum.TryParse<PartStatus>(status, out partStatus);
-           
+            var isStatusValid = Enum.TryParse<PartStatus>(status, out partStatus);
+
             if (!isStatusValid)
             {
                 if (keyword != null)
@@ -60,7 +60,7 @@ namespace AutoMarket.Services
             }
             else
             {
-                if (keyword !=null)
+                if (keyword != null)
                 {
                     partOffers = this.db.PartOffers
                   .Where(x => x.IsDeleted == false

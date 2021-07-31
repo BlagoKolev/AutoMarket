@@ -7,6 +7,7 @@ using AutoMarket.Data;
 using AutoMarket.Services;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Parts;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
@@ -50,7 +51,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Create(CreatePartViewModel formModel)
+        public async Task<IActionResult> Create(CreatePartViewModel formModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -62,7 +63,7 @@ namespace AutoMarket.Controllers
 
             try
             {
-                partsService.CreatePartOffer(formModel, imagePath, userId);
+                await partsService.CreatePartOffer(formModel, imagePath, userId);
             }
             catch (Exception)
             {

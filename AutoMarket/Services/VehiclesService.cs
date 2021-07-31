@@ -37,7 +37,7 @@ namespace AutoMarket.Services
                 Мileage = offer.Мileage,
             };
 
-           await this.db.Vehicles.AddAsync(newVehicle);
+         await  this.db.Vehicles.AddAsync(newVehicle);
 
             var newOffer = new VehicleOffer
             {
@@ -74,7 +74,7 @@ namespace AutoMarket.Services
 
                     var physicalPath = $"{imagePath}/vehicles/{newImage.Id}.{extension}";
                     using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                    image.CopyTo(fileStream);
+                    await image.CopyToAsync(fileStream);
                 }
             }
 

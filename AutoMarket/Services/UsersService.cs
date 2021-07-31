@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using AutoMarket.Data;
 using AutoMarket.Models.Users;
-
+using System.Threading.Tasks;
+using AutoMarket.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AutoMarket.Services
 {
     public class UsersService : IUsersService
     {
         private readonly ApplicationDbContext db;
-        public UsersService(ApplicationDbContext db)
+        private readonly UserManager<ApplicationUser> userManager;
+        public UsersService(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             this.db = db;
         }
 
@@ -40,6 +44,18 @@ namespace AutoMarket.Services
             return user;
         }
 
+        public BecomeDealerViewModel GetUserInfo(string userId)
+        {
+            var user = this.db.ApplicationUsers
+                .Where(x => x.Id == userId && x.IsDealer == false)
+                .Select(x => new BecomeDealerViewModel
+                {
+                    UserId = x.Id,
+                    UserEmail = x.Email
+                }).FirstOrDefault();
+            return user;
+        }
+
         public ICollection<UsersAllViewModel> GetUsersAcounts(string userId, int page, int itemsPerPage)
         {
             var usersAcounts = this.db.ApplicationUsers
@@ -55,6 +71,37 @@ namespace AutoMarket.Services
                 })
                 .ToList();
             return usersAcounts;
+        }
+
+        public bool IsDealerExist(string dealerName)
+        {
+            var dealer = this.db.Dealers
+                .Where(x => x.Name == dealerName)
+                .FirstOrDefault();
+
+            return dealer != null;
+        }
+
+        public  async Task<bool> MakeUserDealer(string userId, string dealerName)
+        {
+            var user = this.db.ApplicationUsers
+                 .Where(x => x.Id == userId)
+                 .FirstOrDefault();
+            
+            user.IsDealer = true;
+
+            var newDealer = new Dealer
+            {
+                Name = dealerName,
+                UserId = userId
+            };
+
+            await userManager.AddToRoleAsync(user,"Dealer");
+
+            await this.db.Dealers.AddAsync(newDealer);
+            var result = await this.db.SaveChangesAsync();
+            var isValid = result > 0 ? true : false;
+            return isValid;
         }
     }
 }

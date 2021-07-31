@@ -6,37 +6,10 @@
 <div class="wrapper">
     <a href="/Search/All">Търсене</a>
 </div>
-@*
-       @model ListAllVehicleViewModel
-    @{
-        ViewData["Title"] = "Активни обяви за автомобили";
-    }
-
-    <h1 class="text-center mt-2">Обяви за автомобили</h1>
-
-    <div class="wrapper">
-        <a href="/Search/All">Търсене</a>
-    </div>
-    <div class="row mt-2 mb-4 justify-content-center">
-        @foreach (var offer in @Model.Offers)
-        {
-            <div class="card col-6 col-lg-3 game-card mx-2 my-2 justify-content-start">
-                <img src="@offer.Image"
-                     class="card-img-top img-fluid card-image rounded" data-toggle="tooltip"
-                     data-placement="bottom" title="">
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-center">Марка: @offer.Make </li>
-                        <li class="bg-secondary col-sm">Модел: @offer.Model</li>
-                        <li class="bg-secondary col-sm">Цвят: @offer.Color</li>
-                        <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
-                    </ul>
-                    <a href="/Vehicles/Details?offerId=@offer.Id" class="btn btn-block btn-primary">Разгледай обявата</a>
-                </div>
-            </div>
-        }
-    </div>
-*@
+@if (!Model.Offers.Any())
+{
+    <p>Все още няма обяви в секция 'Автомобили'</p>
+}
 <partial name="_VehicleAllPartial" model="@Model" />
 <hr />
 <partial name="_PagingPartial" model="@Model" />

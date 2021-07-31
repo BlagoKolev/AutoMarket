@@ -31,11 +31,17 @@ namespace AutoMarket.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DealerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDealer")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -76,6 +82,8 @@ namespace AutoMarket.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DealerId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -85,6 +93,24 @@ namespace AutoMarket.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("AutoMarket.Data.Models.Dealer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dealers");
                 });
 
             modelBuilder.Entity("AutoMarket.Data.Models.Image", b =>
@@ -308,15 +334,6 @@ namespace AutoMarket.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1da01636-8fd2-4be9-b924-b4803ed1b363",
-                            ConcurrencyStamp = "837f26b1-dbf3-4de0-93f7-62751e69fe6f",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -425,6 +442,15 @@ namespace AutoMarket.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("AutoMarket.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("AutoMarket.Data.Models.Dealer", "Dealer")
+                        .WithMany()
+                        .HasForeignKey("DealerId");
+
+                    b.Navigation("Dealer");
                 });
 
             modelBuilder.Entity("AutoMarket.Data.Models.Image", b =>
