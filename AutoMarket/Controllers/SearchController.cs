@@ -21,7 +21,7 @@ namespace AutoMarket.Controllers
             var vehicleOffers = searchService.GetVehicleOffers(make, vehicleModel);
             var itemsCount = vehicleOffers.Count();
             var itemsPerPage = GlobalConstants.ItemsPerPage;
-          
+
             vehicleOffers = vehicleOffers
                 .Skip((id - 1) * itemsPerPage)
                 .Take(itemsPerPage)
@@ -51,7 +51,7 @@ namespace AutoMarket.Controllers
             var partOffers = searchService.GetPartOffers(keyword, status);
             var itemsPerPage = GlobalConstants.ItemsPerPage;
             var itemsCount = partOffers.Count();
-          
+
             partOffers = partOffers
                 .Skip((id - 1) * itemsPerPage)
                 .Take(itemsPerPage)

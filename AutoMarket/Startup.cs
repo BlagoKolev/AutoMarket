@@ -62,6 +62,7 @@ namespace AutoMarket
             services.AddTransient<IOffersService, OffersService>();
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IDealersService, DealersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

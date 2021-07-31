@@ -15,7 +15,7 @@ namespace AutoMarket.Services
         {
             this.db = db;
         }
-
+               
         public ICollection<PartsAllViewModel> GetPartOffers(string keyword, string status)
         {
             PartStatus partStatus;

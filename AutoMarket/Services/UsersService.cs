@@ -96,11 +96,17 @@ namespace AutoMarket.Services
                 UserId = userId
             };
 
+            await this.db.Dealers.AddAsync(newDealer);
+           var firstSave = await this.db.SaveChangesAsync();
+
+            user.DealerId = newDealer.Id;
+
             await userManager.AddToRoleAsync(user,"Dealer");
 
-            await this.db.Dealers.AddAsync(newDealer);
-            var result = await this.db.SaveChangesAsync();
-            var isValid = result > 0 ? true : false;
+           
+            var secondSave = await this.db.SaveChangesAsync();
+
+            var isValid = firstSave + secondSave > 0;
             return isValid;
         }
     }
