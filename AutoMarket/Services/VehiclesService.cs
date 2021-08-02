@@ -96,7 +96,7 @@ namespace AutoMarket.Services
                     Model = x.Vehicle.Model,
                     Color = x.Vehicle.Color,
                     Price = x.Price,
-                    Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
             .ToList();
             return vehicleOffers;

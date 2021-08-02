@@ -38,7 +38,7 @@ namespace AutoMarket.Services
                        Category = x.Part.PartCategory,
                        Status = x.Part.Status,
                        Price = x.Price,
-                       Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                       Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                    })
                    .ToList();
                 }
@@ -53,7 +53,7 @@ namespace AutoMarket.Services
                        Category = x.Part.PartCategory,
                        Status = x.Part.Status,
                        Price = x.Price,
-                       Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                       Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                    })
                    .ToList();
                 }
@@ -75,7 +75,7 @@ namespace AutoMarket.Services
                       Category = x.Part.PartCategory,
                       Status = x.Part.Status,
                       Price = x.Price,
-                      Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                      Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                   })
                   .ToList();
                 }
@@ -91,7 +91,7 @@ namespace AutoMarket.Services
                       Category = x.Part.PartCategory,
                       Status = x.Part.Status,
                       Price = x.Price,
-                      Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                      Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                   })
                   .ToList();
                 }
@@ -114,7 +114,7 @@ namespace AutoMarket.Services
                   Make = x.Vehicle.Make,
                   Model = x.Vehicle.Model,
                   Color = x.Vehicle.Color,
-                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
                   Price = x.Price
               })
               .ToList();
@@ -130,7 +130,7 @@ namespace AutoMarket.Services
                   Make = x.Vehicle.Make,
                   Model = x.Vehicle.Model,
                   Color = x.Vehicle.Color,
-                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
                   Price = x.Price
               })
               .ToList();
@@ -147,7 +147,7 @@ namespace AutoMarket.Services
                   Make = x.Vehicle.Make,
                   Model = x.Vehicle.Model,
                   Color = x.Vehicle.Color,
-                  Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                  Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
                   Price = x.Price
               })
               .ToList();
@@ -165,7 +165,7 @@ namespace AutoMarket.Services
                    Make = x.Vehicle.Make,
                    Model = x.Vehicle.Model,
                    Color = x.Vehicle.Color,
-                   Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                   Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
                    Price = x.Price
                })
                .ToList();

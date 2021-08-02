@@ -88,7 +88,7 @@ namespace AutoMarket.Services
                     Category = x.Part.PartCategory,
                     Status = x.Part.Status,
                     Price = x.Price,
-                    Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
                 .ToList();
             return allPartOffers;
@@ -112,7 +112,7 @@ namespace AutoMarket.Services
 
             foreach (var img in imagesCollection)
             {
-                imagesPath.Add("/images/parts/" + img.Id + '.' + img.Extension);
+                imagesPath.Add(GlobalConstants.PartImagePath + img.Id + '.' + img.Extension);
             }
 
             var currentPartOffer = this.db.PartOffers

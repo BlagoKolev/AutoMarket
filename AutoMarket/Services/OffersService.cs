@@ -32,7 +32,7 @@ namespace AutoMarket.Services
                     Color = x.Vehicle.Color,
                     Price = x.Price,
                     CreatedOn = x.CreatedOn,
-                    Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
                 .ToList();
 
@@ -46,7 +46,7 @@ namespace AutoMarket.Services
                     Status = x.Part.Status,
                     Price = x.Price,
                     CreatedOn = x.CreatedOn,
-                    Image = "/images/parts/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
                 .ToList();
 
@@ -97,7 +97,7 @@ namespace AutoMarket.Services
         {
             var imagesPath = this.db.Images
                 .Where(x => x.VehicleOfferId == offerId)
-                .Select(x => "/images/vehicles/" + x.Id + '.' + x.Extension)
+                .Select(x => GlobalConstants.VehicleImagePath + x.Id + '.' + x.Extension)
                 .ToList();
 
 
@@ -249,7 +249,7 @@ namespace AutoMarket.Services
 
             foreach (var img in imagesCollection)
             {
-                imagesPath.Add("/images/parts/" + img.Id + '.' + img.Extension);
+                imagesPath.Add(GlobalConstants.PartImagePath + img.Id + '.' + img.Extension);
             }
 
             var currentPartOffer = this.db.PartOffers
