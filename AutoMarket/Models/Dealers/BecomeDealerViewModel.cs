@@ -1,11 +1,8 @@
-﻿using AutoMarket.Controllers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AutoMarket.Models.Users
+
+namespace AutoMarket.Models.Dealers
 {
     public class BecomeDealerViewModel
     {

@@ -150,12 +150,6 @@ namespace AutoMarket.Services
                 .Where(x => x.IsDeleted == false)
                 .Count();
             return itemsCount;
-        }
-
-       
-
-
-
-
+        }         
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using AutoMarket.Data;
 using AutoMarket.Services;
-using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Users;
 
@@ -16,60 +13,11 @@ namespace AutoMarket.Controllers
     {
         private readonly IUsersService usersService;
         private readonly IOffersService offersService;
-        private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly UserManager<ApplicationUser> userManager;
-        public UsersController(IUsersService usersService,
-            IOffersService offersService,
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager)
+
+        public UsersController(IUsersService usersService, IOffersService offersService)
         {
-            this.signInManager = signInManager;
             this.offersService = offersService;
             this.usersService = usersService;
-            this.userManager = userManager;
-        }
-
-        [Authorize]
-        public IActionResult BecomeDealer()
-        {
-            if (!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
-            {
-                var userId = GetUserId();
-                var user = usersService.GetUserInfo(userId);
-                return this.View(user);
-            }
-            return this.Redirect("/Home/Index/");
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> BecomeDealer(BecomeDealerViewModel dealerModel)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.RedirectToAction(nameof(BecomeDealer));
-            }
-            
-            var userId = GetUserId();
-
-            var isDealerAlreadyExist = usersService.IsDealerExist(dealerModel.DealerName);
-
-            if (isDealerAlreadyExist)
-            {
-                return this.RedirectToAction(nameof(BecomeDealer));
-            }
-
-            var isValid = usersService.MakeUserDealer(userId, dealerModel.DealerName);
-            if (isValid.Result == false)
-            {
-                return BadRequest();
-            }
-
-            var user = await userManager.GetUserAsync(this.User);
-
-            await signInManager.SignOutAsync();
-            await signInManager.SignInAsync(user, false);
-            return this.Redirect("/Home/Index/");
         }
 
         [Authorize(Roles = "Admin")]

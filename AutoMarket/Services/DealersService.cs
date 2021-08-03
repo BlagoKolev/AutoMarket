@@ -1,16 +1,50 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data;
 using AutoMarket.Models.Offers;
+using AutoMarket.Models.Dealers;
+using AutoMarket.Data.Models;
 
 namespace AutoMarket.Services
 {
     public class DealersService : IDealersService
     {
         private readonly ApplicationDbContext db;
-        public DealersService(ApplicationDbContext db)
+        private readonly UserManager<ApplicationUser> userManager;
+        public DealersService(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             this.db = db;
+        }
+
+        public async Task<bool> MakeUserDealer(string userId, string dealerName)
+        {
+            var user = this.db.ApplicationUsers
+                 .Where(x => x.Id == userId)
+                 .FirstOrDefault();
+
+            user.IsDealer = true;
+
+            var newDealer = new Dealer
+            {
+                Name = dealerName,
+                UserId = userId
+            };
+
+            await this.db.Dealers.AddAsync(newDealer);
+            var firstSave = await this.db.SaveChangesAsync();
+
+            user.DealerId = newDealer.Id;
+
+            await userManager.AddToRoleAsync(user, "Dealer");
+
+
+            var secondSave = await this.db.SaveChangesAsync();
+
+            var isValid = firstSave + secondSave > 0;
+            return isValid;
         }
         public ICollection<string> GetAllDealers()
         {
@@ -123,6 +157,26 @@ namespace AutoMarket.Services
                 .Where(x => x.Name == dealerName)
                 .Select(x => x.Id)
                 .FirstOrDefault();
+        }
+        public BecomeDealerViewModel GetUserInfo(string userId)
+        {
+            var user = this.db.ApplicationUsers
+                .Where(x => x.Id == userId && x.IsDealer == false)
+                .Select(x => new BecomeDealerViewModel
+                {
+                    UserId = x.Id,
+                    UserEmail = x.Email
+                }).FirstOrDefault();
+            return user;
+        }
+
+        public bool IsDealerExist(string dealerName)
+        {
+            var dealer = this.db.Dealers
+                .Where(x => x.Name == dealerName)
+                .FirstOrDefault();
+
+            return dealer != null;
         }
     }
 }

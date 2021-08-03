@@ -1,7 +1,7 @@
-﻿@model BecomeDealerViewModel
+﻿@model AutoMarket.Models.Dealers.BecomeDealerViewModel
 
     <div class="container col-md-6 col-sm-12 col-xl-9 justify-content-center">
-        <form class="justify-content-center" method="post" asp-controller="Users" asp-action="BecomeDealer">
+        <form class="justify-content-center" method="post" asp-controller="Dealers" asp-action="BecomeDealer">
             <div class="form-group row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -11,7 +11,7 @@
                         <span asp-validation-for="UserEmail" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="DealerName"><i class="fal fa-car-bus" style="color:crimson"></i>  Dealer Name</label>
+                        <label asp-for="DealerName"><i class="fas fa-briefcase" style="color:crimson"></i>  Dealer Name</label>
                         <input class="form-control" asp-for="DealerName" type="text" name="DealerName" placeholder="Enter your Dealer name">
 
                         <span asp-validation-for="DealerName" class="text-danger"></span>
@@ -26,10 +26,10 @@
                         <label asp-for="CardNumber"><i class="far fa-credit-card" style="color:crimson"></i>  Номер на картата</label>
                         <input class="form-control" asp-for="CardNumber" type="text" id="ccnum" name="CardNumber" placeholder="1111-2222-3333-4444">
                         <span asp-validation-for="CardNumber" class="text-danger"></span>
-                        <label asp-for="CardExpiredYear"><i class="far fa-calendar-alt" style="color:crimson">  Expiration Year</i></label>
+                        <label asp-for="CardExpiredYear"><i class="far fa-calendar-alt" style="color:crimson"></i>  Expiration Year</label>
                         <input class="form-control" asp-for="CardExpiredYear" type="number" name="CardExpiredYear">
                         <span asp-validation-for="CardExpiredYear" class="text-danger"></span>
-                        <label asp-for="CardExpiredMonth"><i class="far fa-calendar-alt" style="color:crimson">  Expiration month</i></label>
+                        <label asp-for="CardExpiredMonth"><i class="far fa-calendar-alt" style="color:crimson"></i>   Expiration month</label>
                         <input class="form-control" asp-for="CardExpiredMonth" type="number" name="CardExpiredMonth">
                         <span asp-validation-for="CardExpiredMonth" class="text-danger"></span>
                         <label asp-for="CVV"><i class="fas fa-key" style="color:crimson"></i>  Security 3-digit number</label>
