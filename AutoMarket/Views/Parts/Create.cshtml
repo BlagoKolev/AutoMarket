@@ -14,64 +14,64 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
 
                 <div class="form-group">
-                    <label asp-for="Title"></label>
+                    <label asp-for="Title"><i class="far fa-file-alt" style="color:crimson"></i>  Title</label>
                     <input asp-for="Title" class="form-control" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Name"></label>
+                    <label asp-for="Name"><i class="fas fa-wrench" style="color:crimson"></i>  Part name</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="PartCategory"></label>
+                    <label asp-for="PartCategory"><i class="fas fa-cog" style="color:crimson"></i>  Part category</label>
                     <select asp-for="PartCategory" class="form-control" asp-items="@Html.GetEnumSelectList<PartCategory>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="VehicleType"></label>
+                    <label asp-for="VehicleType"><i class="fas fa-car" style="color:crimson"></i>  Vehicle type</label>
                     <select asp-for="VehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleCategory>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Status"></label>
+                    <label asp-for="Status"><i class="fas fa-info-circle" style="color:crimson"></i>  Status</label>
                     <select asp-for="Status" class="form-control" asp-items="@Html.GetEnumSelectList<PartStatus>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Phone"></label>
+                    <label asp-for="Phone"><i class="fas fa-phone-square" style="color:crimson"></i>  Phone</label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Email"></label>
+                    <label asp-for="Email"><i class="fas fa-envelope" style="color:crimson"></i>  E-mail</label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Description"></label>
+                    <label asp-for="Description"><i class="far fa-file-alt" style="color:crimson"></i>  Description</label>
                     <textarea rows="3" asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Location"></label>
+                    <label asp-for="Location"><i class="fas fa-map-marked-alt" style="color:crimson"></i> Location</label>
                     <input asp-for="Location" class="form-control" />
                     <span asp-validation-for="Location" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Price"></label>
+                    <label asp-for="Price"><i class="fas fa-euro-sign" style="color:crimson"></i> Price</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Images"></label>
+                    <label asp-for="Images"><i class="far fa-images" style="color:crimson"></i> Images</label>
                     <input asp-for="Images" class="form-control" />
                     <span asp-validation-for="Images" class="text-danger"></span>
                 </div>

@@ -38,7 +38,8 @@ namespace AutoMarket.Services
                         Model = x.Vehicle.Model,
                         Color = x.Vehicle.Color,
                         Price = x.Price,
-                        Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                        Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                        OwnerId = x.ApplicationUserId
                     })
                     .ToList();
 
@@ -51,7 +52,8 @@ namespace AutoMarket.Services
                        Name = x.Part.Name,
                        Status = x.Part.Status,
                        Price = x.Price,
-                       Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                       Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                       OwnerId = x.ApplicationUserId
                    })
                    .ToList();
             }
@@ -69,7 +71,8 @@ namespace AutoMarket.Services
                         Model = x.Vehicle.Model,
                         Color = x.Vehicle.Color,
                         Price = x.Price,
-                        Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                        Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                        OwnerId = x.ApplicationUserId
                     })
                     .ToList();
 
@@ -82,7 +85,8 @@ namespace AutoMarket.Services
                         Name = x.Part.Name,
                         Status = x.Part.Status,
                         Price = x.Price,
-                        Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                        Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                        OwnerId = x.ApplicationUserId
                     })
                     .ToList();
             }

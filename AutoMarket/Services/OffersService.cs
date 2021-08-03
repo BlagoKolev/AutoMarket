@@ -32,7 +32,8 @@ namespace AutoMarket.Services
                     Color = x.Vehicle.Color,
                     Price = x.Price,
                     CreatedOn = x.CreatedOn,
-                    Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                    OwnerId = x.ApplicationUserId
                 })
                 .ToList();
 
@@ -46,7 +47,8 @@ namespace AutoMarket.Services
                     Status = x.Part.Status,
                     Price = x.Price,
                     CreatedOn = x.CreatedOn,
-                    Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
+                    Image = GlobalConstants.PartImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+                    OwnerId = x.ApplicationUserId
                 })
                 .ToList();
 

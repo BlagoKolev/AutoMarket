@@ -1,58 +1,48 @@
 ﻿@model BecomeDealerViewModel
-<div class="row">
-    <div class="col-75">
-        <div class="container">
-            <form method="post" asp-controller="Users" asp-action="BecomeDealer" >
-                <div class="row">
-                    <div class="col-50">
+
+    <div class="container col-md-6 col-sm-12 col-xl-9 justify-content-center">
+        <form class="justify-content-center" method="post" asp-controller="Users" asp-action="BecomeDealer">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <div class="form-group">
                         <h3>User Info</h3>
-                        <label asp-for="UserEmail"><i class="fa fa-envelope"></i>E-mail</label>
-                        <input asp-for="UserEmail" type="text"  name="UserEmail" placeholder="john@example.com">
+                        <label asp-for="UserEmail"><i class="fa fa-envelope" style="color:crimson"></i>  E-mail</label>
+                        <input class="form-control" asp-for="UserEmail" type="text" name="UserEmail" placeholder="john@example.com">
                         <span asp-validation-for="UserEmail" class="text-danger"></span>
-                        <label asp-for="DealerName"><i class="fa fa-envelope"></i>Dealer Name</label>
-                        <input asp-for="DealerName" type="text" name="DealerName">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DealerName"><i class="fal fa-car-bus" style="color:crimson"></i>  Dealer Name</label>
+                        <input class="form-control" asp-for="DealerName" type="text" name="DealerName" placeholder="Enter your Dealer name">
+
                         <span asp-validation-for="DealerName" class="text-danger"></span>
                     </div>
-                    <div class="col-50">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <h3>Payment</h3>
-                        <label for="fname">Accepted Cards</label>
-                        <div class="icon-container">
-                            <i class="fa fa-cc-visa" style="color:navy;"></i>
-                            <i class="fa fa-cc-amex" style="color:blue;"></i>
-                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                            <i class="fa fa-cc-discover" style="color:orange;"></i>
-                        </div>
-                        <label asp-for="CardHolder"></label>
-                        <input asp-for="CardHolder" type="text" id="cname" name="CardHolder" placeholder="John More Doe">
+                        <label asp-for="CardHolder"><i class="fas fa-user-circle" style="color:crimson"></i>  Име върху картата</label>
+                        <input class="form-control" asp-for="CardHolder" type="text" id="cname" name="CardHolder" placeholder="Име върху картата">
                         <span asp-validation-for="CardHolder" class="text-danger"></span>
-                        <label asp-for="CardNumber"></label>
-                        <input asp-for="CardNumber" type="text" id="ccnum" name="CardNumber" placeholder="1111-2222-3333-4444">
+                        <label asp-for="CardNumber"><i class="far fa-credit-card" style="color:crimson"></i>  Номер на картата</label>
+                        <input class="form-control" asp-for="CardNumber" type="text" id="ccnum" name="CardNumber" placeholder="1111-2222-3333-4444">
                         <span asp-validation-for="CardNumber" class="text-danger"></span>
-                        <div class="row">
-                            <div class="col-50">
-                                <label asp-for="CardExpiredYear"></label>
-                                <input asp-for="CardExpiredYear" type="text" name="CardExpiredYear" placeholder="2021">
-                                <span asp-validation-for="CardExpiredYear" class="text-danger"></span>
-                            </div>
-                            <div class="col-50">
-                                <label asp-for="CardExpiredMonth"></label>
-                                <input asp-for="CardExpiredMonth" type="number" name="CardExpiredMonth" placeholder="1-12">
-                                <span asp-validation-for="CardExpiredMonth" class="text-danger"></span>
-                            </div>
-                            <div class="col-50">
-                                <label asp-for="CVV"></label>
-                                <input asp-for="CVV" type="number" name="CVV" placeholder="123">
-                                <span asp-validation-for="CVV" class="text-danger"></span>
-                            </div>
-                        </div>
+                        <label asp-for="CardExpiredYear"><i class="far fa-calendar-alt" style="color:crimson">  Expiration Year</i></label>
+                        <input class="form-control" asp-for="CardExpiredYear" type="number" name="CardExpiredYear">
+                        <span asp-validation-for="CardExpiredYear" class="text-danger"></span>
+                        <label asp-for="CardExpiredMonth"><i class="far fa-calendar-alt" style="color:crimson">  Expiration month</i></label>
+                        <input class="form-control" asp-for="CardExpiredMonth" type="number" name="CardExpiredMonth">
+                        <span asp-validation-for="CardExpiredMonth" class="text-danger"></span>
+                        <label asp-for="CVV"><i class="fas fa-key" style="color:crimson"></i>  Security 3-digit number</label>
+                        <input class="form-control" asp-for="CVV" type="number" name="CVV">
+                        <span asp-validation-for="CVV" class="text-danger"></span>
                     </div>
                 </div>
-                    <input type="submit" name="name" value="Become Dealer" />
-            </form>
-        </div>
+            </div>
+            <input class="float-right" type="submit" name="name" value="Become Dealer" />
+        </form>
     </div>
-</div>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
-}
+
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }

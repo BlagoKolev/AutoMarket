@@ -14,5 +14,6 @@ namespace AutoMarket.Models.Offers
         public PartStatus Status { get; set; }
         public string Image { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string  OwnerId { get; set; }
     }
 }

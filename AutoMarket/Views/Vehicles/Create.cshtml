@@ -14,98 +14,98 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
 
                 <div class="form-group">
-                    <label asp-for="Make"></label>
+                    <label asp-for="Make"><i class="fas fa-car" style="color:crimson"></i>  Brand</label>
                     <input asp-for="Make" class="form-control" />
                     <span asp-validation-for="Make" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Model"></label>
+                    <label asp-for="Model"><i class="fas fa-car" style="color:crimson"></i>  Model</label>
                     <input asp-for="Model" class="form-control" />
                     <span asp-validation-for="Model" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ManufacturingYear"></label>
+                    <label asp-for="ManufacturingYear"><i class="far fa-calendar-alt" style="color:crimson"></i>  Manufacturing year</label>
                     <input asp-for="ManufacturingYear" class="form-control" />
                     <span asp-validation-for="ManufacturingYear" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="BodyType"></label>
+                    <label asp-for="BodyType"><i class="fas fa-car-side" style="color:crimson"></i>  Body type</label>
                     <select asp-for="BodyType" class="form-control" asp-items="@Html.GetEnumSelectList<BodyType>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="EngineCapacity"></label>
+                    <label asp-for="EngineCapacity"><i class="fas fa-filter" style="color:crimson"></i>  Engine capacity</label>
                     <input asp-for="EngineCapacity" class="form-control" />
                     <span asp-validation-for="EngineCapacity" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="HorsePower"></label>
+                    <label asp-for="HorsePower"><i class="fab fa-sticker-mule" style="color:crimson"></i>  Horse power</label>
                     <input asp-for="HorsePower" class="form-control">
                     <span asp-validation-for="HorsePower" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="EngineType"></label>
+                    <label asp-for="EngineType"><i class="fas fa-gas-pump" style="color:crimson"></i>  Engine type</label>
                     <select asp-for="EngineType" class="form-control" asp-items="@Html.GetEnumSelectList<EngineType>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Transmission"></label>
+                    <label asp-for="Transmission"><i class="fas fa-cogs" style="color:crimson"></i> Transmission</label>
                     <select asp-for="Transmission" class="form-control" asp-items="@Html.GetEnumSelectList<TransmissionType>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Мileage"></label>
+                    <label asp-for="Мileage"><i class="fas fa-tachometer-alt" style="color:crimson"></i>  Mileage</label>
                     <input asp-for="Мileage" class="form-control" />
                     <span asp-validation-for="Мileage" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Color"></label>
+                    <label asp-for="Color"><i class="fas fa-palette" style="color:crimson"></i>  Color</label>
                     <select asp-for="Color" class="form-control" asp-items="@Html.GetEnumSelectList<Color>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="EuroStandart"></label>
+                    <label asp-for="EuroStandart"><i class="fas fa-leaf" style="color:crimson"></i>  Euro standart</label>
                     <select asp-for="EuroStandart" class="form-control" asp-items="@Html.GetEnumSelectList<EuroStandart>()"></select>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Phone"></label>
+                    <label asp-for="Phone"><i class="fas fa-phone-square" style="color:crimson"></i>  Phone</label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Email"></label>
+                    <label asp-for="Email"><i class="fas fa-envelope" style="color:crimson"></i>  E-mail</label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Description"></label>
+                    <label asp-for="Description"><i class="far fa-file-alt" style="color:crimson"></i>  Description</label>
                     <textarea rows="3" asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Location"></label>
+                    <label asp-for="Location"><i class="fas fa-map-marked-alt" style="color:crimson"></i> Location</label>
                     <input asp-for="Location" class="form-control" />
                     <span asp-validation-for="Location" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Price"></label>
+                    <label asp-for="Price"><i class="fas fa-euro-sign" style="color:crimson"></i> Price</label>
                     <input asp-for="Price" class="form-control" />
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Images"></label>
+                    <label asp-for="Images"><i class="far fa-images" style="color:crimson"></i> Images</label>
                     <input asp-for="Images" class="form-control" />
                     <span asp-validation-for="Images" class="text-danger"></span>
                 </div>
