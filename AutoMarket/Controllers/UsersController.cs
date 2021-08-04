@@ -5,6 +5,7 @@ using AutoMarket.Data;
 using AutoMarket.Services;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Users;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
@@ -68,6 +69,13 @@ namespace AutoMarket.Controllers
                 Users = usersAcountsList
             };
             return this.View(listUsersAllModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(string userId)
+        {
+            await usersService.DeleteAccountById(userId);
+            return this.RedirectToAction(nameof(Accounts));
         }
 
         private string GetUserId()

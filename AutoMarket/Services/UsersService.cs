@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data;
 using AutoMarket.Models.Users;
 using AutoMarket.Data.Models;
+using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
@@ -13,6 +14,43 @@ namespace AutoMarket.Services
         public UsersService(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             this.db = db;
+        }
+
+        public async Task DeleteAccountById(string userId)
+        {
+            var vehiclesOffers = this.db.VehicleOffers
+                .Where(x => x.ApplicationUserId == userId)
+                .ToList();
+
+            foreach (var offer in vehiclesOffers)
+            {
+                offer.IsDeleted = true;
+            }
+
+            var partOffers = this.db.PartOffers
+                .Where(x => x.ApplicationUserId == userId)
+                .ToList();
+
+            foreach (var offer in partOffers)
+            {
+                offer.IsDeleted = true;
+            }
+
+            var dealer = this.db.Dealers
+                .Where(x => x.UserId == userId)
+                .FirstOrDefault();
+
+            if (dealer != null)
+            {
+                this.db.Dealers.Remove(dealer);
+            }
+
+            var user = this.db.ApplicationUsers
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
+
+            this.db.ApplicationUsers.Remove(user);
+            await this.db.SaveChangesAsync();
         }
 
         public int GetUserAcountsCount()

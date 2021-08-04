@@ -11,7 +11,7 @@
         и @Model[1] активни обяви за <a class="text-decoation" href="/Parts/All">Авточасти</a>.
     </p>
     <hr />
-    @if (!this.User.IsInRole("Dealer"))
+    @if(!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
     {
     <p>
     <p>Всеки потребител може да се регистрира като 'Дилър', срещу което получава:</p>

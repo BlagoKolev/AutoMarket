@@ -23,9 +23,9 @@
                 <td>@account.Email</td>
                 <td>
                     <input type="button" class="btn btn-light" value="Детайли" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-primary" value="Редактирай" onclick="location.href='@Url.Action("Edit", "User", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-warning" value="Заключи" onclick="location.href='@Url.Action("Lock", "User", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-danger" value="Изтрий" onclick="location.href='@Url.Action("Delete", "User", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-primary" value="Редактирай" onclick="location.href='@Url.Action("Edit", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-warning" value="Заключи" onclick="location.href='@Url.Action("Lock", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-danger" value="Изтрий" onclick="location.href='@Url.Action("Delete", "Users", new { userId = account.Id })'" />
                 </td>
             </tr>
             count++;
