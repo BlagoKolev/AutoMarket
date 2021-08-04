@@ -7,9 +7,10 @@ namespace AutoMarket.Services
     public interface IUsersService
     {
         // UsersOffersViewModel GetUsersVehicles();
+        Task EditUserInfo(string userId, UserDetailsViewModel editedModel); 
         Task DeleteAccountById(string id);
         ICollection<UsersAllViewModel> GetUsersAcounts(string userId, int page, int itemsPerPage);
-        UserDetailsViewModel GetUserById(string userId);
+        UserDetailsViewModel GetAccountByUserId(string userId);
         int GetUserAcountsCount();
     }
 }

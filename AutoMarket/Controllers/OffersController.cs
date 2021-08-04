@@ -13,11 +13,11 @@ namespace AutoMarket.Controllers
     public class OffersController : Controller
     {
         private readonly IOffersService offersService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         public OffersController(IOffersService offersService, UserManager<ApplicationUser> userManager)
         {
             this.offersService = offersService;
-            this._userManager = userManager;
+            this.userManager = userManager;
         }
 
         public IActionResult All(int id = 1)
@@ -112,8 +112,9 @@ namespace AutoMarket.Controllers
         {
             if (offerId != null)
             {
-                var userId = _userManager.GetUserId(this.User);
-                offersService.DeleteOffer(offerId, userId);
+                var isUserAdmin = IsAdmin();
+                var userId = userManager.GetUserId(this.User);
+                offersService.DeleteOffer(offerId, userId, isUserAdmin);
             }
             return this.RedirectToAction(nameof(this.All));
         }
@@ -124,7 +125,7 @@ namespace AutoMarket.Controllers
         }
         private string GetUserId()
         {
-            var userId = _userManager.GetUserId(this.User);
+            var userId = userManager.GetUserId(this.User);
             return userId;
         }
     }

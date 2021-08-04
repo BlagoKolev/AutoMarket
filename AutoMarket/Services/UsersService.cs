@@ -1,10 +1,10 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data;
 using AutoMarket.Models.Users;
 using AutoMarket.Data.Models;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Services
 {
@@ -57,24 +57,24 @@ namespace AutoMarket.Services
         {
             return this.db.ApplicationUsers.Count();
         }
-        public UserDetailsViewModel GetUserById(string userId)
+        public UserDetailsViewModel GetAccountByUserId(string userId)
         {
             var user = this.db.ApplicationUsers
                 .Where(x => x.Id == userId)
                 .Select(x => new UserDetailsViewModel
-                {
-                    Id = x.Id,
-                    Username = x.UserName,
-                    Email = x.Email,
-                    AccessFailedCount = x.AccessFailedCount,
-                    LockoutEnabled = x.LockoutEnabled.ToString(),
-                    LockoutEnd = x.LockoutEnd,
-                    TwoFactorEnabled = x.TwoFactorEnabled.ToString(),
-                    RegistrationDate = x.RegistrationDate.ToString("dd/MM/yy H:mm:ss"),
-                    VehicleOffers = x.VehicleOffers.Count,
-                    PartOffers = x.PartOffers.Count,
-                })
-                .FirstOrDefault();
+                     {
+                       Id = x.Id,
+                       Username = x.UserName,
+                       Email = x.Email,
+                       AccessFailedCount = x.AccessFailedCount,
+                       LockoutEnabled = x.LockoutEnabled,
+                       LockoutEnd = x.LockoutEnd,
+                       TwoFactorEnabled = x.TwoFactorEnabled,
+                       RegistrationDate = x.RegistrationDate.ToString("dd/MM/yy H:mm:ss"),
+                       VehicleOffers = x.VehicleOffers.Where(x => x.IsDeleted == false).Count(),
+                       PartOffers = x.PartOffers.Where(x => x.IsDeleted == false).Count(),
+                     })
+                    .FirstOrDefault();
             return user;
         }
         public ICollection<UsersAllViewModel> GetUsersAcounts(string userId, int page, int itemsPerPage)
@@ -92,6 +92,22 @@ namespace AutoMarket.Services
                 })
                 .ToList();
             return usersAcounts;
+        }
+
+        public async Task EditUserInfo(string userId, UserDetailsViewModel editedModel)
+        {
+            var user = this.db.ApplicationUsers
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
+
+            user.UserName = editedModel.Username;
+            user.Email = editedModel.Email;
+            user.AccessFailedCount = editedModel.AccessFailedCount;
+            user.LockoutEnabled = editedModel.LockoutEnabled;
+            user.LockoutEnd = editedModel.LockoutEnd;
+            user.TwoFactorEnabled = editedModel.TwoFactorEnabled;
+
+            await this.db.SaveChangesAsync();
         }
     }
 }

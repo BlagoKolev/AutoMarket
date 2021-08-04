@@ -22,6 +22,21 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        public IActionResult Edit(string userId)
+        {
+            var editModel = usersService.GetAccountByUserId(userId);
+            return this.View(editModel);
+        }
+
+        [Authorize(Roles ="Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Edit(UserDetailsViewModel editedModel, string userId)
+        {
+           await usersService.EditUserInfo(userId, editedModel);
+            return this.RedirectToAction(nameof(Details));
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult All(string userId, int id = 1)
         {
             id = id <= 0 ? 1 : id;
@@ -46,7 +61,7 @@ namespace AutoMarket.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Details(string userId)
         {
-            var user = usersService.GetUserById(userId);
+            var user = usersService.GetAccountByUserId(userId);
             return this.View(user);
         }
 
@@ -77,7 +92,6 @@ namespace AutoMarket.Controllers
             await usersService.DeleteAccountById(userId);
             return this.RedirectToAction(nameof(Accounts));
         }
-
         private string GetUserId()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

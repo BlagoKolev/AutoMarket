@@ -1,0 +1,56 @@
+﻿@model UserDetailsViewModel
+
+@{
+    ViewData["Title"] = "Edit Account";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xl-9">
+
+            <form enctype="multipart/form-data" method="post" class="col-md-12" asp-controller="Users" asp-action="Edit">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for=" LockoutEnd"></label>
+                    <input asp-for=" LockoutEnd" class="form-control" />
+                    <span asp-validation-for=" LockoutEnd" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for=" AccessFailedCount"></label>
+                    <input asp-for=" AccessFailedCount" class="form-control" />
+                    <span asp-validation-for=" AccessFailedCount" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" asp-for=" LockoutEnabled" class="form-check-input" />
+                    <label asp-for=" LockoutEnabled" class="form-check-label"></label>
+                    <span asp-validation-for=" LockoutEnabled" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-check">
+                    <input asp-for=" TwoFactorEnabled" class="form-check-input" />
+                    <label asp-for=" TwoFactorEnabled" class="form-check-label"></label>
+                    <span asp-validation-for=" TwoFactorEnabled" class="text-danger"></span>
+                </div>
+                <br />
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" class="btn btn-primary" value="Запази промените" />
+            </form>
+
+        </div>
+    </div>
+</div>

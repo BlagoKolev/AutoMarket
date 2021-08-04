@@ -152,19 +152,19 @@ namespace AutoMarket.Services
             await this.db.SaveChangesAsync();
         }
 
-        public async Task DeleteOffer(string offerId, string userId)
+        public async Task DeleteOffer(string offerId, string userId, bool isUserAdmin)
         {
             if (offerId.StartsWith("Part"))
             {
                 var offerToDelete = this.db.PartOffers
-               .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+               .Where(x => x.Id == offerId && (x.ApplicationUserId == userId || isUserAdmin))
                .FirstOrDefault();
                 offerToDelete.IsDeleted = true;
             }
             else
             {
                 var offerToDelete = this.db.VehicleOffers
-               .Where(x => x.Id == offerId && x.ApplicationUserId == userId)
+               .Where(x => x.Id == offerId && (x.ApplicationUserId == userId || isUserAdmin))
                .FirstOrDefault();
                 offerToDelete.IsDeleted = true;
             }

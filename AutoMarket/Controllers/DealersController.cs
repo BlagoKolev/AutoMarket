@@ -28,6 +28,11 @@ namespace AutoMarket.Controllers
         }
         public IActionResult All(string dealerName, int id = 1)
         {
+            if (!signInManager.IsSignedIn(this.User))
+            {
+                return this.Redirect("/Identity/Account/Login?ReturnUrl=%2FDealers%2FAll");
+            }
+
             id = id <= 0 ? 1 : id;
             var listMyOffersViewModel = new ListMyOffersViewModel
             {

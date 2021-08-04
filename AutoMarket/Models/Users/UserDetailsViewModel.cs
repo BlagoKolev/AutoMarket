@@ -10,23 +10,24 @@ namespace AutoMarket.Models.Users
     public class UserDetailsViewModel
     {
         public string Id { get; set; }
+
         [Display(Name ="Потребителско име")]
         public string Username { get; set; }
 
-        [Display(Name = "Е-маил")]
+        [Display(Name = "Е-мейл")]
         public string Email { get; set; }
 
         [Display(Name = "Дата на регистрация")]
         public string RegistrationDate { get; set; }
 
-        [Display(Name = "Заключен профил")]
-        public string LockoutEnabled { get; set; }
+        [Display(Name = "Възможност за заключване на профил")]
+        public bool LockoutEnabled { get; set; }
 
         [Display(Name = "Край на наказанието")]
         public DateTimeOffset? LockoutEnd{ get; set; }
 
         [Display(Name = "Двуфакторна аутентикация")]
-        public string TwoFactorEnabled { get; set; }
+        public bool TwoFactorEnabled { get; set; }
 
         [Display(Name = "Брой неуспешни влизания")]
         public int AccessFailedCount { get; set; }
