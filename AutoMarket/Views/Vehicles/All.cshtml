@@ -1,14 +1,14 @@
 ﻿@model ListAllVehicleViewModel
 @{
-    ViewData["Title"] = "Активни обяви за автомобили";
+    ViewData["Title"] = "Active vehicles offers";
 }
-<h1 class="text-center mt-2">Обяви за автомобили</h1>
+<h1 class="text-center mt-2">@ViewData["Title"]</h1>
 <div class="wrapper">
-    <a class="btn btn-outline-info" href="/Search/All"><i class="fas fa-search"></i> Търсене</a>
+    <a class="btn btn-outline-info" href="/Search/All"><i class="fas fa-search"></i> Search</a>
 </div>
 @if (!Model.Offers.Any())
 {
-    <p>Все още няма обяви в секция 'Автомобили'</p>
+<p>There are no offers in 'Vehicles' yet</p>
 }
 <partial name="_VehicleAllPartial" model="@Model" />
 <hr />

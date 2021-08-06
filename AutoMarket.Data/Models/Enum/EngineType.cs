@@ -6,9 +6,9 @@ namespace AutoMarket.Data.Models.Enum
 {
     public enum EngineType
     {
-        Бензинов = 1,
-        Дизелов = 2,
-        Електрически = 3,
-        Хибриден = 4
+        Gasoline = 1,
+        Diesel = 2,
+        Electric = 3,
+        Hybrid = 4
     }
 }

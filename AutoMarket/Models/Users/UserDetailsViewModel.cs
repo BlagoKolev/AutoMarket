@@ -11,31 +11,31 @@ namespace AutoMarket.Models.Users
     {
         public string Id { get; set; }
 
-        [Display(Name ="Потребителско име")]
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
-        [Display(Name = "Е-мейл")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Дата на регистрация")]
+        [Display(Name = "Registration date")]
         public string RegistrationDate { get; set; }
 
-        [Display(Name = "Възможност за заключване на профил")]
+        [Display(Name = "Lockout enabled")]
         public bool LockoutEnabled { get; set; }
 
-        [Display(Name = "Край на наказанието")]
+        [Display(Name = "Lockout end")]
         public DateTimeOffset? LockoutEnd{ get; set; }
 
-        [Display(Name = "Двуфакторна аутентикация")]
+        [Display(Name = "Two factor enabled")]
         public bool TwoFactorEnabled { get; set; }
 
-        [Display(Name = "Брой неуспешни влизания")]
+        [Display(Name = "Access failed count")]
         public int AccessFailedCount { get; set; }
 
-        [Display(Name = "Брой oбяви за автомобили")]
+        [Display(Name = "Vehicles offers count")]
         public int VehicleOffers { get; set; }
 
-        [Display(Name = "Брой oбяви за части")]
+        [Display(Name = "Part offers count")]
         public int PartOffers { get; set; }
 
     }

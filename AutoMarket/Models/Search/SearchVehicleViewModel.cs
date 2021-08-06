@@ -6,9 +6,9 @@ namespace AutoMarket.Models.Search
 {
     public class SearchVehicleViewModel : ListAllVehicleViewModel
     {
-        [Display(Name = "Марка")]
+        [Display(Name = "Brand")]
         public string Make { get; set; }
-        [Display(Name = "Модел")]
+        [Display(Name = "Model")]
         public string VehicleModel { get; set; }
         public ICollection<string> Makes { get; set; }
     }

@@ -9,15 +9,15 @@
                  data-placement="bottom" title="">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Заглавие: @offer.Title </li>
-                    <li class="bg-secondary col-sm">Състояние: @offer.Status</li>
-                    <li class="bg-secondary col-sm">Цена: @offer.Price лв.</li>
+                    <li class="list-group-item text-center">Title: @offer.Title </li>
+                    <li class="bg-secondary col-sm">Condition: @offer.Status</li>
+                    <li class="bg-secondary col-sm">Price: @offer.Price &euro;</li>
                 </ul>
-                <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Разгледай обявата</a>
+                <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
                 @if (this.User.IsInRole("Admin"))
                 {
-            <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Редактирай</a>
-                    <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i> Изтрий</a>
+            <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Edit</a>
+                    <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                 }
             </div>
         </div>

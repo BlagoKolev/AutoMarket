@@ -8,9 +8,9 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Потребител</th>
-            <th scope="col">Е-мейл</th>
-            <th scope="col">Действия</th>
+            <th scope="col">User</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,10 +22,10 @@
                 <td>@account.Username</td>
                 <td>@account.Email</td>
                 <td>
-                    <input type="button" class="btn btn-light" value="Детайли" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-primary" value="Редактирай" onclick="location.href='@Url.Action("Edit", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-warning" value="Заключи" onclick="location.href='@Url.Action("Lock", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-danger" value="Изтрий" onclick="location.href='@Url.Action("Delete", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-light" value="Details" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-primary" value="Edit" onclick="location.href='@Url.Action("Edit", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-warning" value="Lock" onclick="location.href='@Url.Action("Lock", "Users", new { userId = account.Id })'" />
+                    <input type="button" class="btn btn-danger" value="Delete" onclick="location.href='@Url.Action("Delete", "Users", new { userId = account.Id })'" />
                 </td>
             </tr>
             count++;

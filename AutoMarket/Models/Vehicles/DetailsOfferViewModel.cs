@@ -8,51 +8,51 @@ namespace AutoMarket.Models.Offers
     {
         public string Id { get; set; }
 
-        [Display(Name = "Марка")]
+        [Display(Name = "Brand")]
         public string Make { get; set; }
 
-        [Display(Name = "Модел")]
+        [Display(Name = "Model")]
         public string Model { get; set; }
 
-        [Display(Name = "Категория")]
+        [Display(Name = "Body type")]
         public BodyType BodyType { get; set; }
 
-        [Display(Name = "Година на производство")]
+        [Display(Name = "Manufacturing year")]
         public int ManufacturingYear { get; set; }
 
-        [Display(Name = "Обем на двигателя")]
+        [Display(Name = "Engine capacity")]
         public decimal EngineCapacity { get; set; }
 
-        [Display(Name = "Мощност к.с.")]
+        [Display(Name = "Horse power")]
         public int HorsePower { get; set; }
 
-        [Display(Name = "Двигател")]
+        [Display(Name = "Engine type")]
         public EngineType EngineType { get; set; }
 
-        [Display(Name = "Скоростна кутия")]
+        [Display(Name = "Transmission")]
         public TransmissionType Transmission { get; set; }
 
-        [Display(Name = "Пробег (км)")]
+        [Display(Name = "Mileage (km)")]
         public int Мileage { get; set; }
 
-        [Display(Name = "Цвят")]
+        [Display(Name = "Color")]
         public Color Color { get; set; }
 
-        [Display(Name = "Екологичен клас")]
+        [Display(Name = "Euro standart")]
         public EuroStandart EuroStandart { get; set; }
 
-        [Display(Name = "Телефон")]
+        [Display(Name = "Phone")]
         public string Phone { get; set; }
 
         public string Email { get; set; }
 
-        [Display(Name = "Описание")]
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Цена")]
+        [Display(Name = "Price")]
         public int Price { get; set; }
 
-        [Display(Name = "Населено място")]
+        [Display(Name = "Location")]
         public string Location { get; set; }
         public IEnumerable<string> Images { get; set; }
     }

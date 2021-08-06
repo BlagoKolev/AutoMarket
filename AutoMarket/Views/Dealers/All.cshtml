@@ -1,15 +1,15 @@
 ﻿@model ListMyOffersViewModel
 @{ 
-    ViewData["Title"] = "Търсене по Дилъри"; 
+    ViewData["Title"] = "Dealers search"; 
 }
-<h3 class="text-center mt-2">Тук можете да намерите всички обяви на избраният от вас Дилър</h3>
+<h3 class="text-center mt-2">Here you can find all the offers of 'Dealer' by your choise</h3>
 <form method="get">
     <div class="row">
         <div class="col-md-6 col-sm-12 col-xl-9">
             <div>
                 <label asp-for="DealerName"></label>
                 <select class="form-group" name="DealerName">
-                    <option value="">Всички</option>
+                    <option value="">All</option>
                     @foreach (var dealer in Model.DealersList)
                     {
                         <option value="@dealer">@dealer</option>
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <i class="fas fa-search icon-large"></i>
-                <input type="submit" class="btn btn-primary" value="Покажи"/>
+                <input type="submit" class="btn btn-primary" value="Show"/>
             </div>
         </div>
     </div>

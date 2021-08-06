@@ -6,15 +6,15 @@ namespace AutoMarket.Data.Models.Enum
 {
     public enum BodyType
     {
-        Ван = 1,
-        Джип = 2,
-        Кабрио = 3,
-        Комби = 4,
-        Купе = 5,
-        Миниван = 6,
-        Пикап = 7,
-        Седан = 8,
-        Лимузина = 9,
-        Хечбек = 10
+        Van = 1,
+        SUV = 2,
+        Cabrio = 3,
+        Wagon = 4,
+        Coupe = 5,
+        Minivan = 6,
+        PickupTruck = 7,
+        Sedan = 8,
+        Limousine = 9,
+        Hatchback = 10
     }
 }

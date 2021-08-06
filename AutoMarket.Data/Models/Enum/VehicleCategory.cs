@@ -6,11 +6,11 @@ namespace AutoMarket.Data.Models.Enum
 {
     public enum VehicleCategory
     {
-        Автомобил = 1,
-        Бус =2,
-        Камион =3,
-        Мотор =4,
-        Велосипед =5,
-        Друго =6
+        Automobile = 1,
+        Bus = 2,
+        Truck = 3,
+        Motocycle = 4,
+        Bicycle = 5,
+        Other = 6
     }
 }

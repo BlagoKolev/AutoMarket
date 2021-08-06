@@ -7,11 +7,11 @@ namespace AutoMarket.Data.Models.Enum
 {
     public enum EuroStandart
     {
-        [Display(Name = "Евро 1")] Евро_1 = 1,
-        [Display(Name = "Евро 2")] Евро_2 = 2,
-        [Display(Name = "Евро 3")] Евро_3 = 3,
-        [Display(Name = "Евро 4")] Евро_4 = 4,
-        [Display(Name = "Евро 5")] Евро_5 = 5,
-        [Display(Name = "Евро 6")] Евро_6 = 6
+        [Display(Name = "Euro 1")] Euro_1 = 1,
+        [Display(Name = "Euro 2")] Euro_2 = 2,
+        [Display(Name = "Euro 3")] Euro_3 = 3,
+        [Display(Name = "Euro 4")] Euro_4 = 4,
+        [Display(Name = "Euro 5")] Euro_5 = 5,
+        [Display(Name = "Euro 6")] Euro_6 = 6
     }
 }

@@ -6,7 +6,7 @@ namespace AutoMarket.Data.Models.Enum
 {
     public enum PartStatus
     {
-        Нов = 1,
-        Употребяван = 2
+        New = 1,
+        Used = 2
     }
 }

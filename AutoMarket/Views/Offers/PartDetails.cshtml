@@ -1,7 +1,8 @@
 ﻿@model PartDetailsViewModel
 @{
-    ViewData["Title"] = "Детайли за обявата";
+    ViewData["Title"] = "Details";
 }
+<h3 class="text-center">@ViewData["Title"]</h3>
 <div>
     <ul class="list-group list-group-horizontal">
         @foreach (var img in Model.Images)
@@ -16,44 +17,44 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <td>Заглавие</td>
+                <td>Title</td>
                 <td>@Model.Title</td>
             </tr>
             <tr>
-                <td>Наименование</td>
+                <td>Name</td>
                 <td>@Model.Name</td>
             </tr>
             <tr>
-                <td>Категория:</td>
+                <td>Part category:</td>
                 <td>@Model.PartCategory</td>
             </tr>
             <tr>
-                <td>Тип превозно средство</td>
+                <td>Vehicle type</td>
                 <td>@Model.VehicleType</td>
             </tr>
             <tr>
-                <td>Описание</td>
+                <td>Description</td>
                 <td>@Model.Description</td>
             </tr>
             <tr>
-                <td>Състояние</td>
+                <td>Condition</td>
                 <td>@Model.Status</td>
             </tr>
             <tr>
-                <td>Е-мейл</td>
+                <td>E-mail</td>
                 <td>@Model.Email</td>
             </tr>
             <tr>
-                <td>Населено място</td>
+                <td>Location</td>
                 <td>@Model.Location</td>
             </tr>
             <tr>
-                <td>Телефон</td>
+                <td>Phone</td>
                 <td>@Model.Phone</td>
             </tr>
             <tr>
-                <td>Цена (лева)</td>
-                <td>@Model.Price</td>
+                <td>Price</td>
+                <td>@Model.Price &euro;</td>
             </tr>
         </tbody>
     </table>
