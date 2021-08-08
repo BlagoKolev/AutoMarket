@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket", "AutoMarket\AutoMarket.csproj", "{4BD6FAA7-B7EE-47A3-8441-92613FFD8288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.Data", "AutoMarket.Data\AutoMarket.Data.csproj", "{B07977A8-39E9-42C5-8049-6C59F20861F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket.Data", "AutoMarket.Data\AutoMarket.Data.csproj", "{B07977A8-39E9-42C5-8049-6C59F20861F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.Test", "AutoMarket.Test\AutoMarket.Test.csproj", "{86BF00F9-F3A7-4AF0-8D0D-2258C6FCC974}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B07977A8-39E9-42C5-8049-6C59F20861F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B07977A8-39E9-42C5-8049-6C59F20861F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B07977A8-39E9-42C5-8049-6C59F20861F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BF00F9-F3A7-4AF0-8D0D-2258C6FCC974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BF00F9-F3A7-4AF0-8D0D-2258C6FCC974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BF00F9-F3A7-4AF0-8D0D-2258C6FCC974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BF00F9-F3A7-4AF0-8D0D-2258C6FCC974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

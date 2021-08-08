@@ -4,24 +4,24 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">AutoMarket - the leader in the automotive market</h1>
+    <h1>AutoMarket - the leader in the automotive market</h1>
     <p>
         Currently has  @Model[0] active offers for
         <a class="text-decoration" href="/Vehicles/All">Vehicles</a>
         and @Model[1]  active offers for <a class="text-decoation" href="/Parts/All">Autoparts</a>.
     </p>
-    <hr />
-    @if (!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
-    {
-        <p>
-        <p>Each user can register as a 'Dealer', for which he receives following advantages:</p>
-        <p>- Its appearance in the list of dealers, which will be available to all users;</p>
-        <p>- Opportunity for other users to find it by the name of "Dealer" in the search panel;</p>
-        <h5>  The subscription for the service is &euro;100</h5>
-        </p>
-        <a href="/Dealers/BecomeDealer" class="text-decoation">I want to be a Dealer</a>
-    }
 </div>
-<div>
+<hr />
+@if (!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
+{
+    <p class="text-center"><strong>Each user can register as a 'Dealer', for which he receives following advantages:</strong></p>
+    <ul>
+        <li>Its appearance in the list of dealers, which will be available to all users;</li>
+        <li>Opportunity for other users to find it by the name of "Dealer" in the search panel;</li>
+    </ul>
+    <div class="text-center">
+        <h5><strong>The subscription for the service is &euro;100</strong></h5>
+        <a href="/Dealers/BecomeDealer" class="text-decoration"><h4>I want to be a Dealer</h4></a>
+    </div>
+}
 
-</div>

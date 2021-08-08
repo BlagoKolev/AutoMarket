@@ -15,14 +15,17 @@ namespace AutoMarket.Services
         public List<int> GetAllOffersCount()
         {
             var partOffers = db.PartOffers
-                .Where(x=>x.IsDeleted == false)
+                .Where(x => x.IsDeleted == false)
                 .Count();
             var vehicleOffers = db.VehicleOffers
-                .Where(x=>x.IsDeleted == false)
+                .Where(x => x.IsDeleted == false)
                 .Count();
-            var offersCount = new List<int>();
-            offersCount.Add(vehicleOffers);
-            offersCount.Add(partOffers);
+            var offersCount = new List<int>
+            {
+                vehicleOffers,
+                partOffers
+            };
+
             return offersCount;
         }
     }
