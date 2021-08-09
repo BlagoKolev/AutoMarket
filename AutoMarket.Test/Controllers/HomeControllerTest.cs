@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
@@ -12,22 +11,19 @@ namespace AutoMarket.Test
         public void HomeControllerIndexActionShouldReturnView()
         {
             //Arange  
-            var controller = MyMvc.Pipeline();
+            var controller = MyController<HomeController>.Instance();
             //Act
-           var call = controller.ShouldMap("/")
-                .To<HomeController>(c => c.Index()).Which();
+            var call = controller.Calling(c => c.Index());
             //Assert
             call.ShouldReturn().View();
         }
-
         [Fact]
         public void HomeControllerPrivacyActionShouldReturnView()
         {
             //Arrange
-            var controller = MyMvc.Pipeline();
+            var controller = MyController<HomeController>.Instance();
             //Act
-            var call = controller.ShouldMap("/Home/Privacy")
-                .To<HomeController>(c => c.Privacy()).Which();
+            var call = controller.Calling(c => c.Privacy());
             //Assert
             call.ShouldReturn().View();
         }
@@ -35,10 +31,9 @@ namespace AutoMarket.Test
         public void HomeControllerErrorActionShouldReturnView()
         {
             //Arrange
-            var controller = MyMvc.Pipeline();
+            var controller = MyController<HomeController>.Instance();
             //Act
-            var call = controller.ShouldMap("/Home/Error")
-                .To<HomeController>(c => c.Error()).Which();
+            var call = controller.Calling(c => c.Error());
             //Assert
             call.ShouldReturn().View();
         }

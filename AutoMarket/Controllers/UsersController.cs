@@ -98,6 +98,4 @@ namespace AutoMarket.Controllers
             return userId;
         }
     }
-
-
 }

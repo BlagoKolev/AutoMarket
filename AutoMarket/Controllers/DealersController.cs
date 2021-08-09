@@ -43,7 +43,6 @@ namespace AutoMarket.Controllers
                 ItemsPerPage = GlobalConstants.ItemsPerPage
             };
 
-
             if (listMyOffersViewModel.PageNumber > listMyOffersViewModel.PagesCount && listMyOffersViewModel.PagesCount > 0)
             {
                 return this.Redirect($"{listMyOffersViewModel.PagesCount}");

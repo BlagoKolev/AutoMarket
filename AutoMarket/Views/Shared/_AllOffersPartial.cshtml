@@ -41,7 +41,7 @@
                     <a href="/Offers/PartDetails?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
                     @if (User.FindFirst(ClaimTypes.NameIdentifier).Value == offer.OwnerId || User.IsInRole("Admin"))
                     {
-                        <a href="/Offers/EditVehicle?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Edit</a>
+                        <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Edit</a>
                         <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                     }
                 </div>

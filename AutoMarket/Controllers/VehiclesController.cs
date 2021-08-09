@@ -91,7 +91,7 @@ namespace AutoMarket.Controllers
         public ManufactoringYearAttribute(int minYear)
         {
             this.MinYear = minYear;
-            this.ErrorMessage = $"Годината на производство трябва да бъде между {minYear} и {DateTime.UtcNow.Year}";
+            this.ErrorMessage = $"Manufacturing year must be between {minYear} and {DateTime.UtcNow.Year}";
         }
         public int MinYear { get; }
         public override bool IsValid(object value)
