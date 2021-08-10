@@ -20,6 +20,7 @@ namespace AutoMarket.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize]
         public IActionResult All(int id = 1)
         {
             id = id <= 0 ? 1 : id;
