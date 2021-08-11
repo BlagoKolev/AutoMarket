@@ -1,9 +1,8 @@
 ﻿using Xunit;
 using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
-using AutoMarket.Models.Offers;
 using AutoMarket.Models.Dealers;
-using AutoMarket.Data.Models;
+using AutoMarket.Test.Moq;
 
 namespace AutoMarket.Test.Controllers
 {
@@ -55,7 +54,7 @@ namespace AutoMarket.Test.Controllers
         public void BecomeDealerShoudBeForAuthorizedUsersAndAlsoShouldReturnView()
         {
             MyController<DealersController>
-                .Instance(c => c.WithUser().WithData(GetFakeUser()))
+                .Instance(c => c.WithUser().WithData(GlobalMocking.GetFakeUser()))
                 .Calling(c => c.BecomeDealer())
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForAuthorizedRequests())
@@ -77,13 +76,7 @@ namespace AutoMarket.Test.Controllers
                 .ShouldReturn()
                 .Redirect();
         }
-        private static ApplicationUser GetFakeUser()
-        {
-            return new ApplicationUser
-            {
-                Id = "TestId"
-            };
-        }
+       
 
     }
 }

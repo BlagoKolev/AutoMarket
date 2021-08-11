@@ -7,6 +7,7 @@ using AutoMarket.Data.Models.Enum;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Parts;
 using System.Linq;
+using AutoMarket.Test.Moq;
 
 namespace AutoMarket.Test.Controllers
 {
@@ -31,7 +32,7 @@ namespace AutoMarket.Test.Controllers
         public void VehicleDetailsShouldReturnViewWithCorrectModelAndHasAuthorizeAttribute(string offerId)
         {
             MyController<OffersController>
-            .Instance(c => c.WithData(GetFakeVehicleOffer()))
+            .Instance(c => c.WithData(GlobalMocking.GetFakeVehicleOffer()))
             .Calling(c => c.VehicleDetails(offerId))
             .ShouldHave()
             .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests())
@@ -45,7 +46,7 @@ namespace AutoMarket.Test.Controllers
         public void EditVehicleGetShouldReturnViewWithCorrectModelAndShouldHaveAuthorizeAttribute(string offerId)
         {
             MyController<OffersController>
-            .Instance(c => c.WithData(GetFakeVehicleOffer()))
+            .Instance(c => c.WithData(GlobalMocking.GetFakeVehicleOffer()))
             .Calling(c => c.EditVehicle(offerId))
             .ShouldHave()
             .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests())
@@ -72,7 +73,7 @@ namespace AutoMarket.Test.Controllers
         {
 
             MyController<OffersController>
-            .Instance(c => c.WithData(GetFakeVehicleOffer()))
+            .Instance(c => c.WithData(GlobalMocking.GetFakeVehicleOffer()))
             .Calling(c => c.EditVehicle(offerId, With.Default<EditVehicleOfferViewModel>()))
             .ShouldHave()
             .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests().RestrictingForHttpMethod(HttpMethod.Post))
@@ -98,7 +99,7 @@ namespace AutoMarket.Test.Controllers
         public void PartDetailsShouldReturnViewWithCorrectModelAndHaveAuthorizeAttribute(string offerId)
         {
             MyController<OffersController>
-                .Instance(c => c.WithData(GetFakePartOffer()))
+                .Instance(c => c.WithData(GlobalMocking.GetFakePartOffer()))
                 .Calling(c => c.PartDetails(offerId))
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForAuthorizedRequests())
@@ -112,7 +113,7 @@ namespace AutoMarket.Test.Controllers
         public void EditPartGetShouldReturnViewWithCorrectModelAndShouldHaveAuthorizeAttribute(string offerId)
         {
             MyController<OffersController>
-                .Instance(c => c.WithData(GetFakePartOffer()))
+                .Instance(c => c.WithData(GlobalMocking.GetFakePartOffer()))
                 .Calling(c => c.EditPart(offerId))
                 .ShouldHave()
                 .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests())
@@ -153,7 +154,7 @@ namespace AutoMarket.Test.Controllers
         public void DeleteShouldHaveAuthorizeAttributeAndShouldRedirectToAction(string offerId)
         {
             MyController<OffersController>
-                .Instance(c => c.WithData(GetFakePartOffer()))
+                .Instance(c => c.WithData(GlobalMocking.GetFakePartOffer()))
                 .Calling(c => c.Delete(offerId))
                 .ShouldHave()
                 .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests())
@@ -162,50 +163,5 @@ namespace AutoMarket.Test.Controllers
                 .RedirectToAction("All");
         }
 
-        private static VehicleOffer GetFakeVehicleOffer()
-        {
-            return new VehicleOffer
-            {
-                Id = "someFakeId",
-                Location = "Sofia",
-                Phone = "0896556633",
-                Price = 10000,
-                Vehicle = new Vehicle
-                {
-                    Make = "BMW",
-                    Model = "e90",
-                    BodyType = Enum.Parse<BodyType>("Sedan"),
-                    HorsePower = 163,
-                    Color = Enum.Parse<Color>("Red"),
-                    EngineCapacity = 3,
-                    EuroStandart = Enum.Parse<EuroStandart>("Euro_1"),
-                    EngineType = Enum.Parse<EngineType>("Gasoline"),
-                    Transmission = Enum.Parse<TransmissionType>("Manual"),
-                    ManufacturingYear = 2005,
-                    Мileage = 226000,
-                }
-            };
-        }
-
-        private static PartOffer GetFakePartOffer()
-        {
-            return new PartOffer
-            {
-                Id = "someFakeId",
-                Location = "Sofia",
-                Phone = "0896556633",
-                Price = 10000,
-                Title = "fakeTitle",
-                VehicleType = Enum.Parse<VehicleCategory>("Automobile"),
-                Description = "fakeDescription",
-                Email = "fakeEmail@mail.bg",
-                Part = new Part
-                {
-                    Name = "Clutch",
-                    PartCategory = Enum.Parse<PartCategory>("Engine"),
-                    Status = Enum.Parse<PartStatus>("New")
-                }
-            };
-        }
     }
 }

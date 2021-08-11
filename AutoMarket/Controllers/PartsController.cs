@@ -43,6 +43,7 @@ namespace AutoMarket.Controllers
 
             return this.View(listPartsAllViewModel);
         }
+
         [Authorize]
         public IActionResult Create()
         {
@@ -78,6 +79,10 @@ namespace AutoMarket.Controllers
         public IActionResult Details(string offerId)
         {
             var detailsPartViewModel = partsService.GetDetails(offerId);
+            if (detailsPartViewModel == null)
+            {
+                return NotFound();
+            }
             return this.View(detailsPartViewModel);
         }
 
