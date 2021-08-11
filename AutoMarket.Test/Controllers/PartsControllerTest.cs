@@ -8,15 +8,15 @@ namespace AutoMarket.Test.Controllers
 {
     public class PartsControllerTest
     {
-       // [Fact]
-        //public void AllShoudReturnViewWithCorrectModel()
-        //{
-        //    MyController<PartsController>
-        //        .Instance(c => c.WithData(GlobalMocking.GetFakePartsList()))
-        //        .Calling(c => c.All(1))
-        //        .ShouldReturn()
-        //        .View(view => view.WithModelOfType<ListPartsAllViewModel>());
-        //}
+        [Fact]
+        public void AllShoudReturnViewWithCorrectModel()
+        {
+            MyController<PartsController>
+                .Instance(c => c.WithData(GlobalMocking.GetFakePartOffer()))
+                .Calling(c => c.All(1))
+                .ShouldReturn()
+                .View(view => view.WithModelOfType<ListPartsAllViewModel>());
+        }
 
         [Fact]
         public void CreateGetShouldReturnViewAndAlsoShouldHaveAuthorizeAttribute()

@@ -1,9 +1,10 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using AutoMarket.Data.Models;
 using AutoMarket.Data.Models.Enum;
 using AutoMarket.Models.Parts;
-using System;
-using System.Collections.Generic;
+using AutoMarket.Models.Vehicles;
+using AutoMarket.Models.Search;
 
 namespace AutoMarket.Test.Moq
 {
@@ -63,36 +64,36 @@ namespace AutoMarket.Test.Moq
             };
         }
 
-        public static ListPartsAllViewModel GetFakePartsList()
-        {
-            var offers = new List<PartsAllViewModel>()
-                {
-                    new PartsAllViewModel()
-                    {
-                        Id = "fakeId1",
-                        Title = "fakeTitle1",
-                        Status = Enum.Parse<PartStatus>("New"),
-                        Category = Enum.Parse<PartCategory>("Engine"),
-                        Price = 100
-                    },
-                    new PartsAllViewModel()
-                    {
-                        Id = "fakeId2",
-                        Title = "fakeTitle2",
-                        Status = Enum.Parse<PartStatus>("Used"),
-                        Category = Enum.Parse<PartCategory>("Engine"),
-                        Price = 100
-                    }
-                };
+      //// public static ListPartsAllViewModel GetFakePartsList()
+      //  {
+      //      var offers = new List<PartsAllViewModel>()
+      //          {
+      //              new PartsAllViewModel()
+      //              {
+      //                  Id = "fakeId1",
+      //                  Title = "fakeTitle1",
+      //                  Status = Enum.Parse<PartStatus>("New"),
+      //                  Category = Enum.Parse<PartCategory>("Engine"),
+      //                  Price = 100
+      //              },
+      //              new PartsAllViewModel()
+      //              {
+      //                  Id = "fakeId2",
+      //                  Title = "fakeTitle2",
+      //                  Status = Enum.Parse<PartStatus>("Used"),
+      //                  Category = Enum.Parse<PartCategory>("Engine"),
+      //                  Price = 100
+      //              }
+      //          };
 
-            return new ListPartsAllViewModel
-            {
-                ItemsCount = 2,
-                ItemsPerPage = 9,
-                PageNumber = 1,
-                Offers = offers
-            };
-        }
+            //return new ListPartsAllViewModel
+            //{
+            //    ItemsCount = 2,
+            //    ItemsPerPage = 9,
+            //    PageNumber = 1,
+            //    Offers = offers
+            //};
+        //}
 
         public static CreatePartViewModel GetFakeModelToCreatePart()
         {
@@ -113,6 +114,8 @@ namespace AutoMarket.Test.Moq
                 }
             };
         }
+
+      
     }
 }
 

@@ -3,6 +3,8 @@ using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
 using AutoMarket.Models.Dealers;
 using AutoMarket.Test.Moq;
+using AutoMarket.Models.Offers;
+using AutoMarket.Data.Models;
 
 namespace AutoMarket.Test.Controllers
 {
@@ -22,7 +24,9 @@ namespace AutoMarket.Test.Controllers
         //public void AllShoudReturnViewWithModelIfUserIsLoggedIn()
         //{
         //    MyController<DealersController>
-        //        .Instance(c => c.WithUser())
+        //        .Instance()
+        //        .WithUser()
+        //        .WithData(GlobalMocking.GetFakeVehicleOffer().ApplicationUser.UserName = "TestUser")
         //        .Calling(c => c.All(null, 1))
         //        .ShouldReturn()
         //        .View(view => view.WithModelOfType<ListMyOffersViewModel>());
@@ -76,7 +80,7 @@ namespace AutoMarket.Test.Controllers
                 .ShouldReturn()
                 .Redirect();
         }
-       
+
 
     }
 }
