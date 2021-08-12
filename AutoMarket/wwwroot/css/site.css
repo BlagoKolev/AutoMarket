@@ -104,3 +104,8 @@ body {
     top: 40px;
     color: gray;
 }
+
+.responsive {
+    width: 100%;
+    height: auto;
+}

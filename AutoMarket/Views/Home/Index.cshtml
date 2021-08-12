@@ -12,13 +12,13 @@
     </p>
 </div>
 
-<div class="bg-image" style="background-image: url('/images/cars.jpg'); height: 55vh;">    </div>
+<div class="bg-image responsive" style="background-image: url('/images/cars.jpg'); height: 55vh; margin:0px;">    </div>
 <hr />
 @if (!this.User.IsInRole("Dealer") && !this.User.IsInRole("Admin"))
 {
     <p class="text-center"><strong>Each user can register as a 'Dealer', for which he receives following advantages:</strong></p>
     <ul>
-        <li>Its appearance in the list of dealers, which will be available to all users;</li>
+        <li>Its appearance in the list of <strong>Dealers</strong>, which will be available to all users;</li>
         <li>Opportunity for other users to find it by the name of "Dealer" in the search panel;</li>
     </ul>
     <div class="text-center">

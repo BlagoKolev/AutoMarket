@@ -13,6 +13,7 @@
                     <li class="bg-secondary col-sm">Condition: @offer.Status</li>
                     <li class="bg-secondary col-sm">Price: @offer.Price &euro;</li>
                 </ul>
+                <hr />
                 <a href="/Parts/Details?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
                 @if (this.User.IsInRole("Admin"))
                 {
