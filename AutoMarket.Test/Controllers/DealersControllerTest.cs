@@ -20,17 +20,20 @@ namespace AutoMarket.Test.Controllers
                 .Redirect();
         }
 
-        //[Fact]
-        //public void AllShoudReturnViewWithModelIfUserIsLoggedIn()
-        //{
-        //    MyController<DealersController>
-        //        .Instance()
-        //        .WithUser()
-        //        .WithData(GlobalMocking.GetFakeVehicleOffer().ApplicationUser.UserName = "TestUser")
-        //        .Calling(c => c.All(null, 1))
-        //        .ShouldReturn()
-        //        .View(view => view.WithModelOfType<ListMyOffersViewModel>());
-        //}
+        [Fact]
+        public void AllShoudReturnViewWithModelIfUserIsLoggedInAndShouldHaveAuthorizeAttribute()
+        {
+            MyController<DealersController>
+                .Instance()
+                .WithUser()
+                .WithData(GlobalMocking.GetFakeVehicleOffer())
+                .Calling(c => c.All(null, 1))
+                .ShouldHave()
+                .ActionAttributes(attr=>attr.RestrictingForAuthorizedRequests())
+                .AndAlso()
+                .ShouldReturn()
+                .View(view => view.WithModelOfType<ListMyOffersViewModel>());
+        }
 
         [Fact]
         public void BecomeDealerGetIsForRegisterUserOnly()

@@ -122,21 +122,6 @@ namespace AutoMarket.Test.Controllers
                 .View(view => view.WithModelOfType<EditPartOfferViewModel>());
         }
 
-        //[Theory]
-        //[InlineData("someFakeId")]
-        //public void EditPartPostShouldHaveAuthorizeAttributeAndShouldReturnRedirectToAction(string offerId)
-        //{
-        //    MyController<OffersController>
-        //        .Instance(c => c.WithData(GetFakePartOffer()))
-        //        .Calling(c => c.EditPart(offerId, With.Default<EditPartOfferViewModel>()))
-        //        .ShouldHave()
-        //        .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests()
-        //        .RestrictingForHttpMethod(HttpMethod.Post))
-        //        .AndAlso()
-        //        .ShouldReturn()
-        //        .RedirectToAction("PartDetails");
-        //}
-
         [Theory]
         [InlineData("someFakeId")]
         public void EditPartPostShouldReturnViewIfModelstateIsNotValid(string offerId)

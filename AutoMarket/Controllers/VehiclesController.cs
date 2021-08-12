@@ -83,6 +83,10 @@ namespace AutoMarket.Controllers
         public IActionResult Details(string offerId)
         {
             var currentOffer = this.vehiclesService.GetVehicleOfferById(offerId);
+            if (currentOffer == null)
+            {
+                return NotFound();
+            }
             return this.View(currentOffer);
         }
     }
