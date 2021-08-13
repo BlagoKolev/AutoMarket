@@ -17,7 +17,7 @@
                         <li class="bg-secondary col-sm">Model: @offer.Model</li>
                         <li class="bg-secondary col-sm">Color: @offer.Color</li>
                         <li class="bg-secondary col-sm">Price: @offer.Price &euro;</li>
-                        <li class="bg-secondary col-sm">Created on: @offer.CreatedOn.Date.ToString("dd/MM/yyyy")</li>
+                        <li class="bg-secondary col-sm">Created on: @offer.CreatedOn</li>
                     </ul>
                     <hr />
                     <a href="/Offers/VehicleDetails?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
@@ -35,7 +35,7 @@
                         <li class="list-group-item text-center">Name: @offer.Name </li>
                         <li class="bg-secondary col-sm">Condition: @offer.Status</li>
                         <li class="bg-secondary col-sm">Price: @offer.Price &euro;</li>
-                        <li class="bg-secondary col-sm">Created on: @offer.CreatedOn.Date.ToString("dd/MM/yyyy")</li>
+                        <li class="bg-secondary col-sm">Created on: @offer.CreatedOn</li>
                     </ul>
                     <hr />
                     <a href="/Offers/PartDetails?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>

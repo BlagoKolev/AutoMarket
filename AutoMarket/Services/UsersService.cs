@@ -70,7 +70,7 @@ namespace AutoMarket.Services
                        LockoutEnabled = x.LockoutEnabled,
                        LockoutEnd = x.LockoutEnd,
                        TwoFactorEnabled = x.TwoFactorEnabled,
-                       RegistrationDate = x.RegistrationDate.ToString("dd/MM/yy H:mm:ss"),
+                       RegistrationDate = x.RegistrationDate.ToLocalTime().ToString("dd/MM/yyyy H:mm:ss"),
                        VehicleOffers = x.VehicleOffers.Where(x => x.IsDeleted == false).Count(),
                        PartOffers = x.PartOffers.Where(x => x.IsDeleted == false).Count(),
                      })
