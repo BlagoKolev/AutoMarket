@@ -35,6 +35,12 @@
         </nav>
     </header>
     <div class="container">
+        @if (TempData.ContainsKey(AutoMarket.Data.GlobalConstants.AlertMessageKey))
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData[GlobalConstants.AlertMessageKey]
+            </div>
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

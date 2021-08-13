@@ -74,6 +74,9 @@ namespace AutoMarket.Controllers
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
             await offersService.UpdateVehicleOffer(editedModel, Id, userId, isUserAdmin);
+
+            TempData[GlobalConstants.AlertMessageKey] = "You have successfully updated your offer.";
+
             return this.RedirectToAction(nameof(VehicleDetails), new { offerId = Id });
         }
 
@@ -105,6 +108,9 @@ namespace AutoMarket.Controllers
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
             await offersService.UpdatePartOffer(editedModel, Id, userId, isUserAdmin);
+
+            TempData[GlobalConstants.AlertMessageKey] = "You have successfully updated your offer.";
+
             return this.RedirectToAction(nameof(PartDetails), new { offerId = Id });
         }
 
@@ -117,6 +123,7 @@ namespace AutoMarket.Controllers
                 var userId = userManager.GetUserId(this.User);
                 offersService.DeleteOffer(offerId, userId, isUserAdmin);
             }
+            TempData[GlobalConstants.AlertMessageKey] = "You have successfully deleted your offer.";
             return this.RedirectToAction(nameof(this.All));
         }
 

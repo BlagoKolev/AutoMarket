@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using AutoMarket.Data;
 using AutoMarket.Services;
-using AutoMarket.Models.Offers;
-using Microsoft.AspNetCore.Authorization;
 using AutoMarket.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
+using AutoMarket.Models.Offers;
 using AutoMarket.Models.Dealers;
-using System.Security.Claims;
 
 namespace AutoMarket.Controllers
 {
@@ -88,6 +88,8 @@ namespace AutoMarket.Controllers
 
             await signInManager.SignOutAsync();
             await signInManager.SignInAsync(user, false);
+
+            TempData[GlobalConstants.AlertMessageKey] = "Congratulations! You are now a Dealer!";
             return this.Redirect("/Home/Index/");
         }
         private string GetUserId()

@@ -33,6 +33,9 @@ namespace AutoMarket.Controllers
         public async Task<IActionResult> Edit(UserDetailsViewModel editedModel, string userId)
         {
            await usersService.EditUserInfo(userId, editedModel);
+
+            TempData[GlobalConstants.AlertMessageKey] = "Account successfully updated.";
+
             return this.RedirectToAction(nameof(Details));
         }
 
@@ -90,6 +93,9 @@ namespace AutoMarket.Controllers
         public async Task<IActionResult> Delete(string userId)
         {
             await usersService.DeleteAccountById(userId);
+
+            TempData[GlobalConstants.AlertMessageKey] = "Account successfully deleted.";
+
             return this.RedirectToAction(nameof(Accounts));
         }
         private string GetUserId()

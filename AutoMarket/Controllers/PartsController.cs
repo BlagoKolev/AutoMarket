@@ -68,10 +68,11 @@ namespace AutoMarket.Controllers
             }
             catch (Exception)
             {
-
                 this.ModelState.AddModelError(string.Empty, "Image upload error");
                 return this.View();
             }
+
+            TempData[GlobalConstants.AlertMessageKey] = "You have successfully created а new offer.";
 
             return this.Redirect("/Offers/All");
         }
