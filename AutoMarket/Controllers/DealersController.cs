@@ -89,7 +89,7 @@ namespace AutoMarket.Controllers
             await signInManager.SignOutAsync();
             await signInManager.SignInAsync(user, false);
 
-            TempData[GlobalConstants.AlertMessageKey] = "Congratulations! You are now a Dealer!";
+            TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.BecomeDealerSuccessfully;
             return this.Redirect("/Home/Index/");
         }
         private string GetUserId()

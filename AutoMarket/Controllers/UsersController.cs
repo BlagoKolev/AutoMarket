@@ -34,7 +34,7 @@ namespace AutoMarket.Controllers
         {
            await usersService.EditUserInfo(userId, editedModel);
 
-            TempData[GlobalConstants.AlertMessageKey] = "Account successfully updated.";
+            TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.EditAccountSuccessfully;
 
             return this.RedirectToAction(nameof(Details));
         }
@@ -94,7 +94,7 @@ namespace AutoMarket.Controllers
         {
             await usersService.DeleteAccountById(userId);
 
-            TempData[GlobalConstants.AlertMessageKey] = "Account successfully deleted.";
+            TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DeleteAccountSuccessfully;
 
             return this.RedirectToAction(nameof(Accounts));
         }

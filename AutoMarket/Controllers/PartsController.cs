@@ -72,7 +72,7 @@ namespace AutoMarket.Controllers
                 return this.View();
             }
 
-            TempData[GlobalConstants.AlertMessageKey] = "You have successfully created а new offer.";
+            TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.CreateOfferSuccessfully;
 
             return this.Redirect("/Offers/All");
         }
