@@ -1,12 +1,8 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
 using AutoMarket.Models.Offers;
-using AutoMarket.Data.Models.Enum;
-using AutoMarket.Data.Models;
 using AutoMarket.Models.Parts;
-using System.Linq;
 using AutoMarket.Test.Moq;
 
 namespace AutoMarket.Test.Controllers

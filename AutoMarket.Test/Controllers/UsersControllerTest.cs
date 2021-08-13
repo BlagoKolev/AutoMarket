@@ -4,7 +4,6 @@ using AutoMarket.Controllers;
 using AutoMarket.Test.Moq;
 using AutoMarket.Models.Users;
 using AutoMarket.Models.Offers;
-using AutoMarket.Data.Models;
 
 namespace AutoMarket.Test.Controllers
 {

@@ -1,7 +1,6 @@
 ﻿using Xunit;
-using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
-using System.Linq;
+using MyTested.AspNetCore.Mvc;
 using AutoMarket.Models.Dealers;
 
 namespace AutoMarket.Test.Routing
