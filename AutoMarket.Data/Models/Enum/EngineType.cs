@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AutoMarket.Data.Models.Enum
+﻿namespace AutoMarket.Data.Models.Enum
 {
     public enum EngineType
     {

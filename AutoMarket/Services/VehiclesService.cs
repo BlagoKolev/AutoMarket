@@ -7,6 +7,7 @@ using AutoMarket.Data.Models;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Vehicles;
 using System.Threading.Tasks;
+using AutoMarket.ExtensionMethods;
 
 namespace AutoMarket.Services
 {
@@ -123,15 +124,15 @@ namespace AutoMarket.Services
                     Id = x.Id,
                     Make = x.Vehicle.Make,
                     Model = x.Vehicle.Model,
-                    Color = x.Vehicle.Color,
-                    BodyType = x.Vehicle.BodyType,
+                    Color = x.Vehicle.Color.GetDescription(),
+                    BodyType = x.Vehicle.BodyType.GetDescription(),
                     EngineCapacity = x.Vehicle.EngineCapacity,
                     HorsePower = x.Vehicle.HorsePower,
                     ManufacturingYear = x.Vehicle.ManufacturingYear,
-                    Transmission = x.Vehicle.Transmission,
+                    Transmission = x.Vehicle.Transmission.GetDescription(),
                     Мileage = x.Vehicle.Мileage,
                     EngineType = x.Vehicle.EngineType,
-                    EuroStandart = x.Vehicle.EuroStandart,
+                    EuroStandart = x.Vehicle.EuroStandart.GetDescription(),
                     Description = x.Description,
                     Email = x.Email,
                     Location = x.Location,

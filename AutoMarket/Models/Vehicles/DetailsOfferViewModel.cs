@@ -15,7 +15,7 @@ namespace AutoMarket.Models.Offers
         public string Model { get; set; }
 
         [Display(Name = "Body type")]
-        public BodyType BodyType { get; set; }
+        public string BodyType { get; set; }
 
         [Display(Name = "Manufacturing year")]
         public int ManufacturingYear { get; set; }
@@ -30,16 +30,16 @@ namespace AutoMarket.Models.Offers
         public EngineType EngineType { get; set; }
 
         [Display(Name = "Transmission")]
-        public TransmissionType Transmission { get; set; }
+        public string Transmission { get; set; }
 
         [Display(Name = "Mileage (km)")]
         public int Мileage { get; set; }
 
         [Display(Name = "Color")]
-        public Color Color { get; set; }
+        public string Color { get; set; }
 
         [Display(Name = "Euro standart")]
-        public EuroStandart EuroStandart { get; set; }
+        public string EuroStandart { get; set; }
 
         [Display(Name = "Phone")]
         public string Phone { get; set; }

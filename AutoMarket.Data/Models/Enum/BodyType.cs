@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AutoMarket.Data.Models.Enum
 {
@@ -12,7 +11,7 @@ namespace AutoMarket.Data.Models.Enum
         Wagon = 4,
         Coupe = 5,
         Minivan = 6,
-        PickupTruck = 7,
+        [Display(Name = "Pickup truck")] [Description("Pickup truck")] PickupTruck = 7,
         Sedan = 8,
         Limousine = 9,
         Hatchback = 10

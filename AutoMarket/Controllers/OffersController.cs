@@ -65,7 +65,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> EditVehicle(string offerId,EditVehicleOfferViewModel editedModel)
+        public async Task<IActionResult> EditVehicle(string Id,EditVehicleOfferViewModel editedModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -73,8 +73,8 @@ namespace AutoMarket.Controllers
             }
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
-            await offersService.UpdateVehicleOffer(editedModel, offerId, userId, isUserAdmin);
-            return this.RedirectToAction(nameof(VehicleDetails), new { offerId = offerId });
+            await offersService.UpdateVehicleOffer(editedModel, Id, userId, isUserAdmin);
+            return this.RedirectToAction(nameof(VehicleDetails), new { offerId = Id });
         }
 
         [Authorize]
@@ -95,7 +95,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> EditPart(string offerId,EditPartOfferViewModel editedModel)
+        public async Task<IActionResult> EditPart(string Id,EditPartOfferViewModel editedModel)
         {
             if (!ModelState.IsValid)
             {
@@ -104,8 +104,8 @@ namespace AutoMarket.Controllers
 
             var userId = GetUserId();
             var isUserAdmin = IsAdmin();
-            await offersService.UpdatePartOffer(editedModel, offerId, userId, isUserAdmin);
-            return this.RedirectToAction(nameof(PartDetails), new { offerId = offerId });
+            await offersService.UpdatePartOffer(editedModel, Id, userId, isUserAdmin);
+            return this.RedirectToAction(nameof(PartDetails), new { offerId = Id });
         }
 
         [Authorize]

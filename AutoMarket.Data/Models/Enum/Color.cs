@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace AutoMarket.Data.Models.Enum
 {
@@ -25,7 +22,7 @@ namespace AutoMarket.Data.Models.Enum
         Metallic = 15,
         Orange = 16,
         Pearl = 17,
-        [Display(Name = "Rose Ashes")] RoseAshes = 18,
+        [Display(Name = "Rose Ashes")] [Description("Rose Ashes")] RoseAshes = 18,
         Sand = 19,
         Pink = 20,
         Gray = 21,

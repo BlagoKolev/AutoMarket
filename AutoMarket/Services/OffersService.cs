@@ -1,8 +1,10 @@
 ﻿using AutoMarket.Data;
 using AutoMarket.Data.Models;
+using AutoMarket.ExtensionMethods;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Parts;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -191,15 +193,15 @@ namespace AutoMarket.Services
                     Id = x.Id,
                     Make = x.Vehicle.Make,
                     Model = x.Vehicle.Model,
-                    Color = x.Vehicle.Color,
-                    BodyType = x.Vehicle.BodyType,
+                    Color = x.Vehicle.Color.GetDescription(),
+                    BodyType = x.Vehicle.BodyType.GetDescription(),
                     EngineCapacity = x.Vehicle.EngineCapacity,
                     HorsePower = x.Vehicle.HorsePower,
                     ManufacturingYear = x.Vehicle.ManufacturingYear,
-                    Transmission = x.Vehicle.Transmission,
+                    Transmission = x.Vehicle.Transmission.GetDescription(),
                     Мileage = x.Vehicle.Мileage,
                     EngineType = x.Vehicle.EngineType,
-                    EuroStandart = x.Vehicle.EuroStandart,
+                    EuroStandart = x.Vehicle.EuroStandart.GetDescription(),
                     Description = x.Description,
                     Email = x.Email,
                     Location = x.Location,
@@ -266,9 +268,9 @@ namespace AutoMarket.Services
                       Phone = x.Phone,
                       PartId = x.PartId,
                       Name = x.Part.Name,
-                      PartCategory = x.Part.PartCategory,
+                      PartCategory = x.Part.PartCategory.GetDescription(),
                       Status = x.Part.Status,
-                      VehicleType = x.VehicleType,
+                      VehicleType = x.VehicleType.GetDescription(),
                       Price = x.Price,
                       Images = imagesPath
                   })

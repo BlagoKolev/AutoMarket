@@ -6,6 +6,7 @@ using AutoMarket.Data;
 using AutoMarket.Data.Models;
 using AutoMarket.Models.Parts;
 using System.Threading.Tasks;
+using AutoMarket.ExtensionMethods;
 
 namespace AutoMarket.Services
 {
@@ -127,9 +128,9 @@ namespace AutoMarket.Services
                       Phone = x.Phone,
                       PartId = x.PartId,
                       Name = x.Part.Name,
-                      PartCategory = x.Part.PartCategory,
+                      PartCategory = x.Part.PartCategory.GetDescription(),
                       Status = x.Part.Status,
-                      VehicleType = x.VehicleType,
+                      VehicleType = x.VehicleType.GetDescription(),
                       Price = x.Price,
                       Images = imagesPath
                   })

@@ -14,11 +14,11 @@ namespace AutoMarket.Models.Parts
         public string Email { get; set; }
         public int Price { get; set; }
         public string Location { get; set; }
-        public VehicleCategory VehicleType { get; set; }
+        public string VehicleType { get; set; }
         public int PartId { get; set; }
         public ICollection<string> Images { get; set; }
         public string Name { get; set; }
-        public PartCategory PartCategory { get; set; }
+        public string PartCategory { get; set; }
         public PartStatus Status { get; set; }
     }
 }

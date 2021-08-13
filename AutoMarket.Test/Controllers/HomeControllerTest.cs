@@ -17,16 +17,7 @@ namespace AutoMarket.Test
             //Assert
             call.ShouldReturn().View();
         }
-        [Fact]
-        public void HomeControllerPrivacyActionShouldReturnView()
-        {
-            //Arrange
-            var controller = MyController<HomeController>.Instance();
-            //Act
-            var call = controller.Calling(c => c.Privacy());
-            //Assert
-            call.ShouldReturn().View();
-        }
+              
         [Fact]
         public void HomeControllerErrorActionShouldReturnView()
         {
