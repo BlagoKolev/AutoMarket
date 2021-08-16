@@ -17,7 +17,7 @@ namespace AutoMarket.Test
             //Assert
             call.ShouldReturn().View();
         }
-              
+
         [Fact]
         public void HomeControllerErrorActionShouldReturnView()
         {
@@ -27,11 +27,6 @@ namespace AutoMarket.Test
             var call = controller.Calling(c => c.Error());
             //Assert
             call.ShouldReturn().View();
-        }
-
-        private static ICollection<int> GetOffersCount()
-        {
-            return new List<int> { 5, 7 };
         }
     }
 }

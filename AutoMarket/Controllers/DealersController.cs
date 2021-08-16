@@ -18,7 +18,6 @@ namespace AutoMarket.Controllers
         private readonly UserManager<ApplicationUser> userManager;
 
         public DealersController(IDealersService dealersService,
-            IUsersService usersService,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager)
         {

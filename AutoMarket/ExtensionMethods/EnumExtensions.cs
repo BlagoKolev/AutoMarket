@@ -12,10 +12,10 @@ namespace AutoMarket.ExtensionMethods
             MemberInfo[] memberInfo = genericEnumType.GetMember(GenericEnum.ToString());
             if ((memberInfo != null && memberInfo.Length > 0))
             {
-                var _Attribs = memberInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
-                if ((_Attribs != null && _Attribs.Count() > 0))
+                var attributes = memberInfo[0].GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false);
+                if ((attributes != null && attributes.Count() > 0))
                 {
-                    return ((System.ComponentModel.DescriptionAttribute)_Attribs.ElementAt(0)).Description;
+                    return ((System.ComponentModel.DescriptionAttribute)attributes.ElementAt(0)).Description;
                 }
             }
             return GenericEnum.ToString();

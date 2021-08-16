@@ -11,7 +11,7 @@ namespace AutoMarket.Services
     public class UsersService : IUsersService
     {
         private readonly ApplicationDbContext db;
-        public UsersService(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
+        public UsersService(ApplicationDbContext db)
         {
             this.db = db;
         }

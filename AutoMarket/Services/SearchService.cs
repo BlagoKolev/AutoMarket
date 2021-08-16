@@ -15,12 +15,11 @@ namespace AutoMarket.Services
         {
             this.db = db;
         }
-               
+
         public ICollection<PartsAllViewModel> GetPartOffers(string keyword, string status)
         {
-            PartStatus partStatus;
             var partOffers = new List<PartsAllViewModel>();
-            var isStatusValid = Enum.TryParse<PartStatus>(status, out partStatus);
+            var isStatusValid = Enum.TryParse<PartStatus>(status, out PartStatus partStatus);
 
             if (!isStatusValid)
             {
