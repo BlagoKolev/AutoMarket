@@ -11,16 +11,6 @@ namespace AutoMarket.Test.Controllers
     public class DealersControllerTest
     {
         [Fact]
-        public void AllShoudReturnRedirectIfUserIsNotLoggedIn()
-        {
-            MyController<DealersController>
-                .Instance()
-                .Calling(c => c.All("someName", 1))
-                .ShouldReturn()
-                .Redirect();
-        }
-
-        [Fact]
         public void AllShoudReturnViewWithModelIfUserIsLoggedInAndShouldHaveAuthorizeAttribute()
         {
             MyController<DealersController>
@@ -29,7 +19,7 @@ namespace AutoMarket.Test.Controllers
                 .WithData(GlobalMocking.GetFakeVehicleOffer())
                 .Calling(c => c.All(null, 1))
                 .ShouldHave()
-                .ActionAttributes(attr=>attr.RestrictingForAuthorizedRequests())
+                .ActionAttributes(attr => attr.RestrictingForAuthorizedRequests())
                 .AndAlso()
                 .ShouldReturn()
                 .View(view => view.WithModelOfType<ListMyOffersViewModel>());

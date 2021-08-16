@@ -4,7 +4,7 @@ using AutoMarket.Controllers;
 
 namespace AutoMarket.Test.Pipeline
 {
-   public class HomeControllerTest
+    public class HomeControllerTest
     {
         [Fact]
         public void IndexActionPipelineTest()
@@ -13,17 +13,6 @@ namespace AutoMarket.Test.Pipeline
                 .Pipeline()
                 .ShouldMap("/Home/Index")
                 .To<HomeController>(c => c.Index())
-                .Which()
-                .ShouldReturn()
-                .View();
-        }
-        [Fact]
-        public void PrivacyActionPipelineTest()
-        {
-            MyMvc
-                .Pipeline()
-                .ShouldMap("/Home/Privacy")
-                .To<HomeController>(c => c.Privacy())
                 .Which()
                 .ShouldReturn()
                 .View();

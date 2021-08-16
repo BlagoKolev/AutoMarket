@@ -14,14 +14,7 @@ namespace AutoMarket.Test.Routing
                 .ShouldMap("/Home/Index")
                 .To<HomeController>(c => c.Index());
         }
-        [Fact]
-        public void PrivacyActionShouldMachSpecificRoute()
-        {
-            MyRouting
-                .Configuration()
-                .ShouldMap("/Home/Privacy")
-                .To<HomeController>(c => c.Privacy());
-        }
+
         [Fact]
         public void ErrorActionShouldMachSpecificRoute()
         {

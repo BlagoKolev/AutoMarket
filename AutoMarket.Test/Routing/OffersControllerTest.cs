@@ -50,7 +50,7 @@ namespace AutoMarket.Test.Routing
             MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                .WithLocation($"/Offers/EditVehicle?offerId={offerId}")
+                .WithLocation($"/Offers/EditVehicle?Id={offerId}")
                 .WithMethod(HttpMethod.Post))
                 .To<OffersController>(c => c.EditVehicle(offerId, With.Any<EditVehicleOfferViewModel>()));
         }
@@ -72,7 +72,7 @@ namespace AutoMarket.Test.Routing
             MyRouting
                 .Configuration()
                 .ShouldMap(request => request
-                .WithLocation($"/Offers/EditPart?offerId={offerId}")
+                .WithLocation($"/Offers/EditPart?Id={offerId}")
                 .WithMethod(HttpMethod.Post))
                 .To<OffersController>(c => c.EditPart(offerId, With.Any<EditPartOfferViewModel>()));
         }
