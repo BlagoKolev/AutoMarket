@@ -1,11 +1,11 @@
 ﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMarket.Data;
 using AutoMarket.Services;
 using AutoMarket.Models.Offers;
 using AutoMarket.Models.Users;
-using System.Threading.Tasks;
 
 namespace AutoMarket.Controllers
 {
