@@ -280,15 +280,10 @@ namespace AutoMarket.Services
 
         public EditPartOfferViewModel GetPartToEdit(string offerId, string userId, bool isUserAdmin)
         {
-            var partImagesAsString = new List<string>();
-
             var partImages = this.db.Images
                 .Where(x => x.PartOfferId == offerId)
+                .Select(x => GlobalConstants.PartImagePath + x.Id + '.' + x.Extension)
                 .ToList();
-            foreach (var image in partImages)
-            {
-                partImagesAsString.Add("/images/parts/" + '.' + image.Id + image.Extension);
-            }
 
             var curretnPartOffer = this.db.PartOffers
                 .Where(x => x.Id == offerId
@@ -308,7 +303,7 @@ namespace AutoMarket.Services
                     PartId = x.PartId,
                     Status = x.Part.Status,
                     VehicleType = x.VehicleType,
-                    Images = partImagesAsString
+                    Images = partImages
                 })
                 .FirstOrDefault();
             return curretnPartOffer;

@@ -24,7 +24,7 @@
                 <td>
                     <input type="button" class="btn btn-light" value="Details" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'" />
                     <input type="button" class="btn btn-primary" value="Edit" onclick="location.href='@Url.Action("Edit", "Users", new { userId = account.Id })'" />
-                    <input type="button" class="btn btn-warning" value="Lock" onclick="location.href='@Url.Action("Lock", "Users", new { userId = account.Id })'" />
+                    @* <input type="button" class="btn btn-warning" value="Lock" onclick="location.href='@Url.Action("Lock", "Users", new { userId = account.Id })'" />*@
                     <input type="button" class="btn btn-danger" value="Delete" onclick="location.href='@Url.Action("Delete", "Users", new { userId = account.Id })'" />
                 </td>
             </tr>
