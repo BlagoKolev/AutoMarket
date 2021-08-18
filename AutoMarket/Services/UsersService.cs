@@ -62,18 +62,18 @@ namespace AutoMarket.Services
             var user = this.db.ApplicationUsers
                 .Where(x => x.Id == userId)
                 .Select(x => new UserDetailsViewModel
-                     {
-                       Id = x.Id,
-                       Username = x.UserName,
-                       Email = x.Email,
-                       AccessFailedCount = x.AccessFailedCount,
-                       LockoutEnabled = x.LockoutEnabled,
-                       LockoutEnd = x.LockoutEnd,
-                       TwoFactorEnabled = x.TwoFactorEnabled,
-                       RegistrationDate = x.RegistrationDate.ToLocalTime().ToString("dd/MM/yyyy H:mm:ss"),
-                       VehicleOffers = x.VehicleOffers.Where(x => x.IsDeleted == false).Count(),
-                       PartOffers = x.PartOffers.Where(x => x.IsDeleted == false).Count(),
-                     })
+                {
+                    Id = x.Id,
+                    Username = x.UserName,
+                    Email = x.Email,
+                    AccessFailedCount = x.AccessFailedCount,
+                    LockoutEnabled = x.LockoutEnabled,
+                    LockoutEnd = x.LockoutEnd,
+                    TwoFactorEnabled = x.TwoFactorEnabled,
+                    RegistrationDate = x.RegistrationDate.ToLocalTime().ToString("dd/MM/yyyy H:mm:ss"),
+                    VehicleOffers = x.VehicleOffers.Where(x => x.IsDeleted == false).Count(),
+                    PartOffers = x.PartOffers.Where(x => x.IsDeleted == false).Count(),
+                })
                     .FirstOrDefault();
             return user;
         }
@@ -82,8 +82,6 @@ namespace AutoMarket.Services
             var usersAcounts = this.db.ApplicationUsers
                 .Where(x => x.Id != userId)
                 .OrderByDescending(x => x.RegistrationDate)
-                .Skip((page - 1) * itemsPerPage)
-                .Take(itemsPerPage)
                 .Select(x => new UsersAllViewModel
                 {
                     Id = x.Id,

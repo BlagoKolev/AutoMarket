@@ -115,13 +115,13 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize]
-        public IActionResult Delete(string offerId)
+        public async Task<IActionResult> Delete(string offerId)
         {
             if (offerId != null)
             {
                 var isUserAdmin = IsAdmin();
                 var userId = userManager.GetUserId(this.User);
-                offersService.DeleteOffer(offerId, userId, isUserAdmin);
+               await offersService.DeleteOffer(offerId, userId, isUserAdmin);
             }
             TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DeleteSuccessfully;
             return this.RedirectToAction(nameof(this.All));

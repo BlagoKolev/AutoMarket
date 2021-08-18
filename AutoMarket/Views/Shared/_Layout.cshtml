@@ -37,9 +37,18 @@
     <div class="container">
         @if (TempData.ContainsKey(AutoMarket.Data.GlobalConstants.AlertMessageKey))
         {
-            <div class="alert alert-success text-center" role="alert">
-                @TempData[GlobalConstants.AlertMessageKey]
-            </div>
+            @if (TempData[GlobalConstants.AlertMessageKey].ToString() == GlobalConstants.DealerNameAllreadyExist)
+            {
+                <div class="alert alert-warning text-center" role="alert">
+                    @TempData[GlobalConstants.AlertMessageKey]
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success text-center" role="alert">
+                    @TempData[GlobalConstants.AlertMessageKey]
+                </div>
+            }
         }
         <main role="main" class="pb-3">
             @RenderBody()
@@ -48,7 +57,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - AutoMarket 
+            &copy; 2021 - AutoMarket
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

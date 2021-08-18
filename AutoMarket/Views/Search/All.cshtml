@@ -31,7 +31,15 @@
     </div>
 </form>
 <hr />
-<h2 class="text-center">Found offers</h2>
-<partial name="_VehicleAllPartial" model="@Model" />
-<hr />
-<partial name="_PagingPartial" model="@Model" />
+@if (!Model.Offers.Any())
+{
+    <h2 class="text-center text-danger">No offers found by given criteria</h2>
+}
+else
+{
+    <h2 class="text-center">Found offers</h2>
+    <partial name="_VehicleAllPartial" model="@Model" />
+    <hr />
+    <partial name="_PagingPartial" model="@Model" />
+
+}

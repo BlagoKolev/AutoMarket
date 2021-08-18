@@ -65,7 +65,6 @@ namespace AutoMarket.Services
 
         public int GetAllUsersOffersCount(string userId)
         {
-
             var vehiclesCount = this.db.VehicleOffers
                 .Where(x => x.ApplicationUserId == userId)
                 .Count();
@@ -91,7 +90,7 @@ namespace AutoMarket.Services
                Model = x.Vehicle.Model,
                Color = x.Vehicle.Color,
                Price = x.Price,
-               Image = "/images/vehicles/" + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
+               Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension,
            })
            .ToList();
             return userVehicleOffers;
@@ -183,7 +182,7 @@ namespace AutoMarket.Services
 
             foreach (var img in imagesCollection)
             {
-                imagesPath.Add("/images/vehicles/" + img.Id + '.' + img.Extension);
+                imagesPath.Add(GlobalConstants.VehicleImagePath + img.Id + '.' + img.Extension);
             }
 
             var currentOffer = this.db.VehicleOffers

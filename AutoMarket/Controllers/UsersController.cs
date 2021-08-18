@@ -28,11 +28,11 @@ namespace AutoMarket.Controllers
             return this.View(editModel);
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(UserDetailsViewModel editedModel, string userId)
         {
-           await usersService.EditUserInfo(userId, editedModel);
+            await usersService.EditUserInfo(userId, editedModel);
 
             TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.EditAccountSuccessfully;
 
@@ -81,9 +81,6 @@ namespace AutoMarket.Controllers
 
             var listUsersAllModel = new ListUsersAllViewModel
             {
-                //PageNumber = id,
-                //ItemsPerPage = GlobalConstants.ItemsPerPage,
-                //ItemsCount = usersService.GetUserAcountsCount(),
                 Users = usersAcountsList
             };
             return this.View(listUsersAllModel);

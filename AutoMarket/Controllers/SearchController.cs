@@ -37,6 +37,11 @@ namespace AutoMarket.Controllers
                 ItemsCount = itemsCount,
             };
 
+            if (!vehicleOffers.Any())
+            {
+                return this.View(searchVehiclesModel);
+            }
+
             if (searchVehiclesModel.PageNumber > searchVehiclesModel.PagesCount)
             {
                 return this.Redirect($"{searchVehiclesModel.PagesCount}");

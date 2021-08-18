@@ -74,6 +74,7 @@ namespace AutoMarket.Controllers
 
             if (isDealerAlreadyExist)
             {
+                TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DealerNameAllreadyExist;
                 return this.RedirectToAction(nameof(BecomeDealer));
             }
 

@@ -62,8 +62,8 @@ namespace AutoMarket.Services
                 if (keyword != null)
                 {
                     partOffers = this.db.PartOffers
-                  .Where(x => x.IsDeleted == false
-                  && x.Part.Status == partStatus
+                  .Where(x => (x.IsDeleted == false
+                  && x.Part.Status == partStatus)
                   && x.Title.ToLower().Contains(keyword.ToLower())
                   || x.Description.ToLower().Contains(keyword.ToLower())
                   || x.Part.Name.ToLower().Contains(keyword.ToLower()))

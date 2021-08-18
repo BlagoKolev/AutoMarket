@@ -38,7 +38,7 @@ namespace AutoMarket.Services
                 Мileage = offer.Мileage,
             };
 
-         await  this.db.Vehicles.AddAsync(newVehicle);
+            await this.db.Vehicles.AddAsync(newVehicle);
 
             var newOffer = new VehicleOffer
             {
@@ -79,7 +79,7 @@ namespace AutoMarket.Services
                 }
             }
 
-           await this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
         }
 
         public ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage)
@@ -113,9 +113,8 @@ namespace AutoMarket.Services
 
             foreach (var img in imagesCollection)
             {
-                imagesPath.Add("/images/vehicles/" + img.Id + '.' + img.Extension);
+                imagesPath.Add(GlobalConstants.VehicleImagePath + img.Id + '.' + img.Extension);
             }
-
 
             var currentOffer = this.db.VehicleOffers
                 .Where(x => x.Id == offerId)
@@ -151,6 +150,6 @@ namespace AutoMarket.Services
                 .Where(x => x.IsDeleted == false)
                 .Count();
             return itemsCount;
-        }         
+        }
     }
 }

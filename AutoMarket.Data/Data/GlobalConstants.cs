@@ -22,5 +22,6 @@ namespace AutoMarket.Data
         public const string CreateOfferSuccessfully = "You have successfully created а new offer.";
         public const string DeleteAccountSuccessfully = "Account successfully deleted.";
         public const string EditAccountSuccessfully = "Account successfully updated.";
+        public const string DealerNameAllreadyExist = "Sorry! Dealer with that name already exists. Choose another name.";
     }
 }

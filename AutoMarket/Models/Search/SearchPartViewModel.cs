@@ -6,6 +6,5 @@ namespace AutoMarket.Models.Search
     {
         public string Keyword { get; set; }
         public string Status { get; set; }
-        
     }
 }
