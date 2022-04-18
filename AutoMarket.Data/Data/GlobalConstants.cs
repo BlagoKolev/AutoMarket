@@ -48,8 +48,15 @@ namespace AutoMarket.Data
             public const string MonthOfExpiration = "Month of expiration";
             public const string YearOfExpiration = "Year of expiration";
             public const string SecurityCode = "Security code";
-
-
+            public const string Brand = "Brand";
+            public const string BodyType = "Body type";
+            public const string ManufacturingYear = "Manufacturing year";
+            public const string EngineCapacity ="Engine capacity";
+            public const string HorsePower = "Horse power";
+            public const string EngineType = "Engine type";
+            public const string Transmission = "Transmission";
+            public const string Mileage = "Мileage (km)";
+            public const string EuroStandart = "Euro standart";
         }
     }
 }

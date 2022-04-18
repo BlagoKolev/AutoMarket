@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AutoMarket.Data;
 using AutoMarket.Data.Models.Enum;
 
 
@@ -9,52 +10,46 @@ namespace AutoMarket.Models.Offers
     {
         public string Id { get; set; }
 
-        [Display(Name = "Brand")]
+        [Display(Name = GlobalConstants.DisplayName.Brand)]
         public string Make { get; set; }
 
-        [Display(Name = "Model")]
         public string Model { get; set; }
 
-        [Display(Name = "Body type")]
+        [Display(Name = GlobalConstants.DisplayName.BodyType)]
         public string BodyType { get; set; }
 
-        [Display(Name = "Manufacturing year")]
+        [Display(Name = GlobalConstants.DisplayName.ManufacturingYear)]
         public int ManufacturingYear { get; set; }
 
-        [Display(Name = "Engine capacity")]
+        [Display(Name = GlobalConstants.DisplayName.EngineCapacity)]
         public decimal EngineCapacity { get; set; }
 
-        [Display(Name = "Horse power")]
+        [Display(Name = GlobalConstants.DisplayName.HorsePower)]
         public int HorsePower { get; set; }
 
-        [Display(Name = "Engine type")]
+        [Display(Name = GlobalConstants.DisplayName.EngineType)]
         public EngineType EngineType { get; set; }
 
-        [Display(Name = "Transmission")]
+        [Display(Name = GlobalConstants.DisplayName.Transmission)]
         public string Transmission { get; set; }
 
-        [Display(Name = "Мileage (km)")]
+        [Display(Name = GlobalConstants.DisplayName.Mileage)]
         public int Мileage { get; set; }
 
-        [Display(Name = "Color")]
         public string Color { get; set; }
 
-        [Display(Name = "Euro standart")]
+        [Display(Name = GlobalConstants.DisplayName.EuroStandart)]
         public string EuroStandart { get; set; }
 
-        [Display(Name = "Phone")]
         public string Phone { get; set; }
 
-        [Display(Name ="E-mail")]
+        [Display(Name = GlobalConstants.DisplayName.Email)]
         public string Email { get; set; }
 
-        [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Price")]
         public int Price { get; set; }
 
-        [Display(Name = "Location")]
         public string Location { get; set; }
         public IEnumerable<string> Images { get; set; }
     }
