@@ -26,6 +26,9 @@ namespace AutoMarket.Data
         public const string DealerNameAllreadyExist = "Sorry! Dealer with that name already exists. Choose another name.";
 
         public const string Required = "The '{0}' field is required.";
+        public const string MaxLength = "The '{0}' field cannot be longer than {1} symbols.";
+        public const string ValidEmailFormat = "Please enter a valid E-mail form 'xxx@xxx.xx'.";
+        public const string ValueInRange = "'{0}' must be between {1} and {2}";
 
         public class BecomeDealerErrorMessage
         {
@@ -33,8 +36,6 @@ namespace AutoMarket.Data
             public const string CardHolderRegexErrorMsg = "The field must have the following format 'Name Last name'.";
             public const string CardNumberRegex = @"([0-9]{4}-){3}[0-9]{4}$";
             public const string CardNumberRegexErrorMsg = "Enter the 16-digit code from your card";
-            public const string CardExpiredMonthRange = "'{0}' must be between {1} and {2}";
-            public const string CardExpiredYearRange = "'{0}' must be between {1} and {2}";
             public const string CardSecurityCodeRegex = @"[0-9]{3}$";
             public const string CardSecurityCodeRegexErrorMsg = "Enter the 3-digit code from back side of your card";
         }
@@ -51,12 +52,15 @@ namespace AutoMarket.Data
             public const string Brand = "Brand";
             public const string BodyType = "Body type";
             public const string ManufacturingYear = "Manufacturing year";
-            public const string EngineCapacity ="Engine capacity";
+            public const string EngineCapacity = "Engine capacity";
             public const string HorsePower = "Horse power";
             public const string EngineType = "Engine type";
             public const string Transmission = "Transmission";
             public const string Mileage = "Мileage (km)";
             public const string EuroStandart = "Euro standart";
+            public const string VehicleType = "Vehicle type";
+            public const string Condition = "Condition";
+            public const string PriceInEuro = "Price (Euro)";
         }
     }
 }

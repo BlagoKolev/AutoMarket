@@ -32,12 +32,12 @@ namespace AutoMarket.Models.Dealers
 
         [Display(Name = GlobalConstants.DisplayName.MonthOfExpiration)]
         [Required(ErrorMessage = GlobalConstants.Required)]
-        [Range(1, 12, ErrorMessage = GlobalConstants.BecomeDealerErrorMessage.CardExpiredMonthRange)]
+        [Range(1, 12, ErrorMessage = GlobalConstants.ValueInRange)]
         public int CardExpiredMonth { get; set; }
 
         [Display(Name = GlobalConstants.DisplayName.YearOfExpiration)]
         [Required(ErrorMessage = GlobalConstants.Required)]
-        [Range(2022, 2025, ErrorMessage = GlobalConstants.BecomeDealerErrorMessage.CardExpiredYearRange)]
+        [Range(2022, 2025, ErrorMessage = GlobalConstants.ValueInRange)]
         public int CardExpiredYear { get; set; }
 
         [Display(Name = GlobalConstants.DisplayName.SecurityCode)]
