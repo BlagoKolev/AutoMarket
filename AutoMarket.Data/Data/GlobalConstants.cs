@@ -61,6 +61,8 @@ namespace AutoMarket.Data
             public const string Condition = "Condition";
             public const string PriceInEuro = "Price (Euro)";
             public const string Dealers = "Dealers";
+            public const string Category = "Category";
+            public const string UploadImages = "Upload images";
         }
     }
 }

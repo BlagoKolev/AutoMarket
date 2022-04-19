@@ -12,55 +12,51 @@ namespace AutoMarket.Models.Parts
     {
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "The 'Phone' field is required.")]
-        [MaxLength(GlobalConstants.PhoneNumberLength, ErrorMessage = "The 'Phone' field cannot be longer than 15 symbols")]
-        [Display(Name = "Phone")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [MaxLength(GlobalConstants.PhoneNumberLength, ErrorMessage = GlobalConstants.MaxLength)]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "The 'Title' field is required.")]
-        [MaxLength(GlobalConstants.TitleLength, ErrorMessage = "The 'Title' field cannot be longer than 30 symbols")]
-        [Display(Name = "Title")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [MaxLength(GlobalConstants.TitleLength, ErrorMessage = GlobalConstants.MaxLength)]
         public string Title { get; set; }
 
-        [MaxLength(GlobalConstants.DescriptionLength, ErrorMessage = "The 'Description' field cannot be longer than 5000 symbols.")]
+        [MaxLength(GlobalConstants.DescriptionLength, ErrorMessage = GlobalConstants.MaxLength)]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [EmailAddress(ErrorMessage = "Please enter a valid E-mail form 'xxx@xxx.xx'.")]
-        [Display(Name = "E-mail")]
+        [EmailAddress(ErrorMessage = GlobalConstants.ValidEmailFormat)]
+        [Display(Name = GlobalConstants.DisplayName.Email)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "The 'Price' field is required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "The 'Price' must be between 0 и 2_147_483_647.")]
-        [Display(Name = "Price (euro)")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(0, int.MaxValue, ErrorMessage = GlobalConstants.ValueInRange)]
+        [Display(Name = GlobalConstants.DisplayName.PriceInEuro)]
         public int Price { get; set; }
 
-        [MaxLength(GlobalConstants.LocationLength, ErrorMessage = "The 'Location' field cannot be longer than 30 symbols")]
-        [Display(Name = "Location")]
+        [MaxLength(GlobalConstants.LocationLength, ErrorMessage = GlobalConstants.MaxLength)]
         public string Location { get; set; }
         public bool IsDeleted { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        [Required(ErrorMessage = "The 'Vehicle type' field is required.")]
-        [Display(Name = "Vehicle type")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.DisplayName.VehicleType)]
         public VehicleCategory VehicleType { get; set; }
         public int PartId { get; set; }
         public virtual Part Part { get; set; }
-        [Required(ErrorMessage = "The 'Name' field is required.")]
-        [Display(Name = "Name")]
+
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "The 'Category' field is required.")]
-        [Display(Name = "Category")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.DisplayName.Category)]
         public PartCategory PartCategory { get; set; }
 
-        [Required(ErrorMessage = "The 'Condition' field is required.")]
-        [Display(Name = "Condition")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Display(Name = GlobalConstants.DisplayName.Condition)]
         public PartStatus Status { get; set; }
 
-        [Display(Name = "Upload images")]
+        [Display(Name = GlobalConstants.DisplayName.UploadImages)]
         public ICollection<IFormFile> Images { get; set; }
     }
 }
