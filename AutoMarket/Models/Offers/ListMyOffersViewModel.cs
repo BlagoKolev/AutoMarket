@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AutoMarket.Data;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AutoMarket.Models.Offers
@@ -11,7 +12,7 @@ namespace AutoMarket.Models.Offers
         }
         public ICollection<MyOffersViewModel> Offers { get; set; }
         public ICollection<string> DealersList { get; set; }
-        [Display(Name = "Dealers")]
+        [Display(Name = GlobalConstants.DisplayName.Dealers)]
         public string DealerName { get; set; }
     }
 }

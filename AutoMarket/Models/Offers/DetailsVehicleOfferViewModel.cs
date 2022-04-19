@@ -30,7 +30,6 @@ namespace AutoMarket.Models.Offers
         [Display(Name = GlobalConstants.DisplayName.EngineType)]
         public EngineType EngineType { get; set; }
 
-        [Display(Name = GlobalConstants.DisplayName.Transmission)]
         public string Transmission { get; set; }
 
         [Display(Name = GlobalConstants.DisplayName.Mileage)]

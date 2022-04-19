@@ -55,12 +55,12 @@ namespace AutoMarket.Data
             public const string EngineCapacity = "Engine capacity";
             public const string HorsePower = "Horse power";
             public const string EngineType = "Engine type";
-            public const string Transmission = "Transmission";
             public const string Mileage = "Мileage (km)";
             public const string EuroStandart = "Euro standart";
             public const string VehicleType = "Vehicle type";
             public const string Condition = "Condition";
             public const string PriceInEuro = "Price (Euro)";
+            public const string Dealers = "Dealers";
         }
     }
 }

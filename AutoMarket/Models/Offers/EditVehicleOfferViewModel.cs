@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using AutoMarket.Data;
 using AutoMarket.Data.Models.Enum;
 
 
@@ -9,52 +10,46 @@ namespace AutoMarket.Models.Offers
     {
         public string Id { get; set; }
 
-        [Display(Name = "Brand")]
+        [Display(Name = GlobalConstants.DisplayName.Brand)]
         public string Make { get; set; }
 
-        [Display(Name = "Model")]
         public string Model { get; set; }
 
-        [Display(Name = "Body type")]
+        [Display(Name = GlobalConstants.DisplayName.BodyType)]
         public BodyType BodyType { get; set; }
 
-        [Display(Name = "Manufacturing year")]
+        [Display(Name = GlobalConstants.DisplayName.ManufacturingYear)]
         public int ManufacturingYear { get; set; }
 
-        [Display(Name = "Engine capacity")]
+        [Display(Name = GlobalConstants.DisplayName.EngineCapacity)]
         public decimal EngineCapacity { get; set; }
 
-        [Display(Name = "Horse Power")]
+        [Display(Name = GlobalConstants.DisplayName.HorsePower)]
         public int HorsePower { get; set; }
 
-        [Display(Name = "Engine type")]
+        [Display(Name = GlobalConstants.DisplayName.EngineType)]
         public EngineType EngineType { get; set; }
 
-        [Display(Name = "Transmission")]
         public TransmissionType Transmission { get; set; }
 
-        [Display(Name = "Mileage (km)")]
+        [Display(Name = GlobalConstants.DisplayName.Mileage)]
         public int Мileage { get; set; }
 
-        [Display(Name = "Color")]
         public Color Color { get; set; }
 
-        [Display(Name = "Euro standart")]
+        [Display(Name = GlobalConstants.DisplayName.EuroStandart)]
         public EuroStandart EuroStandart { get; set; }
 
-        [Display(Name = "Phone")]
         public string Phone { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = GlobalConstants.DisplayName.Email)]
         public string Email { get; set; }
 
-        [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [Display(Name = "Price (euro)")]
+        [Display(Name = GlobalConstants.DisplayName.PriceInEuro)]
         public int Price { get; set; }
 
-        [Display(Name = "Location")]
         public string Location { get; set; }
         public IEnumerable<string> Images { get; set; }
     }
