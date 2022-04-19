@@ -29,6 +29,7 @@ namespace AutoMarket.Data
         public const string MaxLength = "The '{0}' field cannot be longer than {1} symbols.";
         public const string ValidEmailFormat = "Please enter a valid E-mail form 'xxx@xxx.xx'.";
         public const string ValueInRange = "'{0}' must be between {1} and {2}";
+        public const string StringInRange = "'{0}' must be between {2} and {1} symbols";
 
         public class BecomeDealerErrorMessage
         {
@@ -71,6 +72,7 @@ namespace AutoMarket.Data
             public const string TwoFactorAuth = "Two factor enabled";
             public const string AccessFailedCount = "Access failed count";
             public const string VehicleOffersCount = "Vehicles offers count";
+            public const string PartOffersCount = "Part offers count";
         }
     }
 }

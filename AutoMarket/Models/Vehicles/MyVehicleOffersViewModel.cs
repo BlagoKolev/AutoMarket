@@ -1,5 +1,6 @@
-﻿using AutoMarket.Data.Models.Enum;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMarket.Data;
+using AutoMarket.Data.Models.Enum;
 
 namespace AutoMarket.Models.Offers
 {
@@ -7,16 +8,13 @@ namespace AutoMarket.Models.Offers
     {
         public string Id { get; set; }
 
-        [Display(Name = "Brand")]
+        [Display(Name = GlobalConstants.DisplayName.Brand)]
         public string Make { get; set; }
 
-        [Display(Name = "Model")]
         public string Model { get; set; }
 
-        [Display(Name = "Color")]
         public Color Color { get; set; }
 
-        [Display(Name = "Price")]
         public int Price { get; set; }
         public string Image { get; set; }
     }

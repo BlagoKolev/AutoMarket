@@ -13,85 +13,78 @@ namespace AutoMarket.Models.Offers
     {
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "The 'Brand' field is required")]
-        [StringLength(15, ErrorMessage = "The 'Brand' field must me between 3 and 15 symbols.", MinimumLength = 3)]
-        [Display(Name = "Brand")]
+        [Display(Name = GlobalConstants.DisplayName.Brand)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [StringLength(15, ErrorMessage = GlobalConstants.StringInRange, MinimumLength = 3)]
         public string Make { get; set; }
 
-        [Required(ErrorMessage = "The 'Model' field is required")]
-        [StringLength(20, ErrorMessage = "The 'Model' field must be between 1 and 20 symbols.", MinimumLength = 1)]
-        [Display(Name = "Model")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [StringLength(20, ErrorMessage = GlobalConstants.StringInRange, MinimumLength = 1)]
         public string Model { get; set; }
 
-        [Required(ErrorMessage = "The 'Body type' field is required.")]
-        [Display(Name = "Body type")]
+        [Display(Name = GlobalConstants.DisplayName.BodyType)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public BodyType BodyType { get; set; }
 
-        [Required(ErrorMessage = "The 'Manufacturing year' field is required")]
+        [Display(Name = GlobalConstants.DisplayName.ManufacturingYear)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         [ManufactoringYear(1900)]
-        [Display(Name = "Manufacturing year")]
         public int ManufacturingYear { get; set; }
 
-        [Required(ErrorMessage = "The 'Engine capacity' field is required.")]
+        [Display(Name = GlobalConstants.DisplayName.EngineCapacity)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         [Column(TypeName = "decimal(5, 2)")]
-        [Range(typeof(decimal), "0.1", "1000000", ErrorMessage = "Engine capacity must be between 0,1 and 1000000.")]
-        [Display(Name = "Engine Capacity")]
+        [Range(typeof(decimal), "0.1", "1000000", ErrorMessage = GlobalConstants.ValueInRange)]
         public decimal EngineCapacity { get; set; }
 
-        [Required(ErrorMessage = "The 'Horse power' field is required.")]
-        [Range(0, 100000, ErrorMessage = "Horse power must be between 0 и 100000 h.p. .")]
-        [Display(Name = "Horse power")]
+        [Display(Name = GlobalConstants.DisplayName.HorsePower)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(0, 100000, ErrorMessage = GlobalConstants.ValueInRange)]
         public int HorsePower { get; set; }
 
-        [Required(ErrorMessage = "The 'Engine type' field is required.")]
-        [Display(Name = "Engine type")]
+        [Display(Name = GlobalConstants.DisplayName.EngineType)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public EngineType EngineType { get; set; }
 
-        [Required(ErrorMessage = "The 'Transmission' field s required.")]
-        [Display(Name = "Transmission")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public TransmissionType Transmission { get; set; }
 
 
-        [Required(ErrorMessage = "The 'Mileage' field s required.")]
-        [Display(Name = "Mileage (km)")]
-        [Range(0, 2000000, ErrorMessage = "The 'Mileage' field must be between 0 и 2 mln. km.")]
+        [Display(Name = GlobalConstants.DisplayName.Mileage)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(0, 2000000, ErrorMessage = GlobalConstants.ValueInRange)]
         public int Мileage { get; set; }
 
 
-        [Required(ErrorMessage = "The 'Color' field s required.")]
-        [Display(Name = "Color")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public Color Color { get; set; }
 
 
-        [Required(ErrorMessage = "The 'Euro standar' field s required.")]
-        [Display(Name = "Euro standart")]
+        [Display(Name = GlobalConstants.DisplayName.EuroStandart)]
+        [Required(ErrorMessage = GlobalConstants.Required)]
         public EuroStandart EuroStandart { get; set; }
 
-        [Required(ErrorMessage = "The 'Phone' field s required.")]
-        [MaxLength(15, ErrorMessage = "The 'Phone' field cannot be longer than 15 symbols")]
-        [Display(Name = "Phone")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [MaxLength(15, ErrorMessage = GlobalConstants.MaxLength)]
         public string Phone { get; set; }
 
-        [EmailAddress(ErrorMessage = "Please enter a valid E-mail form 'xxx@xxx.xx'.")]
-        [Display(Name = "E-mail")]
+        [EmailAddress(ErrorMessage = GlobalConstants.ValidEmailFormat)]
+        [Display(Name = GlobalConstants.DisplayName.Email)]
         public string Email { get; set; }
 
-        [MaxLength(500, ErrorMessage = "The 'Description' field cannot be longer than 500 symbols.")]
+        [MaxLength(500, ErrorMessage = GlobalConstants.MaxLength)]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "Description")]
         public string Description { get; set; }
 
 
-        [Required(ErrorMessage = "The 'Price' field is requred.")]
-        [Range(0, int.MaxValue, ErrorMessage = "The 'Price' field must be between 0 и 2 000 000 000 euro.")]
-        [Display(Name = "Price")]
+        [Required(ErrorMessage = GlobalConstants.Required)]
+        [Range(0, int.MaxValue, ErrorMessage = GlobalConstants.ValueInRange)]
         public int Price { get; set; }
 
-        [MaxLength(GlobalConstants.LocationLength, ErrorMessage = "The 'Location' field is requred.")]
-        [Display(Name = "Location")]
+        [MaxLength(GlobalConstants.LocationLength, ErrorMessage = GlobalConstants.MaxLength)]
         public string Location { get; set; }
 
-        [Display(Name = "Upload images")]
+        [Display(Name = GlobalConstants.DisplayName.UploadImages)]
         public ICollection<IFormFile> Images { get; set; }
     }
 
