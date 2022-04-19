@@ -63,6 +63,14 @@ namespace AutoMarket.Data
             public const string Dealers = "Dealers";
             public const string Category = "Category";
             public const string UploadImages = "Upload images";
+            public const string Model = "Model";
+            public const string Username = "Username";
+            public const string RegistrationDate = "Registration date";
+            public const string LockoutEnable = "Lockout enabled";
+            public const string LockoutEnd = "Lockout end";
+            public const string TwoFactorAuth = "Two factor enabled";
+            public const string AccessFailedCount = "Access failed count";
+            public const string VehicleOffersCount = "Vehicles offers count";
         }
     }
 }
