@@ -74,5 +74,24 @@ namespace AutoMarket.Data
             public const string VehicleOffersCount = "Vehicles offers count";
             public const string PartOffersCount = "Part offers count";
         }
+
+        public class Seed
+        {
+            public const string VehicleDescription = "The car is in perfect condition. You will be very lucky if u buy it.";
+            public const string TestEmail = "seed@mail.com";
+            public const string TestPhone = "+359-896-663322";
+
+            public class City
+            {
+                public const string Sofia = "Sofia";
+                public const string Plovdiv = "Plovdiv";
+                public const string Varna = "Varna";
+                public const string StaraZagora = "Stara Zagora";
+                public const string Rouse = "Rouse";
+                public const string Burgas = "Burgas";
+                public const string Pleven = "Pleven";
+                public const string VelikoTarnovo = "Veliko Tarnovo";
+            }
+        }
     }
 }
