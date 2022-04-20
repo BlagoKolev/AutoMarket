@@ -423,13 +423,13 @@
                     Extension = "jpg",
                     VehicleOfferId = bmwE90Offer.Id,
                 },
-                  new Image
+                 new Image
                 {
                     Id = "bmwBlack3",
                     Extension = "jpg",
                     VehicleOfferId = bmwE90Offer.Id,
                 },
-                   new Image
+                new Image
                 {
                     Id = "bmwArctic1",
                     Extension = "jpg",
@@ -441,139 +441,139 @@
                     Extension = "jpg",
                     VehicleOfferId = bmwE90ArcticOffer.Id,
                 },
-                   new Image
+                new Image
                     {
                     Id = "MercedesCls5001",
                     Extension = "jpg",
                     VehicleOfferId = MercedesCls500Offer.Id,
                 },
-                   new Image
+                new Image
                     {
                     Id = "MercedesCls5002",
                     Extension = "jpg",
                     VehicleOfferId = MercedesCls500Offer.Id,
                 },
-                    new Image
+                new Image
                     {
                     Id = "AudiA61",
                     Extension = "jpg",
                     VehicleOfferId = AudiA6Offer.Id,
                 },
-                     new Image
+                new Image
                     {
                     Id = "AudiA62",
                     Extension = "jpg",
                     VehicleOfferId = AudiA6Offer.Id,
                 },
-                      new Image
+                new Image
                     {
                     Id = "AudiA63",
                     Extension = "jpg",
                     VehicleOfferId = AudiA6Offer.Id,
                 },
-                        new Image
+                new Image
                     {
                     Id = "Hammer1",
                     Extension = "jpg",
                     VehicleOfferId = HammerOffer.Id,
                 },
-                       new Image
+                new Image
                     {
                     Id = "Hammer2",
                     Extension = "jpg",
                     VehicleOfferId = HammerOffer.Id,
                 },
-                    new Image
+                new Image
                     {
                     Id = "Hammer3",
                     Extension = "jpg",
                     VehicleOfferId = HammerOffer.Id,
                 },
-                     new Image
+                new Image
                     {
                     Id = "RangeRover1",
                     Extension = "jpg",
                     VehicleOfferId = RangeRoverOffer.Id,
                 },
-                      new Image
+                new Image
                     {
                     Id = "RangeRover2",
                     Extension = "jpg",
                     VehicleOfferId = RangeRoverOffer.Id,
                 },
-                       new Image
+                new Image
                     {
                     Id = "RangeRover3",
                     Extension = "jpg",
                     VehicleOfferId = RangeRoverOffer.Id,
                 },
-                        new Image
+                new Image
                     {
                     Id = "Lada1",
                     Extension = "jpg",
                     VehicleOfferId = LadaOffer.Id,
                 },
-                        new Image
+                new Image
                     {
                     Id = "Ferrari1",
                     Extension = "jpg",
                     VehicleOfferId = FerrariOffer.Id,
                 },
-                         new Image
+                new Image
                     {
                     Id = "Ferrari2",
                     Extension = "jpg",
                     VehicleOfferId = FerrariOffer.Id,
                 },
-                          new Image
+                new Image
                     {
                     Id = "Ferrari3",
                     Extension = "jpg",
                     VehicleOfferId = FerrariOffer.Id,
                 },
-                           new Image
+                new Image
                     {
                     Id = "Ferrari4",
                     Extension = "jpg",
                     VehicleOfferId = FerrariOffer.Id,
                 },
-                            new Image
+                new Image
                     {
                     Id = "Ferrari5",
                     Extension = "jpg",
                     VehicleOfferId = FerrariOffer.Id,
                 },
-                             new Image
+                new Image
                     {
                     Id = "Porsche1",
                     Extension = "jpg",
                     VehicleOfferId = PorscheOffer.Id,
                 },
-                               new Image
+                new Image
                     {
                     Id = "Porsche2",
                     Extension = "jpg",
                     VehicleOfferId = PorscheOffer.Id,
                 },
-                                new Image
+                new Image
                     {
                     Id = "Honda1",
                     Extension = "jpg",
                     VehicleOfferId = HondaOffer.Id,
                 },
-                                 new Image
+                new Image
                     {
                     Id = "Honda2",
                     Extension = "jpg",
                     VehicleOfferId = HondaOffer.Id,
                 },
-                                  new Image
+                new Image
                     {
                     Id = "Honda3",
                     Extension = "jpg",
                     VehicleOfferId = HondaOffer.Id,
                 },
-                                   new Image
+                new Image
                     {
                     Id = "Honda4",
                     Extension = "jpg",
