@@ -26,7 +26,7 @@
             SeedAdministrator(services);
             CreateDealerRole(services);
 
-            SeedDbVehicleOffers(services);
+            SeedDatabase(services);
             return app;
         }
 
@@ -90,7 +90,6 @@
                 .GetAwaiter()
                 .GetResult();
         }
-
         private static void SeedDbVehicleOffers(IServiceProvider services)
         {
             var data = services.GetRequiredService<ApplicationDbContext>();
@@ -585,6 +584,199 @@
             data.Images.AddRange(seedImages);
 
             data.SaveChanges();
+        }
+        private static void SeedDbPartOffers(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<ApplicationDbContext>();
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            var admin = userManager.GetUsersInRoleAsync("Admin").GetAwaiter().GetResult()[0];
+
+            if (data.PartOffers.Any())
+            {
+                return;
+            }
+
+            //Parts
+            var bmwHeadlights = new Part
+            {
+                Name = "Headlights for BMW e90",
+                PartCategory = PartCategory.Lights,
+                Status = PartStatus.New
+            };
+
+            var bmwHood = new Part
+            {
+                Name = "Front Carbon hood for BMW e90",
+                PartCategory = PartCategory.Body,
+                Status = PartStatus.New
+            };
+
+            var bmwTail = new Part
+            {
+                Name = "Taillights for BMW F30",
+                PartCategory = PartCategory.Lights,
+                Status = PartStatus.New
+            };
+
+            var bmwSteeringWheel = new Part
+            {
+                Name = "SteeringWheel for BMW M-Sport",
+                PartCategory = PartCategory.SteeringSystem,
+                Status = PartStatus.New
+            };
+
+            var wheel404 = new Part
+            {
+                Name = "Wheels for BMW",
+                PartCategory = PartCategory.Body,
+                Status = PartStatus.New
+            };
+            var wheels586OEM = new Part
+            {
+                Name = "Wheels for BMW",
+                PartCategory = PartCategory.Body,
+                Status = PartStatus.New
+            };
+
+            //PartOffers
+            var bmwHeadlightsOffer = new PartOffer
+            {
+                Part = bmwHeadlights,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.Sofia,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 500,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var bmwHoodOffer = new PartOffer
+            {
+                Part = bmwHood,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.Sofia,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 900,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var bmwTailOffer = new PartOffer
+            {
+                Part = bmwTail,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.VelikoTarnovo,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 300,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var bmwSteeringWheelOffer = new PartOffer
+            {
+                Part = bmwSteeringWheel,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.Varna,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 250,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var wheel404Offer = new PartOffer
+            {
+                Part = wheel404,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.Varna,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 250,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var wheels586OEMOffer = new PartOffer
+            {
+                Part = wheels586OEM,
+                Description = GlobalConstants.Seed.PartDescription,
+                Email = GlobalConstants.Seed.TestEmail,
+                Location = GlobalConstants.Seed.City.Varna,
+                Phone = GlobalConstants.Seed.TestPhone,
+                Title = GlobalConstants.Seed.PartTitle,
+                Price = 250,
+                VehicleType = VehicleCategory.Automobile,
+                CreatedOn = DateTime.UtcNow,
+                ApplicationUser = admin,
+            };
+
+            var seedPartOffers = new PartOffer[] { bmwHeadlightsOffer, bmwHoodOffer, bmwTailOffer, bmwSteeringWheelOffer, wheel404Offer, wheels586OEMOffer };
+
+            data.PartOffers.AddRange(seedPartOffers);
+
+            var seedPartImages = new Image[]
+            {
+                new Image
+                {
+                    Id = "bmwHeadlights",
+                    PartOfferId = bmwHeadlightsOffer.Id,
+                    Extension = "jpg",
+                },
+                new Image
+                {
+                    Id = "bmwHood",
+                    PartOfferId = bmwHoodOffer.Id,
+                    Extension = "jpg",
+                },
+                new Image
+                {
+                    Id = "bmwTail",
+                    PartOfferId = bmwTailOffer.Id,
+                    Extension = "jpg",
+                },
+                new Image
+                {
+                    Id = "bmwSteeringWheel",
+                    PartOfferId = bmwSteeringWheelOffer.Id,
+                    Extension = "jpg",
+                },
+                new Image
+                {
+                    Id = "Wheel404",
+                    PartOfferId = wheel404Offer.Id,
+                    Extension = "png",
+                },
+                new Image
+                {
+                    Id = "Wheels586OEM",
+                    PartOfferId = wheels586OEMOffer.Id,
+                    Extension = "jpg",
+                },
+            };
+
+            //Add images to Database
+            data.Images.AddRange(seedPartImages);
+
+            data.SaveChanges();
+        }
+
+        private static void SeedDatabase(IServiceProvider services)
+        {
+            SeedDbVehicleOffers(services);
+            SeedDbPartOffers(services);
         }
     }
 }

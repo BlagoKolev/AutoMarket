@@ -78,6 +78,8 @@ namespace AutoMarket.Data
         public class Seed
         {
             public const string VehicleDescription = "The car is in perfect condition. You will be very lucky if u buy it.";
+            public const string PartDescription = "Quality first! Client is alaways right.";
+            public const string PartTitle = "Best parts for your needs.";
             public const string TestEmail = "seed@mail.com";
             public const string TestPhone = "+359-896-663322";
 
