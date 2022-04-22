@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using AutoMarket.Data.Models
+@inject SignInManager<ApplicationUser> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,62 +10,99 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AutoMarket</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="All">Vehicles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Parts" asp-action="All">Parts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dealers" asp-action="All">Dealers</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        @if (TempData.ContainsKey(AutoMarket.Data.GlobalConstants.AlertMessageKey))
-        {
-            @if (TempData[GlobalConstants.AlertMessageKey].ToString() == GlobalConstants.DealerNameAllreadyExist)
-            {
-                <div class="alert alert-warning text-center" role="alert">
-                    @TempData[GlobalConstants.AlertMessageKey]
-                </div>
-            }
-            else
-            {
-                <div class="alert alert-success text-center" role="alert">
-                    @TempData[GlobalConstants.AlertMessageKey]
-                </div>
-            }
-        }
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <noscript><link rel="stylesheet" href="~/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="inner">
+
+                <!-- Logo -->
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">
+                    <span class="fa fa-car"></span> <span class="title">Auto Market</span>
+                </a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    var username = User.Identity.Name;
+                    var index = username.IndexOf('@');
+                    var length = username.Length - index;
+                    var displayName = username.Substring(0, index);
+
+                    @*<a class="logo nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>*@
+                    <a class="logo nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <span class="fas fa-user welcome"></span>
+                        <span>@displayName</span>
+                    </a>
+                }
+                <!-- Nav -->
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="nav-item">
+                    <a class="active nav-link text-light" asp-area="" asp-controller="Vehicles" asp-action="All">Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="active nav-link text-light" asp-area="" asp-controller="Parts" asp-action="All">Parts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="active nav-link text-light" asp-area="" asp-controller="Dealers" asp-action="All">Dealers</a>
+                </li>
+                <partial name="_LoginPartial" />
+            </ul>
+        </nav>
         <div class="container">
-            &copy; 2021 - AutoMarket
+            @if (TempData.ContainsKey(AutoMarket.Data.GlobalConstants.AlertMessageKey))
+            {
+                @if (TempData[GlobalConstants.AlertMessageKey].ToString() == GlobalConstants.DealerNameAllreadyExist)
+                {
+                    <div class="alert alert-warning text-center" role="alert">
+                        @TempData[GlobalConstants.AlertMessageKey]
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success text-center" role="alert">
+                        @TempData[GlobalConstants.AlertMessageKey]
+                    </div>
+                }
+            }
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - AutoMarket
+            </div>
+        </footer>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.scrolly.min.js"></script>
+    <script src="~/js/jquery.scrollex.min.js"></script>
+    <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

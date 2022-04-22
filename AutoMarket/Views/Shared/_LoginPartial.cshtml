@@ -6,38 +6,38 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-        </li>
         @if (User.IsInRole("Admin"))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Accounts">Accounts</a>
+                <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Accounts">Accounts</a>
             </li>
         }
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Create">Add Vehicle</a>
+            <a class="nav-link text-light" asp-area="" asp-controller="Vehicles" asp-action="Create">Add Vehicle</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Parts" asp-action="Create">Add Part</a>
+            <a class="nav-link text-light" asp-area="" asp-controller="Parts" asp-action="Create">Add Part</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Offers" asp-action="All">My Offers</a>
+            <a class="nav-link text-light" asp-area="" asp-controller="Offers" asp-action="All">My Offers</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-info font-italic" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
         </li>
 
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-danger font-weight-bold">Logout</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
 </ul>

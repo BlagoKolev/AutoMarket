@@ -169,3 +169,12 @@ body {
     height: 200px;
     border: 3px solid green;
 }
+
+
+/*CSS form new layout view*/
+
+welcome {
+    padding-left: 7em !important;
+    color: red !important;
+}
+

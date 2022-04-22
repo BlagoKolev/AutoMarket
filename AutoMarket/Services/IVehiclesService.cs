@@ -11,5 +11,6 @@ namespace AutoMarket.Services
         ICollection<VehicleOffersAllViewModel> GetAllVehiclesOffers(int id, int itemsPerPage);
         DetailsOfferViewModel GetVehicleOfferById(string offerId);
         int GetItemsCount();
+       
     }
 }
