@@ -15,7 +15,7 @@ namespace AutoMarket.Controllers
         private readonly IHomeService homeService;
         private readonly IMemoryCache memoryCache;
 
-        public HomeController(ILogger<HomeController> logger, IHomeService homeService, IMemoryCache memoryCache )
+        public HomeController(ILogger<HomeController> logger, IHomeService homeService, IMemoryCache memoryCache)
         {
             _logger = logger;
             this.homeService = homeService;
@@ -36,12 +36,11 @@ namespace AutoMarket.Controllers
             }
 
             var firstSixOffers = homeService.GetFirstSixVehicleOffers();
-            //TODO: Pass first six offers to View
-            //return View(offersCount);
+
             ViewBag.VehicleOffers = offersCount[0];
             ViewBag.PartOffers = offersCount[1];
-            return View(firstSixOffers);
 
+            return View(firstSixOffers);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

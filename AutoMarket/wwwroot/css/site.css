@@ -173,8 +173,55 @@ body {
 
 /*CSS form new layout view*/
 
-welcome {
+/*welcome {
     padding-left: 7em !important;
     color: red !important;
+}*/
+
+#footer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1em 0 1em 0 !important;
 }
 
+/*.inner {
+    display: flex;
+    flex-wrap: nowrap !important;
+    align-items: flex-start;
+    justify-content: space-around;
+}*/
+
+.copyright {
+    display: flex;
+    flex-basis: 30% !important;
+    padding-top: 2.5em !important;
+}
+
+.icons {
+    display: flex;
+    flex-basis: 55% !important;
+    flex-direction: row;
+}
+
+.follow {
+    display: flex;
+    align-items: baseline;
+    padding-top: 1.9em !important;
+    padding-left: 6em;
+}
+#footer > .inner section:nth-child(2) {
+    width: calc(50% - 1.25em) !important;
+    align-self:center;
+}
+
+#footer > .inner {
+    display: flex;
+    flex-wrap: nowrap !important;
+    align-items: flex-start;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.follow-us-text {
+    margin-right: 1em;
+}
