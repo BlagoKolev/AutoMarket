@@ -27,11 +27,7 @@
                 </p>
             </a>
         </article>
-            @if (User.FindFirst(ClaimTypes.NameIdentifier).Value == offer.OwnerId || User.IsInRole("Admin"))
-            {
-                <a href="/Offers/EditVehicle?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Edit</a>
-                <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-            }
+            
                 @*<div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item text-center">Brand: @offer.Make </li>
@@ -73,12 +69,12 @@
                     <li class="bg-secondary col-sm">Created on: @offer.CreatedOn</li>
                 </ul>
                 <hr />*@
-                <a href="/Offers/PartDetails?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
+                @*<a href="/Offers/PartDetails?offerId=@offer.Id" class="btn btn-block btn-primary"><i class="fas fa-info-circle"></i> Details</a>
                 @if (User.FindFirst(ClaimTypes.NameIdentifier).Value == offer.OwnerId || User.IsInRole("Admin"))
                 {
                     <a href="/Offers/EditPart?offerId=@offer.Id" class="btn btn-block btn-warning"><i class="far fa-edit"></i> Edit</a>
                     <a href="/Offers/Delete?offerId=@offer.Id" class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-                }
+                }*@
                 @*</div>*@
             }
             @*</div>*@

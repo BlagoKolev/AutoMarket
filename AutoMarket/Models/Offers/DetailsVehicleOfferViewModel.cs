@@ -50,6 +50,7 @@ namespace AutoMarket.Models.Offers
         public int Price { get; set; }
 
         public string Location { get; set; }
+        public string OwnerId { get; set; }
         public IEnumerable<string> Images { get; set; }
     }
 }

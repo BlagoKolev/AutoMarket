@@ -20,6 +20,7 @@ namespace AutoMarket.Models.Parts
         public ICollection<string> Images { get; set; }
         public string Name { get; set; }
         public string PartCategory { get; set; }
+        public string OwnerId { get; set; }
         public PartStatus Status { get; set; }
     }
 }

@@ -1,6 +1,15 @@
 ﻿@model PartDetailsViewModel
+@using System.Security.Claims
 @{
     ViewData["Title"] = "Details";
+}
+
+@if (User.FindFirst(ClaimTypes.NameIdentifier).Value == Model.OwnerId || User.IsInRole("Admin"))
+{
+    <div class="btn-group" role="group">
+        <a href="/Offers/EditPart?offerId=@Model.Id"  class="btn btn-warning"><i class="far fa-edit"></i> Edit</a>
+        <a href="/Offers/Delete?offerId=@Model.Id"  class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+    </div>
 }
 
 <div class="inner">

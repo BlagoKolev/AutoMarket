@@ -209,6 +209,7 @@ namespace AutoMarket.Services
                     Location = x.Location,
                     Phone = x.Phone,
                     Price = x.Price,
+                    OwnerId = x.ApplicationUserId,
                     Images = imagesPath
                 })
                 .FirstOrDefault();
@@ -274,6 +275,7 @@ namespace AutoMarket.Services
                       Status = x.Part.Status,
                       VehicleType = x.VehicleType.GetDescription(),
                       Price = x.Price,
+                      OwnerId = x.ApplicationUserId,
                       Images = imagesPath
                   })
                   .FirstOrDefault();
