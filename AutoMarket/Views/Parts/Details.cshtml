@@ -2,59 +2,50 @@
 @{
     ViewData["Title"] = "Детайли за обявата";
 }
-<div>
-    <ul class="list-group list-group-horizontal">
-        @foreach (var img in Model.Images)
-        {
-            <li class="list-group-item mx-2 my-2">
-                <img src="@img" class="img-thumbnail" alt="" width="300" height="200" />
-            </li>
-        }
-    </ul>
+
+<div class="inner">
+    <h1>@Model.Title <span class="pull-right">&euro; @Model.Price</span></h1>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <partial name="_CarouselPartial" />
+            <div class="col-lg-5">
+                <h3>Vehicle Description</h3>
+
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="row justify-content-center">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Title</td>
-                <td>@Model.Title</td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>@Model.Name</td>
-            </tr>
-            <tr>
-                <td>Part category:</td>
-                <td>@Model.PartCategory</td>
-            </tr>
-            <tr>
-                <td>Vehicle type</td>
-                <td>@Model.VehicleType</td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td>@Model.Description</td>
-            </tr>
-            <tr>
-                <td>Condition</td>
-                <td>@Model.Status</td>
-            </tr>
-            <tr>
-                <td>E-mail</td>
-                <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <td>Location</td>
-                <td>@Model.Location</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <td>Price</td>
-                <td>@Model.Price &euro;</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<br>
+
+<form action="#">
+    <div class="fields">
+
+        <div class="field quarter">
+            <label class="m-n">Part</label>
+
+            <input type="text" readonly="" value="@Model.Name">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Condition</label>
+
+            <input type="text" readonly="" value="@Model.Status">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Category</label>
+
+            <input type="text" readonly="" value="@Model.PartCategory">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Vehicle type</label>
+
+            <input type="text" readonly="" value="@Model.VehicleType">
+        </div>
+    </div>
+</form>
+<partial name="_ContactsPartial" />
