@@ -97,6 +97,8 @@ namespace AutoMarket.Services
                     Model = x.Vehicle.Model,
                     Color = x.Vehicle.Color,
                     Price = x.Price,
+                    EngineType = x.Vehicle.EngineType,
+                    ManufactoringYear = x.Vehicle.ManufacturingYear,
                     Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                 })
             .ToList();

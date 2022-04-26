@@ -42,7 +42,7 @@ namespace AutoMarket.Services
                      Model = x.Vehicle.Model,
                      Color = x.Vehicle.Color,
                      EngineType = x.Vehicle.EngineType,
-                     MAnufactoringYear = x.Vehicle.ManufacturingYear,
+                     ManufactoringYear = x.Vehicle.ManufacturingYear,
                      Price = x.Price,
                      Image = GlobalConstants.VehicleImagePath + x.Pictures.FirstOrDefault().Id + '.' + x.Pictures.FirstOrDefault().Extension
                  })

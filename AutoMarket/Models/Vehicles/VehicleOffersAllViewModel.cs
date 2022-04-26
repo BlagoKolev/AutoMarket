@@ -10,5 +10,7 @@ namespace AutoMarket.Models.Vehicles
         public Color Color { get; set; }
         public int Price { get; set; }
         public string Image { get; set; }
+        public EngineType EngineType { get; set; }
+        public int ManufactoringYear { get; set; }
     }
 }
