@@ -3,88 +3,88 @@
     ViewData["Title"] = "Детайли за обявата";
 }
 @*<div>
-    <ul class="list-group list-group-horizontal">
-        @foreach (var img in Model.Images)
-        {
-            <li class="list-group-item mx-2 my-2">
-                <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
-            </li>
-        }
-    </ul>
-</div>*@
+        <ul class="list-group list-group-horizontal">
+            @foreach (var img in Model.Images)
+            {
+                <li class="list-group-item mx-2 my-2">
+                    <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
+                </li>
+            }
+        </ul>
+    </div>*@
 @*<div class="row justify-content-center">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Brand</td>
-                <td>@Model.Make</td>
-            </tr>
-            <tr>
-                <td>Model</td>
-                <td>@Model.Model</td>
-            </tr>
-            <tr>
-                <td>Manufacturing year</td>
-                <td>@Model.ManufacturingYear</td>
-            </tr>
-            <tr>
-                <td>Body type</td>
-                <td>@Model.BodyType</td>
-            </tr>
-            <tr>
-                <td>Engine capacity</td>
-                <td>@Model.EngineCapacity</td>
-            </tr>
-            <tr>
-                <td>HorsePower</td>
-                <td>@Model.HorsePower</td>
-            </tr>
-            <tr>
-                <td>Engine type</td>
-                <td>@Model.EngineType</td>
-            </tr>
-            <tr>
-                <td>Transmission</td>
-                <td>@Model.Transmission</td>
-            </tr>
-            <tr>
-                <td>Мileage</td>
-                <td>@Model.Мileage</td>
-            </tr>
-            <tr>
-                <td>Color</td>
-                <td>@Model.Color</td>
-            </tr>
-            <tr>
-                <td>Euro standart</td>
-                <td>@Model.EuroStandart</td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td>@Model.Description</td>
-            </tr>
-            <tr>
-                <td>Location</td>
-                <td>@Model.Location</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <td>Price</td>
-                <td>@Model.Price &euro;</td>
-            </tr>
-        </tbody>
-    </table>
-</div>*@
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>Brand</td>
+                    <td>@Model.Make</td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td>@Model.Model</td>
+                </tr>
+                <tr>
+                    <td>Manufacturing year</td>
+                    <td>@Model.ManufacturingYear</td>
+                </tr>
+                <tr>
+                    <td>Body type</td>
+                    <td>@Model.BodyType</td>
+                </tr>
+                <tr>
+                    <td>Engine capacity</td>
+                    <td>@Model.EngineCapacity</td>
+                </tr>
+                <tr>
+                    <td>HorsePower</td>
+                    <td>@Model.HorsePower</td>
+                </tr>
+                <tr>
+                    <td>Engine type</td>
+                    <td>@Model.EngineType</td>
+                </tr>
+                <tr>
+                    <td>Transmission</td>
+                    <td>@Model.Transmission</td>
+                </tr>
+                <tr>
+                    <td>Мileage</td>
+                    <td>@Model.Мileage</td>
+                </tr>
+                <tr>
+                    <td>Color</td>
+                    <td>@Model.Color</td>
+                </tr>
+                <tr>
+                    <td>Euro standart</td>
+                    <td>@Model.EuroStandart</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>@Model.Location</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>@Model.Price &euro;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>*@
 
 <div class="inner">
-    <h1>Lorem ipsum dolor sit amet consectetur <span class="pull-right">$ 16 000</span></h1>
+    <h1>@Model.Make @Model.Model <span class="pull-right">&euro; @Model.Price</span></h1>
 
     <div class="container-fluid">
         <div class="row">
@@ -92,27 +92,21 @@
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                        @for (int i = 1; i < Model.Images.ToArray().Length; i++)
+                        {
+                            <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                        }
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="images/product-1-720x480.jpg" alt="First slide">
+                            <img class="d-block w-100" src="@Model.Images.ToArray()[0]" alt="First slide">
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/product-2-720x480.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/product-3-720x480.jpg" alt="Third slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/product-4-720x480.jpg" alt="Fourth slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/product-5-720x480.jpg" alt="Fifth slide">
-                        </div>
+                        @for (int i = 1; i < Model.Images.ToArray().Length; i++)
+                        {
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="@Model.Images.ToArray()[i]" alt="@i slide">
+                            </div>
+                        }
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -128,9 +122,93 @@
             <div class="col-lg-5">
                 <h3>Vehicle Description</h3>
 
-                <p>- Colour coded bumpers<br>- Tinted glass<br>- Immobiliser<br>- Central locking - remote<br>- Passenger airbag<br>- Electric windows<br>- Rear head rests<br>- Radio<br>- CD player<br>- Ideal first car<br>- Warranty</p>
+                <p>@Model.Description</p>
             </div>
         </div>
     </div>
+</div>
+<br>
 
-    <br>
+<form action="#">
+    <div class="fields">
+
+        <div class="field quarter">
+            <label class="m-n">Make</label>
+
+            <input type="text" readonly="" value="@Model.Make">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Model</label>
+
+            <input type="text" readonly="" value="@Model.Model">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">First registration</label>
+
+            <input type="text" readonly="" value="@Model.ManufacturingYear">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Mileage</label>
+
+            <input type="text" readonly="" value="@Model.Мileage km">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Fuel</label>
+
+            <input type="text" readonly="" value="@Model.EngineType">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Engine size</label>
+
+            <input type="text" readonly="" value="@Model.EngineCapacity cc">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Power</label>
+
+            <input type="text" readonly="" value="@Model.HorsePower hp">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Transmission</label>
+
+            <input type="text" readonly="" value="@Model.Transmission">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Euro standart</label>
+
+            <input type="text" readonly="" value="@Model.EuroStandart">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Body type</label>
+
+            <input type="text" readonly="" value="@Model.BodyType">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Color</label>
+
+            <input type="text" readonly="" value="@Model.Color">
+        </div>
+    </div>
+</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Contact Details</h3>
+
+            <ul class="alt">
+                <li><span class="fa fa-map-marker"></span> @Model.Location</li>
+                <li><span class="fa fa-mobile-phone"></span>  @Model.Phone </li>
+                <li><span class="fa fa-envelope-o"></span> <a href="#">@Model.Email</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
