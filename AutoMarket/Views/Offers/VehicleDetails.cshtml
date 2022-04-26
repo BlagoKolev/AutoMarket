@@ -2,84 +2,92 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h3 class="text-center">@ViewData["Title"]</h3>
-<div>
-    <ul class="list-group list-group-horizontal">
-        @foreach (var img in Model.Images)
-        {
-            <li class="list-group-item mx-2 my-2">
-                <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
-            </li>
-        }
-    </ul>
+
+<div class="inner">
+    <h1>@Model.Make @Model.Model <span class="pull-right">&euro; @Model.Price</span></h1>
+    <div class="container-fluid">
+        <div class="row">
+
+            <partial name="_CarouselPartial" />
+
+            <div class="col-lg-5">
+                <h3>Vehicle Description</h3>
+
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="row justify-content-center">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Brand</td>
-                <td>@Model.Make</td>
-            </tr>
-            <tr>
-                <td>Model</td>
-                <td>@Model.Model</td>
-            </tr>
-            <tr>
-                <td>Manufacturing year</td>
-                <td>@Model.ManufacturingYear</td>
-            </tr>
-            <tr>
-                <td>Body type</td>
-                <td>@Model.BodyType</td>
-            </tr>
-            <tr>
-                <td>Engine capacity</td>
-                <td>@Model.EngineCapacity</td>
-            </tr>
-            <tr>
-                <td>Horse Power</td>
-                <td>@Model.HorsePower</td>
-            </tr>
-            <tr>
-                <td>Engine type</td>
-                <td>@Model.EngineType</td>
-            </tr>
-            <tr>
-                <td>Transmission</td>
-                <td>@Model.Transmission</td>
-            </tr>
-            <tr>
-                <td>Мileage (km)</td>
-                <td>@Model.Мileage</td>
-            </tr>
-            <tr>
-                <td>Color</td>
-                <td>@Model.Color</td>
-            </tr>
-            <tr>
-                <td>Euro standart</td>
-                <td>@Model.EuroStandart</td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td>@Model.Description</td>
-            </tr>
-            <tr>
-                <td>Location</td>
-                <td>@Model.Location</td>
-            </tr>
-            <tr>
-                <td>E-mail</td>
-                <td>@Model.Email</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <td>Price</td>
-                <td>@Model.Price &euro;</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<br>
+
+<form action="#">
+    <div class="fields">
+
+        <div class="field quarter">
+            <label class="m-n">Make</label>
+
+            <input type="text" readonly="" value="@Model.Make">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Model</label>
+
+            <input type="text" readonly="" value="@Model.Model">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">First registration</label>
+
+            <input type="text" readonly="" value="@Model.ManufacturingYear">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Mileage</label>
+
+            <input type="text" readonly="" value="@Model.Мileage km">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Fuel</label>
+
+            <input type="text" readonly="" value="@Model.EngineType">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Engine size</label>
+
+            <input type="text" readonly="" value="@Model.EngineCapacity cc">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Power</label>
+
+            <input type="text" readonly="" value="@Model.HorsePower hp">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Transmission</label>
+
+            <input type="text" readonly="" value="@Model.Transmission">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Euro standart</label>
+
+            <input type="text" readonly="" value="@Model.EuroStandart">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Body type</label>
+
+            <input type="text" readonly="" value="@Model.BodyType">
+        </div>
+
+        <div class="field quarter">
+            <label class="m-n">Color</label>
+
+            <input type="text" readonly="" value="@Model.Color">
+        </div>
+    </div>
+</form>
+<partial name="_ContactsPartial" />
