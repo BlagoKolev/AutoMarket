@@ -34,7 +34,7 @@ namespace AutoMarket.Models.Offers
         [Display(Name = GlobalConstants.DisplayName.EngineCapacity)]
         [Required(ErrorMessage = GlobalConstants.Required)]
         [Column(TypeName = "decimal(5, 2)")]
-        [Range(typeof(decimal), "0.1", "1000000", ErrorMessage = GlobalConstants.ValueInRange)]
+        [Range(typeof(decimal), "0.1", "999", ErrorMessage = GlobalConstants.ValueInRange)]
         public decimal EngineCapacity { get; set; }
 
         [Display(Name = GlobalConstants.DisplayName.HorsePower)]
