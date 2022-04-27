@@ -8,7 +8,7 @@
 {
     <div class="btn-group" role="group">
         <a href="/Offers/EditVehicle?offerId=@Model.Id" class="btn btn-warning"><i class="far fa-edit"></i> Edit</a>
-        <a href="Offers/Delete?offerId=@Model.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+        <a data-toggle="modal" href="#deleteModal" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
     </div>
 }
 
@@ -100,3 +100,5 @@
     </div>
 </form>
 <partial name="_ContactsPartial" />
+
+<partial name="_DeleteModalPartial" />
