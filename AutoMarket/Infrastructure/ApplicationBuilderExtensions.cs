@@ -21,7 +21,7 @@
             using var serviceScope = app.ApplicationServices.CreateScope();
             var services = serviceScope.ServiceProvider;
 
-            //  MigrateDatabase(services);
+            MigrateDatabase(services);
 
             SeedAdministrator(services);
             CreateDealerRole(services);
