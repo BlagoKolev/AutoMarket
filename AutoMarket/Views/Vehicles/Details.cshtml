@@ -3,6 +3,14 @@
     ViewData["Title"] = "Детайли за обявата";
 }
 
+@if (User.IsInRole("Admin"))
+{
+    <div class="btn-group" role="group">
+        <a href="/Offers/EditVehicle?offerId=@Model.Id" class="btn btn-warning"><i class="far fa-edit"></i> Edit</a>
+        <a data-toggle="modal" href="#deleteModal" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+    </div>
+}
+
 <div class="inner">
     <h1>@Model.Make @Model.Model <span class="pull-right">&euro; @Model.Price</span></h1>
     <div class="container-fluid">
@@ -91,3 +99,4 @@
     </div>
 </form>
 <partial name="_ContactsPartial" />
+<partial name="_DeleteModalPartial" />

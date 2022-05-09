@@ -3,49 +3,57 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="inner">
-    <h1>@Model.Title <span class="pull-right">&euro; @Model.Price</span></h1>
+@if (User.IsInRole("Admin"))
+{
+    <div class="btn-group" role="group">
+        <a class="btn btn-warning" href="/Offers/EditPart?offerId=@Model.Id"><i class="far fa-edit"></i> Edit</a>
+        <a class="btn btn-danger" data-toggle="modal" href="#deleteModal"><i class="fas fa-trash-alt"></i> Delete</a>
+    </div>
+}
+    <div class="inner">
+        <h1>@Model.Title <span class="pull-right">&euro; @Model.Price</span></h1>
 
-    <div class="container-fluid">
-        <div class="row">
+        <div class="container-fluid">
+            <div class="row">
 
-            <partial name="_CarouselPartial" />
-            <div class="col-lg-5">
-                <h3>Vehicle Description</h3>
+                <partial name="_CarouselPartial" />
+                <div class="col-lg-5">
+                    <h3>Vehicle Description</h3>
 
-                <p>@Model.Description</p>
+                    <p>@Model.Description</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br>
+    <br>
 
-<form action="#">
-    <div class="fields">
+    <form action="#">
+        <div class="fields">
 
-        <div class="field quarter">
-            <label class="m-n">Part</label>
+            <div class="field quarter">
+                <label class="m-n">Part</label>
 
-            <input type="text" readonly="" value="@Model.Name">
+                <input type="text" readonly="" value="@Model.Name">
+            </div>
+
+            <div class="field quarter">
+                <label class="m-n">Condition</label>
+
+                <input type="text" readonly="" value="@Model.Status">
+            </div>
+
+            <div class="field quarter">
+                <label class="m-n">Category</label>
+
+                <input type="text" readonly="" value="@Model.PartCategory">
+            </div>
+
+            <div class="field quarter">
+                <label class="m-n">Vehicle type</label>
+
+                <input type="text" readonly="" value="@Model.VehicleType">
+            </div>
         </div>
-
-        <div class="field quarter">
-            <label class="m-n">Condition</label>
-
-            <input type="text" readonly="" value="@Model.Status">
-        </div>
-
-        <div class="field quarter">
-            <label class="m-n">Category</label>
-
-            <input type="text" readonly="" value="@Model.PartCategory">
-        </div>
-
-        <div class="field quarter">
-            <label class="m-n">Vehicle type</label>
-
-            <input type="text" readonly="" value="@Model.VehicleType">
-        </div>
-    </div>
-</form>
-<partial name="_ContactsPartial" />
+    </form>
+    <partial name="_ContactsPartial" />
+    <partial name="_DeleteModalPartial" />
