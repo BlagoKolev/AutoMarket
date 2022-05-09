@@ -1,4 +1,4 @@
-﻿namespace AutoMarket.Models.Users
+﻿namespace AutoMarket.Areas.Admin.Controllers
 {
     public class UsersAllViewModel
     {

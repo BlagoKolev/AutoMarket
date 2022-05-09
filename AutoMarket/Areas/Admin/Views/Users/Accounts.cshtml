@@ -1,0 +1,62 @@
+﻿@model ListUsersAllViewModel
+@{
+    ViewData["Title"] = "Списък на потребителите";
+    var count = 1;
+}
+<h2>Списък с потребителски акаунти</h2>
+<table class="table table-dark table-striped btn-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var account in Model.Users)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td>@account.Username</td>
+                <td>@account.Email</td>
+                <td>
+
+                    <a class="btn btn-info" onmouseover="showText('info', @count)" onmouseout="hideText('info',  @count)" onclick="location.href='@Url.Action("Details", "Users", new { userId = account.Id })'">
+                        <i class="fas fa-info-circle">
+                            <span id="info@(+count)" hidden>Info</span>
+                        </i>
+                    </a>
+
+                    <a class="btn btn-primary" onmouseover="showText('edit', @count)" onmouseout="hideText('edit',  @count)" onclick="location.href='@Url.Action("Edit", "Users", new { userId = account.Id })'">
+                        <i class="fas fa-edit">
+                            <span id="edit@(+count)" hidden>Edit</span>
+                        </i>
+                    </a>
+
+                    <a class="btn btn-danger" onmouseover="showText('delete', @count)" onmouseout="hideText('delete',  @count)" onclick="location.href='@Url.Action("Delete", "Users", new { userId = account.Id })'">
+                        <i class="fa fa-trash" aria-hidden="true">
+                            <span id="delete@(+count)" hidden>Delete</span>
+                        </i>
+                    </a>
+                </td>
+            </tr>
+
+            count++;
+        }
+    </tbody>
+</table>
+
+<script>
+    function showText(text, count) {
+        let element = document.getElementById(text + count);
+        element.hidden = false;
+    }
+    function hideText(text, count) {
+        let element = document.getElementById(text + count);
+        element.hidden = true;
+    }
+
+</script>
+

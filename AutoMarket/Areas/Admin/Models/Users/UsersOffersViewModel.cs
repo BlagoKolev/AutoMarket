@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMarket.Data.Models.Enum;
 
-namespace AutoMarket.Models.Users
+namespace AutoMarket.Areas.Admin.Controllers
 {
     public class UsersOffersViewModel
     {

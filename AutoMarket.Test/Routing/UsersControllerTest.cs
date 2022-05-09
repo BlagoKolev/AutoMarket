@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using MyTested.AspNetCore.Mvc;
 using AutoMarket.Controllers;
-using AutoMarket.Models.Users;
+using AutoMarket.Areas.Admin.Controllers;
 
 namespace AutoMarket.Test.Routing
 {

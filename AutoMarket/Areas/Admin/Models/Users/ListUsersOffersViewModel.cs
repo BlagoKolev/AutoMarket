@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using AutoMarket.Models;
+using System.Collections.Generic;
 
-namespace AutoMarket.Models.Users
+namespace AutoMarket.Areas.Admin.Controllers
 {
     public class ListUsersOffersViewModel : PagingViewModel
     {

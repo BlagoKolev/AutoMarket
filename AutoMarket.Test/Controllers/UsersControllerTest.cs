@@ -1,9 +1,8 @@
 ﻿using Xunit;
 using MyTested.AspNetCore.Mvc;
-using AutoMarket.Controllers;
 using AutoMarket.Test.Moq;
-using AutoMarket.Models.Users;
 using AutoMarket.Models.Offers;
+using AutoMarket.Areas.Admin.Controllers;
 
 namespace AutoMarket.Test.Controllers
 {

@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using AutoMarket.Data;
-using AutoMarket.Models.Users;
-using AutoMarket.Data.Models;
+using AutoMarket.Areas.Admin.Controllers;
 
 namespace AutoMarket.Services
 {
