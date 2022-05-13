@@ -19,5 +19,8 @@ namespace AutoMarket.Services
         int GetAllUsersOffersCount(string userId);
         DetailsVehicleOfferViewModel GetVehicleOfferById(string carId);
         int GetItemsCount();
+        Task<string> DeleteImageById(string imageId);
+
+
     }
 }

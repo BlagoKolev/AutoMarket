@@ -15,5 +15,6 @@ namespace AutoMarket.Data.Models
         public PartOffer PartOffer{ get; set; }
         public string VehicleOfferId { get; set; }
         public VehicleOffer VehicleOffer { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

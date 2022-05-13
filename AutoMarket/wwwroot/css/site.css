@@ -225,3 +225,7 @@ body {
 .follow-us-text {
     margin-right: 1em;
 }
+
+.edit-images {
+    flex-direction: row !important ; 
+}

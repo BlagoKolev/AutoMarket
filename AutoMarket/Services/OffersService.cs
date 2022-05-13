@@ -316,7 +316,7 @@ namespace AutoMarket.Services
         public async Task UpdatePartOffer(EditPartOfferViewModel editedModel, string offerId, string userId, bool isUserAdmin)
         {
             var images = this.db.Images
-                 .Where(x => x.VehicleOfferId == offerId)
+                 .Where(x => x.VehicleOfferId == offerId && !x.IsDeleted)
                  .ToList();
 
             var currentOffer = this.db.PartOffers
@@ -347,6 +347,17 @@ namespace AutoMarket.Services
             entityToEdit.Part.PartCategory = editedModel.PartCategory;
             entityToEdit.Part.Status = editedModel.Status;
             entityToEdit.Pictures = images;
+        }
+
+        public async Task<string> DeleteImageById(string imageId)
+        {
+            var image = this.db.Images.Where(x => x.Id == imageId).FirstOrDefault();
+            var offerId = image.VehicleOfferId;
+
+            this.db.Images.Remove(image);
+            await  this.db.SaveChangesAsync();
+
+            return offerId;
         }
     }
 }

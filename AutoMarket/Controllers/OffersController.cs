@@ -65,7 +65,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> EditVehicle(string Id,EditVehicleOfferViewModel editedModel)
+        public async Task<IActionResult> EditVehicle(string Id, EditVehicleOfferViewModel editedModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace AutoMarket.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> EditPart(string Id,EditPartOfferViewModel editedModel)
+        public async Task<IActionResult> EditPart(string Id, EditPartOfferViewModel editedModel)
         {
             if (!ModelState.IsValid)
             {
@@ -121,10 +121,25 @@ namespace AutoMarket.Controllers
             {
                 var isUserAdmin = IsAdmin();
                 var userId = userManager.GetUserId(this.User);
-               await offersService.DeleteOffer(offerId, userId, isUserAdmin);
+                await offersService.DeleteOffer(offerId, userId, isUserAdmin);
             }
             TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DeleteSuccessfully;
-            return this.RedirectToAction(nameof(this.All));
+            return this.RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteImage(string imageId)
+        {
+            if (imageId != null)
+            {
+                var offerId = await offersService.DeleteImageById(imageId);
+                TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DeleteImageSuccessfully;
+                return this.RedirectToAction(nameof(VehicleDetails), new { offerId });
+            }
+
+            TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.ItemDoesNotExist;
+
+            return this.RedirectToAction(nameof(All));
         }
 
         private bool IsAdmin()

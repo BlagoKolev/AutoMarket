@@ -17,7 +17,9 @@ namespace AutoMarket.Data
         public const string VehicleImagePath = "/images/vehicles/";
         public const string PartImagePath = "/images/parts/";
         public const string AlertMessageKey = "AlertMessage";
+        public const string ItemDoesNotExist = "Searched item does not exist.";
         public const string DeleteSuccessfully = "You have successfully deleted your offer.";
+        public const string DeleteImageSuccessfully = "You have successfully deleted an image.";
         public const string UpdateOfferSuccessfully = "You have successfully updated your offer.";
         public const string BecomeDealerSuccessfully = "Congratulations! You are now a Dealer!";
         public const string CreateOfferSuccessfully = "You have successfully created а new offer.";
