@@ -10,9 +10,16 @@
     <ul class="list-group list-group-horizontal edit-images">
         @foreach (var img in Model.Images)
         {
-            <li class="list-group-item mx-2 my-2">
-                <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
-            </li>
+
+            var slashIndex = img.LastIndexOf('/');
+            var dotIndex = img.IndexOf('.');
+            var substringLength = dotIndex - slashIndex;
+            var imageId = img.Substring(slashIndex + 1, substringLength - 1);
+
+        <li class="list-group-item mx-2 my-2 edit-image">
+            <img src="@img" class="img-thumbnail" alt="Alternate Text" width="300" height="200" />
+            <a href="/Offers/DeleteImage?imageId=@imageId" id="@imageId" class="btn btn-danger">Delete</a>
+        </li>
         }
     </ul>
 </div>

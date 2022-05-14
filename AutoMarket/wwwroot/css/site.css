@@ -229,3 +229,8 @@ body {
 .edit-images {
     flex-direction: row !important ; 
 }
+
+.edit-image {
+    display: flex !important;
+    flex-direction :column;
+}

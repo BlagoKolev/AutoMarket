@@ -352,7 +352,9 @@ namespace AutoMarket.Services
         public async Task<string> DeleteImageById(string imageId)
         {
             var image = this.db.Images.Where(x => x.Id == imageId).FirstOrDefault();
-            var offerId = image.VehicleOfferId;
+
+            var offerId = string.Empty;
+            offerId = image.VehicleOfferId ?? image.PartOfferId;
 
             this.db.Images.Remove(image);
             await  this.db.SaveChangesAsync();

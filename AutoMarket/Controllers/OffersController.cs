@@ -134,6 +134,10 @@ namespace AutoMarket.Controllers
             {
                 var offerId = await offersService.DeleteImageById(imageId);
                 TempData[GlobalConstants.AlertMessageKey] = GlobalConstants.DeleteImageSuccessfully;
+                if (offerId.StartsWith("Part"))
+                {
+                    return this.RedirectToAction(nameof(PartDetails), new { offerId });
+                }
                 return this.RedirectToAction(nameof(VehicleDetails), new { offerId });
             }
 
