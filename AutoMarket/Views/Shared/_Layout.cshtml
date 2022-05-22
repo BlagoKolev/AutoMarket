@@ -54,7 +54,9 @@
         <nav id="menu">
             <h2>Menu</h2>
             <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="nav-item">
+                    <a class="active nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
                 <li class="nav-item">
                     <a class="active nav-link text-light" asp-area="" asp-controller="Vehicles" asp-action="All">Vehicles</a>
                 </li>
