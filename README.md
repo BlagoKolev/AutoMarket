@@ -47,14 +47,26 @@ Dealers get the advantage to be present in a separate section only with Offers o
 ![Home page2](https://user-images.githubusercontent.com/64737227/194005280-723dcf2b-a278-4428-9871-e7e86739b21c.png)
 ![HomepageMenu](https://user-images.githubusercontent.com/64737227/194005295-f7a3f7a6-8660-4267-90cf-aeb22269782f.png)
 ---
+
 ### Parts page
 ![Parts Offer](https://user-images.githubusercontent.com/64737227/194005331-d2b9faab-6b93-424f-af29-d3c49d27f729.png)
 ---
+
 ### Search page
 ![SearchPage](https://user-images.githubusercontent.com/64737227/194005351-bafdc484-0aba-4cb1-a218-7a0fe052405b.png)
 ---
+
 ### Become a Dealer form (get in Role - Dealer)
 ![BecomeADealerForm](https://user-images.githubusercontent.com/64737227/194005373-29fabf9a-d1fc-453c-847a-8fda18eda5ab.png)
 ---
+
 ### Delete confirmation for parts and vehicle offers (Modal)
 ![Confirm delete](https://user-images.githubusercontent.com/64737227/194005386-4abf54b0-d348-4da4-a114-d1834c970a2a.png)
+---
+
+### Admin panel - Accounts
+![AdminPanel-Accounts](https://user-images.githubusercontent.com/64737227/194006615-2b8bf3ff-eb56-4997-889f-3258114c2be8.png)
+---
+
+### Admin panel - User info
+![AdminPanel-UserInfo](https://user-images.githubusercontent.com/64737227/194006640-db0204d1-0dde-4394-8b03-2bdcb5e8426c.png)
