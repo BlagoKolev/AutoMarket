@@ -1,5 +1,5 @@
 # AutoMarket
-## This is simple platform for the sale of cars, other vehicles, auto parts and accessories.
+## :bulb: This is simple platform for the sale of cars, other vehicles, auto parts and accessories.
 
 ### There are currently two main sections:
 1. Vehicles;
