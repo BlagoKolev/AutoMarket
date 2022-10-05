@@ -70,3 +70,6 @@ Dealers get the advantage to be present in a separate section only with Offers o
 
 ### Admin panel - User info
 ![AdminPanel-UserInfo](https://user-images.githubusercontent.com/64737227/194006640-db0204d1-0dde-4394-8b03-2bdcb5e8426c.png)
+---
+### Project structure
+![ProjectStructure](https://user-images.githubusercontent.com/64737227/194007320-e71c23c1-7657-4501-8a52-47eac9a1cdd2.png)
