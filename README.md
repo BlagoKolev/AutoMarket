@@ -27,16 +27,19 @@ Dealers get the advantage to be present in a separate section only with Offers o
 >> Email =admin@automarket.com<br>
 >> password = admin;
   
-#### So far, the project is written almost entirely in C #.
-
-#### Used technologies:
+### :hammer_and_wrench: Languages and Tools :
+- C#
+- JavaScript
 - ASP.NET Core
 - Entity Framework Core
 - MSSQL Server
 - Bootstrap
+---
 
-#### The testing of the project was carried out with the library written by Ivaylo Kenov [MyTested.AspNetCore.Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc).
-
+### :test_tube:  The testing of the project was carried out with the library written by Ivaylo Kenov [MyTested.AspNetCore.Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc).
+---
 ### :floppy_disk: Database Diagram
 ![DB](https://user-images.githubusercontent.com/64737227/194001447-42575b89-841f-4946-9c19-5cac5a2b2960.png)
 
+## :camera: Screenshots
+### Home page
