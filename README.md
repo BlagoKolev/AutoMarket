@@ -4,10 +4,10 @@
 ### There are currently two main sections:
 1. Vehicles;
 2. Auto parts;
-### There are two main roles:
+### :couple: There are two main roles:
 1. Admin;
 2. Dealer;
-### Description of roles:
+### :couple: Description of roles:
 
 >- Guests<br>
 >> They can view all offers, but they can't Create, Edit, or Delete such. They do not have access to the Dealers menu.
@@ -22,6 +22,11 @@ Dealers get the advantage to be present in a separate section only with Offers o
 >- Admin<br>
 >> He is a trully God here. He can Create,Edit,Delete offers, can Edit or Delete others users offers, can Edit Users profiles or Delete their Accounts.
 
+### :key: You can test functionalities by using following acounts:
+>- Admin<br>
+>> Email =admin@automarket.com<br>
+>> password = admin;
+  
 #### So far, the project is written almost entirely in C #.
 
 #### Used technologies:
@@ -31,3 +36,5 @@ Dealers get the advantage to be present in a separate section only with Offers o
 - Bootstrap
 
 #### The testing of the project was carried out with the library written by Ivaylo Kenov [MyTested.AspNetCore.Mvc](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc).
+
+### :floppy_disk: Database Diagram
