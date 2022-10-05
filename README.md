@@ -1,5 +1,5 @@
 # AutoMarket
-## This is an application that lays the foundation for the development of a platform for the sale of cars, other vehicles, auto parts and accessories.
+## This is simple platform for the sale of cars, other vehicles, auto parts and accessories.
 
 ### There are currently two main sections:
 1. Vehicles;
